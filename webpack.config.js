@@ -9,9 +9,7 @@ module.exports = {
         path: path.resolve(__dirname, './dist'),
         filename: '[name].bundle.js',
     },
-    plugins: [new HtmlWebpackPlugin({
-        title:'Hugo\'s resume'
-    })],
+
     devtool: "source-map", 
     module: {
         rules: [{
