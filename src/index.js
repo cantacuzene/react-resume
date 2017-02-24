@@ -9,5 +9,5 @@ let changeInnerHtml = function(){
 
 
 document.addEventListener("DOMContentLoaded",function(){
-    changeInnerHtml()
+  //  changeInnerHtml()
 });

@@ -1,11 +1,62 @@
+
+$asidePanelColor : lighten(lightgrey, 15% );
+$topPanelColor :  saturate( midnightblue, 5% );
+
 body
 {
   margin:0;
   padding:0;
   box-sizing:border-box;
-
-  header{
-    background-color: darkblue;
-    color: white;
+  display:flex;
+  flex-direction: column;
+  #main{
+    width:100%;
+    background-color: white;
+    display:flex;
+    flex-direction: row;  
+  }
+  .sub{
+    width:80%;
+  }
+  #aside{
+    width:20%;
+    background-color: $asidePanelColor;
   }
 }
+
+header
+{
+  display:flex;
+  flex-direction: row;
+  width:100%;
+  background-color:$topPanelColor;
+ 
+}
+
+#contact{
+  width:100%;
+  background-color: lightblue;
+  display:inline-flex;
+  justify-content: space-around;
+  //padding:1%; 
+}
+
+aside{
+  height: 100%;
+}
+#aside{
+  display:flex;
+  flex-direction: column;
+  justify-content: space-around;
+}
+  #name
+  {
+      font-size: 50pt;
+      width: 80%;
+     // padding-left:10%;
+    //  padding-top: 2%;
+  }
+  #photo
+  {
+      width: 20%;
+  } 
