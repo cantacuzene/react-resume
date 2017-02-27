@@ -75,7 +75,7 @@ aside{
   display:inline-flex;
   justify-content: space-around;
   //padding:1%; 
-    font-size: 20pt;
+    font-size: 15pt;
     a:visited, a:link, a:hover{
       text-decoration: none;
       color:black
@@ -88,8 +88,9 @@ aside{
 #name2{
   #myphoto{
     zoom:30%;
-    vertical-align: -350px;
+    vertical-align: -380px;
   }
+  font-size:40pt;
 //vertical-align: middle;
 }
 
@@ -99,4 +100,9 @@ footer{
     columns: 3;
     list-style-type: none;
   }
+}
+
+
+#githubFlag{
+  position: absolute; top: 0; right: 0; border: 0;
 }
