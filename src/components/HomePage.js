@@ -23,7 +23,7 @@ const HomePage = () => {
                        My Github profile
                     </article>
                     <article id="linkedin">
-                        <a href="http://linkedin.com/cantacuzene"><i className="fa fa-linkedin-square" aria-hidden="true"></i></a><br/>
+                        <a href="https://www.linkedin.com/in/hugo-cantacuzene-903b9394"><i className="fa fa-linkedin-square" aria-hidden="true"></i></a><br/>
                         My Linkedin profile
                     </article>
                     <a href="https://github.com/cantacuzene/react-resume">
