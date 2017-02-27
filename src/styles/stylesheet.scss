@@ -1,3 +1,9 @@
+@import url('https://fonts.googleapis.com/css?family=Black+Ops+One|Bungee+Shade|Cutive+Mono|Josefin+Sans|Sirin+Stencil');
+$font-josephin: 'Josefin Sans', sans-serif;
+$font-sirin: 'Sirin Stencil', cursive;
+$font-blackOps: 'Black Ops One', cursive;
+$font-Bungee: 'Bungee Shade', cursive;
+$font-mono: 'Cutive Mono', monospace;
 
 $asidePanelColor : lighten(white, 15% );
 $topPanelColor :  saturate( white, 5% );
@@ -9,6 +15,7 @@ body
   box-sizing:border-box;
   display:flex;
   flex-direction: column;
+    font-family: $font-josephin;
   #main{
     width:80%;
     background-color: white;
@@ -88,8 +95,9 @@ aside{
 #name2{
   #myphoto{
     zoom:30%;
-    vertical-align: -380px;
+    //vertical-align: -380px;
   }
+  font-family: $font-blackOps;
   font-size:40pt;
 //vertical-align: middle;
 }

@@ -15,7 +15,7 @@ const HomePage = () => {
                     </article>
 
                     <article id="name2">
-                        Hugo <img id="myphoto" src="./img/hca.png" /> Cantacuzene
+                        <img id="myphoto" src="./img/hca.png" /> <br/>Hugo Cantacuzene
                     </article>
 
                     <article id="github">
