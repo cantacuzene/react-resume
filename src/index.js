@@ -22,15 +22,3 @@ render(
         </Router>
   </Provider>, document.getElementById('app')
 );
-
-/*
-let changeInnerHtml = function(){
-    let body = document.getElementsByTagName("body")[0];
-
-    body.innerHTML =""
-}
-
-
-document.addEventListener("DOMContentLoaded",function(){
-  //  changeInnerHtml()
-});*/

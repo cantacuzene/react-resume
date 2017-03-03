@@ -1,13 +1,7 @@
-<!DOCTYPE html>
-<html lang="en">
-    <head>
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <meta charset="utf-8"/>
-        <script src="https://use.fontawesome.com/67583f1fac.js"></script>
-    </head>
-    <body>
-        <div id="app">
-        </div>
+import React from 'react'
+
+const Footer = () => {
+    return(
         <footer>
             This page was created thanks to the following projects:
             <ul>
@@ -24,6 +18,7 @@
                 <li>12factor</li>
             </ul> 
         </footer>
-    </body>
+    );
+}
 
-</html>
+export default Footer;
