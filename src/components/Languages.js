@@ -1,17 +1,52 @@
 import React from 'react'
+import * as d3 from 'd3'
+import LanguageChart from './LanguageChart'
+import LanguageApi from '../api/LanguageApi'
 
-const Languages = ()=>{
-    return (
+class Languages extends React.Component
+{
+    constructor(props)
+    {
+        super(props);
+        this.state={Languages:[]};
+    }
+    componentDidMount()
+    {
+        this.LanguageList();
+    }
 
-        <section className="sub">
-            <h2>
-                    Languages
-            </h2>
-            <p>
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-            </p>
-        </section>
-    );
+    LanguageList()
+    {
+        return LanguageApi.getAll().then((data)=>{
+            this.setState({Languages:data});
+        })
+    }
+
+    render(){
+        let languages;
+        if(this.state.Languages.length != 0)
+        {
+            languages =(<div id={this.props.chartid} className="svgContainerWebChart">
+                    <svg  className="svg-content-responsive" preserveAspectRatio="xMinYMax meet" viewBox={"0 0 "+this.props.width+" "+this.props.height}>
+                    <LanguageChart transform={`translate(${this.props.width/4},${this.props.height/2})`} language={this.state.Languages[0].name} rate={this.state.Languages[0].rating} width={this.props.width} height={this.props.height} />
+                    <LanguageChart transform={`translate(${this.props.width/1.5},${this.props.height/2})`} language={this.state.Languages[1].name} rate={this.state.Languages[1].rating} width={this.props.width} height={this.props.height} />
+                    </svg>
+            </div>);
+        }
+        else
+        {
+            languages=(<div id={this.props.chartid} className="svgContainerWebChart"></div>)
+        }
+        return (
+             <section className="sub" >
+                <h2>
+                        Languages
+                </h2>
+                    {languages}
+            </section>
+        );
+
+    }
 };
 
 export default Languages;

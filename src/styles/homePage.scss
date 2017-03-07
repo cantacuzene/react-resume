@@ -127,6 +127,19 @@ footer{
   flex:1;
 }
 
-#polarChart{
- width: 100% !important;
+
+
+.svgContainerWebChart {
+    display: inline-block;
+    position: relative;
+    width: 100%;
+    padding-bottom: 40%; 
+    vertical-align: top;
+    overflow: hidden;
+}
+.svg-content-responsive {
+    display: inline-block;
+    position: absolute;
+    top: 10px;
+    left: 0;
 }
