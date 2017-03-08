@@ -1,261 +1,254 @@
 import React from 'react'
-import SkillsApi from '../api/SkillsApi'
+
 import * as d3 from 'd3'
 
 class SpiderWebChart extends React.Component{
     constructor(props)
     {
         super(props);
-        this.state = {levels:4,Data:SkillsApi.get()};
+        this.state = {
+            maxValue:0,
+            allAxis:[]
+        };
+
+        this.onMouseOverPolygon = this.onMouseOverPolygon.bind(this);
+        this.onMouseOutPolygon = this.onMouseOutPolygon.bind(this);
+        this.onMouseOutCircle = this.onMouseOutCircle.bind(this);
+        this.onMouseOverCircle = this.onMouseOverCircle.bind(this);
     }
-    shouldComponentUpdate() {
-    return false;
-  }
+
     componentDidMount()
     {
+        this.setState({
+            maxValue :Math.max(this.props.maxValue, d3.max(this.props.Data, function(d,i,data){return d3.max(d.map(function(o){return o.rating;}))})),
+            allAxis :(this.props.Data[0].map(function(i, j){
+                return i.name})),
+            total :this.props.Data[0].length,
+            radius :this.props.factor*Math.min(this.props.width/2, this.props.height/2),
+            Format :d3.format('%')
+        });
         //this.getData();
-        this.draw();
+
 
     }
-    getData()
+
+    getLevelFactor(currentLevel)
     {
-        return SkillsApi.getAll().then( (data) => {
-            console.log(data);
-            this.setState({Data:data});
-
-    })
+        return this.props.factor*this.state.radius*((currentLevel+1)/this.props.levels)
     }
 
-    draw()
+    drawCircularSegments(){
+        let returnValue = [];
+        for(let j=0; j<this.props.levels-1; j++){
+	        let levelFactor = this.getLevelFactor(j);
+            this.state.allAxis.map((item,i)=>{
+                returnValue.push(
+                    <line className="line" key={`line${i}-level${j}`}
+                    x1={levelFactor*(1-this.props.factor*Math.sin(i*this.props.radians/this.state.total))} 
+                    y1={levelFactor*(1-this.props.factor*Math.cos(i*this.props.radians/this.state.total))} 
+                    x2={levelFactor*(1-this.props.factor*Math.sin((i+1)*this.props.radians/this.state.total))} 
+                    y2={levelFactor*(1-this.props.factor*Math.cos((i+1)*this.props.radians/this.state.total))}
+                    style={{stroke:'grey',strokeOpacity:0.75,strokeWidth:'3px'}}
+                    transform={`translate(${this.props.width/this.props.centerOffset-levelFactor},${this.props.height/this.props.centerOffset-levelFactor})`}/>
+                )
+            });
+        }
+        return returnValue;
+    }
+
+    drawLevelValueInPercent(){
+        let f= d3.format('.00%');
+        let returnValue = [];
+        for(let j=0; j<this.props.levels-1; j++){
+	        let levelFactor = this.getLevelFactor(j);
+            returnValue.push(
+                <text className={"legend"}  key={`text${j}-line`}
+                x={levelFactor*(1-this.props.factor*Math.sin(0))} 
+                y={levelFactor*(1-this.props.factor*Math.cos(0))} 
+                style={{fontFamily:'sans-serif',fontSize:'30px',fill:'#737373'}}
+                transform={`translate(${this.props.width/this.props.centerOffset-levelFactor+this.props.ToRight}, ${this.props.height/this.props.centerOffset-levelFactor})`}>
+                    {f((j+1)*this.state.maxValue/this.props.levels)}
+                </text>
+            );
+        }
+        return returnValue;
+    }
+
+
+    drawAxises(){
+          let returnValue = [];
+          this.state.allAxis.map((item,i)=>{
+                returnValue.push(
+                    <g className={"axis"} key={`g-${i}`}>
+                        <line className={"line"} key={`line-${i}`}
+                        x1={this.props.width/this.props.centerOffset} 
+                        y1={this.props.height/this.props.centerOffset} 
+                        x2={this.props.width/this.props.centerOffset*(1-this.props.factor*Math.sin(i*this.props.radians/this.state.total))} 
+                        y2={this.props.height/this.props.centerOffset*(1-this.props.factor*Math.cos(i*this.props.radians/this.state.total))} style={{stroke:'grey',strokeWidth:'1px'}}  />
+                        <text className={"legend"} 
+                            style={{fontFamily:'sans-serif',fontSize:'20px',fontWeight:'bold'}} 
+                            textAnchor={"start"}  transform={"translate(0, -10)"} 
+                            x={this.props.width/this.props.centerOffset*(1-this.props.factorLegend*Math.sin(i*this.props.radians/this.state.total))-1*Math.sin(i*this.props.radians/this.state.total)} 
+                            y={this.props.height/this.props.centerOffset*(1-Math.cos(i*this.props.radians/this.state.total))-1*Math.cos(i*this.props.radians/this.state.total)}>
+                                {item} 
+                            </text>
+                    </g>
+                );
+            });
+        return returnValue;
+    }
+
+drawPolygons()
+{
+    let returnValue = [];
+    let polygonsData = this.props.Data.map((y, x)=>{
+	  let dataValues = y.map((item,i)=>{
+          return (
+              [
+                    this.props.width/this.props.centerOffset*(1-(parseFloat(Math.max(item.rating, 0))/this.state.maxValue)*this.props.factor*Math.sin(i*this.props.radians/this.state.total)), 
+                    this.props.height/this.props.centerOffset*(1-(parseFloat(Math.max(item.rating, 0))/this.state.maxValue)*this.props.factor*Math.cos(i*this.props.radians/this.state.total))
+              ]
+               
+          );
+      });
+      dataValues.push(dataValues[0])
+      return dataValues;
+    });
+
+    let series = polygonsData.map((PolygonSerie,index)=>{
+            return PolygonSerie.map((point,i)=>{
+                return `${point[0]},${point[1]}`;
+            }).join(" ");
+    });
+
+    returnValue =series.map((serie,index)=>{
+        return <polygon className={`radar-chart-serie${index}`} key={`polygon-${index}`} id={`polygon-${index}`}
+                    style={{strokeWidth:'2px',stroke:this.props.color(index),fill:this.props.color(index),fillOpacity:this.props.opacityArea}} 
+                    points={serie} onMouseOver={(e)=>this.onMouseOverPolygon(e)} onMouseOut={(e)=>this.onMouseOutPolygon(e)}/>
+    });
+
+    return returnValue;
+}
+
+onMouseOverPolygon(event)
+{
+    const polId= event.target.getAttribute('id');
+    d3.selectAll('polygon')
+        .transition(200)
+	    .style("fill-opacity", 0.1); 
+    d3.select(`#${polId}`)
+        .transition(200)
+	    .style("fill-opacity", 0.7); 
+}
+onMouseOutPolygon()
+{
+    d3.selectAll('polygon')
+        .transition(200)
+	    .style("fill-opacity", this.props.opacityArea); 
+}
+
+onMouseOverCircle(event)
+{
+    let f= d3.format('.00%');
+    const newX= event.target.getAttribute('cx') -10;
+    const newY= event.target.getAttribute('cy') -5;
+    const id = event.target.getAttribute('id');
+    const axis = event.target.getAttribute('data-axis');
+    const rating = event.target.getAttribute('data-rating');
+//console.log(newX);
+    d3.select('#tooltip')
+    	.attr('x', newX)
+		.attr('y', newY)
+        .text(f(rating))
+        .transition(200)
+	    .style('opacity', 1);
+    d3.select('#tooltip-text')
+    	.attr('x', newX)
+		.attr('y', newY)
+        .text(f(rating))
+        .transition(200)
+	    .style('opacity', 1);
+
+    d3.selectAll("polygon")
+	    .transition(200)
+	    .style("fill-opacity", 0.1);
+
+	d3.select(id)
+	    .transition(200)
+		.style("fill-opacity", .7);
+}
+onMouseOutCircle(event)
+{
+    d3.select('#tooltip')
+        .transition(200)
+        .style('opacity', 0);
+    d3.selectAll("polygon")
+	    .transition(200)
+	    .style("fill-opacity", this.props.opacityArea); 
+}
+
+
+drawPoints()
+{
+    return this.props.Data.map((item,index)=>{
+        return item.map((point, i)=>{
+            return <circle className={`radar-chart-serie${index}`}  key={`circle${index}-${i}`}
+                r={this.props.radius*1.8} 
+                alt={Math.max(point.rating,0)}
+                cx={ this.props.width/this.props.centerOffset*(1-(Math.max(point.rating, 0)/this.state.maxValue)*this.props.factor*Math.sin(i*this.props.radians/this.state.total))}
+                cy={ this.props.height/this.props.centerOffset*(1-(Math.max(point.rating, 0)/this.state.maxValue)*this.props.factor*Math.cos(i*this.props.radians/this.state.total))}
+                data-id={point.name} data-axis={point.name} data-rating={point.rating}
+                style={{fill:this.props.color(index),fillOpacity:0.9}}
+                 onMouseOver={this.onMouseOverCircle} onMouseOut={this.onMouseOutCircle}>
+                <title>
+                    {Math.max(point.rating, 0)}
+                </title>
+            </circle>
+        });
+    }).reduce((a,b)=>{return a.concat(b)})
+}
+
+    drawToolTip()
     {
-        let id = 'test42';
-        if(this.state.Data.length != 0)
-        {
-
-
-        var cfg = {
-	 radius: 5,
-	 w: 600,
-	 h: 600,
-	 factor: 1,
-	 factorLegend: .85,
-	 levels: 3,
-	 maxValue: 0,
-	 radians: 2 * Math.PI,
-	 opacityArea: 0.5,
-	 ToRight: 5,
-	 TranslateX: 80,
-	 TranslateY: 30,
-	 ExtraWidthX: 100,
-	 ExtraWidthY: 100,
-	 color: d3.scaleOrdinal(d3.schemeCategory10)
-	};
-	
-	if('undefined' !== typeof options){
-	  for(var i in options){
-		if('undefined' !== typeof options[i]){
-		  cfg[i] = options[i];
-		}
-	  }
-	}
-	cfg.maxValue = Math.max(cfg.maxValue, d3.max(this.state.Data, function(d,i,data){return d3.max(d.map(function(o){return o.rating;}))}));
-	var allAxis = (this.state.Data[0].map(function(i, j){return i.name}));
-	var total = allAxis.length;
-	var radius = cfg.factor*Math.min(cfg.w/2, cfg.h/2);
-	var Format = d3.format('%');
-	d3.select(id).select("svg").remove();
-	console.log("id >" +id);
-    console.log(allAxis);
-	var g = d3.select(id)
-			.append("svg")
-			.attr("width", cfg.w+cfg.ExtraWidthX)
-			.attr("height", cfg.h+cfg.ExtraWidthY)
-			.append("g")
-			.attr("transform", "translate(" + cfg.TranslateX + "," + cfg.TranslateY + ")");
-			;
-
-	var tooltip;
-	
-	//Circular segments
-	for(var j=0; j<cfg.levels-1; j++){
-	  var levelFactor = cfg.factor*radius*((j+1)/cfg.levels);
-	  g.selectAll(".levels")
-	   .data(allAxis)
-	   .enter()
-	   .append("svg:line")
-	   .attr("x1", function(d, i){return levelFactor*(1-cfg.factor*Math.sin(i*cfg.radians/total));})
-	   .attr("y1", function(d, i){return levelFactor*(1-cfg.factor*Math.cos(i*cfg.radians/total));})
-	   .attr("x2", function(d, i){return levelFactor*(1-cfg.factor*Math.sin((i+1)*cfg.radians/total));})
-	   .attr("y2", function(d, i){return levelFactor*(1-cfg.factor*Math.cos((i+1)*cfg.radians/total));})
-	   .attr("class", "line")
-	   .style("stroke", "grey")
-	   .style("stroke-opacity", "0.75")
-	   .style("stroke-width", "0.3px")
-	   .attr("transform", "translate(" + (cfg.w/2-levelFactor) + ", " + (cfg.h/2-levelFactor) + ")");
-	}
-
-	//Text indicating at what % each level is
-	for(var j=0; j<cfg.levels; j++){
-	  var levelFactor = cfg.factor*radius*((j+1)/cfg.levels);
-	  g.selectAll(".levels")
-	   .data([1]) //dummy data
-	   .enter()
-	   .append("svg:text")
-	   .attr("x", function(d){return levelFactor*(1-cfg.factor*Math.sin(0));})
-	   .attr("y", function(d){return levelFactor*(1-cfg.factor*Math.cos(0));})
-	   .attr("class", "legend")
-	   .style("font-family", "sans-serif")
-	   .style("font-size", "10px")
-	   .attr("transform", "translate(" + (cfg.w/2-levelFactor + cfg.ToRight) + ", " + (cfg.h/2-levelFactor) + ")")
-	   .attr("fill", "#737373")
-	   .text(Format((j+1)*cfg.maxValue/cfg.levels));
-	}
-	
-	let series = 0;
-
-	var axis = g.selectAll(".axis")
-			.data(allAxis)
-			.enter()
-			.append("g")
-			.attr("class", "axis");
-
-	axis.append("line")
-		.attr("x1", cfg.w/2)
-		.attr("y1", cfg.h/2)
-		.attr("x2", function(d, i){return cfg.w/2*(1-cfg.factor*Math.sin(i*cfg.radians/total));})
-		.attr("y2", function(d, i){return cfg.h/2*(1-cfg.factor*Math.cos(i*cfg.radians/total));})
-		.attr("class", "line")
-		.style("stroke", "grey")
-		.style("stroke-width", "1px");
-
-	axis.append("text")
-		.attr("class", "legend")
-		.text(function(d){return d})
-		.style("font-family", "sans-serif")
-		.style("font-size", "11px")
-		.attr("text-anchor", "middle")
-		.attr("dy", "1.5em")
-		.attr("transform", function(d, i){return "translate(0, -10)"})
-		.attr("x", function(d, i){return cfg.w/2*(1-cfg.factorLegend*Math.sin(i*cfg.radians/total))-60*Math.sin(i*cfg.radians/total);})
-		.attr("y", function(d, i){return cfg.h/2*(1-Math.cos(i*cfg.radians/total))-20*Math.cos(i*cfg.radians/total);});
-
- 
-	this.state.Data.forEach(function(y, x){
-	  let dataValues = [];
-	  g.selectAll(".nodes")
-		.data(y, function(j, i){
-		  dataValues.push([
-			cfg.w/2*(1-(parseFloat(Math.max(j.value, 0))/cfg.maxValue)*cfg.factor*Math.sin(i*cfg.radians/total)), 
-			cfg.h/2*(1-(parseFloat(Math.max(j.value, 0))/cfg.maxValue)*cfg.factor*Math.cos(i*cfg.radians/total))
-		  ]);
-		});
-	  dataValues.push(dataValues[0]);
-	  g.selectAll(".area")
-					 .data([dataValues])
-					 .enter()
-					 .append("polygon")
-					 .attr("class", "radar-chart-serie"+series)
-					 .style("stroke-width", "2px")
-					 .style("stroke", cfg.color(series))
-					 .attr("points",function(d) {
-						 var str="";
-						 for(var pti=0;pti<d.length;pti++){
-							 str=str+d[pti][0]+","+d[pti][1]+" ";
-						 }
-						 return str;
-					  })
-					 .style("fill", function(j, i){return cfg.color(series)})
-					 .style("fill-opacity", cfg.opacityArea)
-					 .on('mouseover', function (d){
-										z = "polygon."+d3.select(this).attr("class");
-										g.selectAll("polygon")
-										 .transition(200)
-										 .style("fill-opacity", 0.1); 
-										g.selectAll(z)
-										 .transition(200)
-										 .style("fill-opacity", .7);
-									  })
-					 .on('mouseout', function(){
-										g.selectAll("polygon")
-										 .transition(200)
-										 .style("fill-opacity", cfg.opacityArea);
-					 });
-	  series++;
-	});
-	series=0;
-
-
-	this.state.Data.forEach(function(y, x){
-	  g.selectAll(".nodes")
-		.data(y).enter()
-		.append("svg:circle")
-		.attr("class", "radar-chart-serie"+series)
-		.attr('r', cfg.radius)
-		.attr("alt", function(j){return Math.max(j.value, 0)})
-		.attr("cx", function(j, i){
-		  dataValues.push([
-			cfg.w/2*(1-(parseFloat(Math.max(j.value, 0))/cfg.maxValue)*cfg.factor*Math.sin(i*cfg.radians/total)), 
-			cfg.h/2*(1-(parseFloat(Math.max(j.value, 0))/cfg.maxValue)*cfg.factor*Math.cos(i*cfg.radians/total))
-		]);
-		return cfg.w/2*(1-(Math.max(j.value, 0)/cfg.maxValue)*cfg.factor*Math.sin(i*cfg.radians/total));
-		})
-		.attr("cy", function(j, i){
-		  return cfg.h/2*(1-(Math.max(j.value, 0)/cfg.maxValue)*cfg.factor*Math.cos(i*cfg.radians/total));
-		})
-		.attr("data-id", function(j){return j.axis})
-		.style("fill", cfg.color(series)).style("fill-opacity", .9)
-		.on('mouseover', function (d){
-					newX =  parseFloat(d3.select(this).attr('cx')) - 10;
-					newY =  parseFloat(d3.select(this).attr('cy')) - 5;
-					
-					tooltip
-						.attr('x', newX)
-						.attr('y', newY)
-						.text(Format(d.value))
-						.transition(200)
-						.style('opacity', 1);
-						
-					z = "polygon."+d3.select(this).attr("class");
-					g.selectAll("polygon")
-						.transition(200)
-						.style("fill-opacity", 0.1); 
-					g.selectAll(z)
-						.transition(200)
-						.style("fill-opacity", .7);
-				  })
-		.on('mouseout', function(){
-					tooltip
-						.transition(200)
-						.style('opacity', 0);
-					g.selectAll("polygon")
-						.transition(200)
-						.style("fill-opacity", cfg.opacityArea);
-				  })
-		.append("svg:title")
-		.text(function(j){return Math.max(j.value, 0)});
-
-	  series++;
-	});
-	//Tooltip
-	tooltip = g.append('text')
-			   .style('opacity', 0)
-			   .style('font-family', 'sans-serif')
-			   .style('font-size', '13px');
-                       }
+        let array =[]
+        array.push(
+            <rect x="0" y="0" height="75" width="200" rx="10" ry="10" id={'tooltip'} style={{opacity:0,fontFamily:'sans-serif',fontSize:'30px',fill:'#fff',stroke:'#006600'}} >
+                <text key={'tooltip-text'} />
+            </rect>
+        );
+        return array;
     }
+
     render(){
         console.log('render');
-        return          <section className="sub">
+           let drawSegments =[],drawLevel=[],drawAxis=[],drawPolygons=[],drawPoints =[],drawTooltip =[];
+
+
+        if(this.state.allAxis.length != 0)
+        {   
+            drawSegments = this.drawCircularSegments();
+            drawLevel = this.drawLevelValueInPercent();
+            drawAxis = this.drawAxises();
+            drawPolygons = this.drawPolygons();
+            drawPoints =this.drawPoints();
+            drawTooltip = this.drawToolTip();
+        }
+
+        //this.draw();
+        return <section className="sub">
             <h2>
-            About me
+            Skills
             </h2>
-            <p>
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-            </p>
-            <div id={'test42'}>       
-                <svg preserveAspectRatio="xMinYMax meet" viewBox={"0 0 "+this.props.width+" "+this.props.height}>
-                    <g>
-                        
+
+            <div id={'test42'} className="svgContainer">       
+                <svg className="svg-content-responsive" preserveAspectRatio="xMinYMin meet" viewBox={`0 0 ${this.props.width+this.props.ExtraWidthX} ${this.props.height+this.props.ExtraWidthY}`}>
+                    <g transform={"translate(" + this.props.TranslateX + "," + this.props.TranslateY + ")"}>
+                        {drawSegments}
+                        {drawLevel}
+                        {drawAxis}
+                        {drawPolygons}
+                        {drawPoints}
+                        {drawTooltip}
                     </g>
                 </svg>
             </div>
@@ -264,5 +257,26 @@ class SpiderWebChart extends React.Component{
  
     }
 }
+
+
+SpiderWebChart.defaultProps = {
+    width: 500,
+    height: 500,
+    radius: 6,
+    factor: 1,
+    factorLegend: .85,
+    levels:3,
+	maxValue: 0,
+	radians: 2 * Math.PI,
+	opacityArea: 0.5,
+	ToRight: 5,
+	TranslateX: 80,
+	TranslateY: 30,
+	ExtraWidthX: 200,
+	ExtraWidthY: 200,
+    centerOffset:2,
+    color: d3.scaleOrdinal(d3.schemeCategory10),
+    Data:[]
+};
 
 export default SpiderWebChart;

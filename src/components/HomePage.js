@@ -8,6 +8,7 @@ import Education from './Education'
 import Languages from './Languages'
 import Experiences from './Experiences'
 import HighchartsMore from 'highcharts/highcharts-more';
+import SkillsApi from '../api/SkillsApi'
 
 const HomePage = () => {
   return (
@@ -15,7 +16,7 @@ const HomePage = () => {
            <aside id="aside">
             <AboutMe />
             <Skills modules={[HighchartsMore]} container={"polarChart"}/>
-            <SpiderWebCharts width={500} height={590} />
+            <SpiderWebCharts width={500} height={500} Data={SkillsApi.get()} />
             <Education/>
             <Languages chartid={"myd3chart"} width={500} height={190} />
             </aside>

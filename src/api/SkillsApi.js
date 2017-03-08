@@ -3,20 +3,20 @@ import delay from './delay.js'
 
 
 const Skills=[
-    [{name:'C#', rating:90},
-    {name: 'HTML', rating:80}, 
-    {name:'CSS', rating:70},
-    {name:'Javascript', rating:80},
-    {name:'Docker', rating:60},
-    {name:'SQL', rating:70},
-    {name:'Linux', rating:60},
-    {name:'dotnet core', rating:60}, 
-    {name:'Hexagonal Architecture', rating:70},
-    {name:'React', rating:70},
-    {name:'Go', rating:30},
-    {name:'Ruby', rating:30},
-    {name:'Scrum Master', rating:90}, 
-    {name:'web architecture', rating:90}]
+    [{name:'C#', rating:0.90},
+    {name: 'HTML', rating:0.80}, 
+    {name:'CSS', rating:0.70},
+    {name:'Javascript', rating:0.80},
+    {name:'Docker', rating:0.60},
+    {name:'SQL', rating:0.70},
+    {name:'Linux', rating:0.60},
+    {name:'dotnet core', rating:0.60}, 
+    {name:'Hexagonal Architecture', rating:0.70},
+    {name:'React', rating:0.70},
+    {name:'Go', rating:0.30},
+    {name:'Ruby', rating:0.30},
+    {name:'Scrum Master', rating:0.90}, 
+    {name:'web architecture', rating:0.90}]
 ];
 
 
