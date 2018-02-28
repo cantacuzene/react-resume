@@ -1,0 +1,68 @@
+nav{
+    width:100%;
+    text-align: center;
+    section{
+        display:inline-block;
+        margin:0 auto;
+        width:60px;
+        vertical-align: top;
+        margin-right:3%;
+        margin-left:3%;
+        a:visited, a:link, a:hover{
+            text-decoration: none;
+            color:black
+
+          }
+          a{
+              i.fa{
+                  font-size: 2em;
+              }
+          }
+    }
+    display:block;
+}
+#me{
+    width:100%;
+    img{
+        width: 30%;
+        min-width: 175px;
+    }
+    font-size:35pt;
+    margin:0 auto;
+    text-align: center;
+    margin:10px;
+}
+
+@supports (display:grid)
+{
+    @media screen and (min-width:700px) {
+        nav{
+            display:grid;
+            grid-template-columns: 15% 15% 1fr 15% 15%;
+            grid-template-rows: 1fr;
+            section{
+                margin: 0 auto;
+            }
+            #email{
+                grid-column: 1;
+                grid-row: 1;
+            }
+            #badges{
+                grid-column: 2;
+                grid-row: 1;
+            }
+            #me{
+                grid-column: 3;
+                grid-row: 1;
+            }
+            #github{
+                grid-column: 4;
+                grid-row: 1;
+            }
+            #linkedin{
+                grid-column: 5;
+                grid-row: 1;
+            }
+        }
+    }
+}

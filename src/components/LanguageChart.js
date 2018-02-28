@@ -28,7 +28,7 @@ class LanguageChart extends React.Component
             filter:'url(#inset-shadow2)'
         };
         var styleText= {
-            'fontSize': '40px'
+            'fontSize': '35px'
         };
 
 

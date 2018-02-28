@@ -16,7 +16,7 @@ const HomePage = () => {
            <aside id="aside">
             <AboutMe />
             <Skills modules={[HighchartsMore]} container={"polarChart"}/>
-            <SpiderWebCharts width={500} height={500} Data={SkillsApi.get()} />
+
             <Education/>
             <Languages chartid={"myd3chart"} width={500} height={190} />
             </aside>
@@ -24,4 +24,5 @@ const HomePage = () => {
         </section>
   );
 };
+// <SpiderWebCharts width={500} height={500} Data={SkillsApi.get()} />
 export default HomePage;
