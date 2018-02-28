@@ -1,0 +1,33 @@
+@supports (display:grid)
+{
+    @media screen and (min-width:700px) {
+
+        #main{
+            display: grid;
+            grid-template-columns: 40% 60%;
+            grid-template-rows:300px 500px 300px 1700px;
+
+        }
+        .about{
+            grid-row: 1;
+            grid-column: 1;
+        }
+        .skills{
+            grid-row: 2;
+            grid-column: 1;
+        }
+        .form{
+            grid-row: 3;
+            grid-column: 1;
+        }
+        .lang{
+            grid-row: 4;
+            grid-column: 1;
+        }
+        .exp{
+            grid-row-start: 1;
+            grid-row-end:4;
+            grid-column: 2;
+            overflow: visible;
+        }
+    }}

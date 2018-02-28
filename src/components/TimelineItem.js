@@ -32,7 +32,7 @@ class TimelineItem extends React.Component{
         let operations=null;
         if(this.props.operations)
         {
-            description=<p className> {this.props.operations}</p>
+            operations=<p className> {this.props.operations}</p>
         }
         return (
 

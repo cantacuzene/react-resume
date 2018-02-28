@@ -38,11 +38,13 @@ class Languages extends React.Component
             languages=(<div id={this.props.chartid} className="svgContainerWebChart"></div>)
         }
         return (
-             <section className="sub" >
+             <section className="sub lang" >
                 <h2>
-                        Languages
+                        Langues
                 </h2>
+                <div className="center">
                     {languages}
+                 </div>   
             </section>
         );
 

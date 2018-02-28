@@ -67,9 +67,9 @@ class Skills extends React.Component {
     render()
     {
         return (
-         <section className="sub" >
+         <section className="sub skills" >
             <h2>
-                    skills
+                    Domaine d'expertise
             </h2>
             <div id={this.props.container}>
             </div>

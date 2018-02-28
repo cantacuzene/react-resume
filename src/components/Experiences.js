@@ -3,7 +3,7 @@ import Timeline from '../containers/Timeline'
 
 const Experiences = () =>{
     return(
-    <section className="experience">
+    <section className="sub experience exp">
         <h2>
             Experiences
         </h2>

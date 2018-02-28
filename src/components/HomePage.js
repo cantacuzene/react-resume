@@ -13,13 +13,12 @@ import SkillsApi from '../api/SkillsApi'
 const HomePage = () => {
   return (
           <section id="main">
-           <aside id="aside">
+
             <AboutMe />
             <Skills modules={[HighchartsMore]} container={"polarChart"}/>
 
             <Education/>
             <Languages chartid={"myd3chart"} width={500} height={190} />
-            </aside>
             <Experiences />
         </section>
   );
