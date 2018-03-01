@@ -5,8 +5,8 @@
         #main{
             display: grid;
             grid-template-columns: 40% 60%;
-            grid-template-rows:300px 500px 300px 1700px;
-
+            grid-template-rows:300px 500px 300px 2000px;
+            margin:10px;
         }
         .about{
             grid-row: 1;
