@@ -1,7 +1,8 @@
 import React from 'react'
-import * as d3 from 'd3'
+//import * as d3 from 'd3'
 import LanguageChart from './LanguageChart'
 import LanguageApi from '../api/LanguageApi'
+import PropTypes from 'prop-types';
 
 class Languages extends React.Component
 {
@@ -49,6 +50,10 @@ class Languages extends React.Component
         );
 
     }
-};
-
+}
+Languages.propTypes = {
+    chartid:PropTypes.number,
+    width:PropTypes.number,
+    height:PropTypes.number,
+}
 export default Languages;

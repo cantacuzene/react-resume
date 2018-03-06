@@ -1,5 +1,6 @@
+/* eslint react/prop-types: 0 */
 import React from 'react';
-import {Link} from 'react-router';
+//import {Link} from 'react-router';
 import Highcharts from 'highcharts/highcharts';
 
 
@@ -69,7 +70,7 @@ class Skills extends React.Component {
         return (
          <section className="sub skills" >
             <h2>
-                    Domaine d'expertise
+                    Domaine d expertise
             </h2>
             <div id={this.props.container}>
             </div>
@@ -77,6 +78,7 @@ class Skills extends React.Component {
         );
     }
 
-};
+}
+
 
 export default Skills;           

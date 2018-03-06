@@ -1,5 +1,5 @@
 import React from 'react';
-import {Link} from 'react-router';
+//import {Link} from 'react-router';
 
 const AboutMe = () => {
     return(
@@ -8,7 +8,17 @@ const AboutMe = () => {
             A propos
             </h2>
             <p>
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+                {"Passionné d'informatique depuis ma plus tendre enfance, j'ai non seulement grandi avec les ordinateurs, mais aussi avec le WEB."}<br/><br/>
+                {"C'est donc tout naturellement que je me suis tourné vers des études d'informatiques à l'EPITECH."}<br/><br/>
+            </p>
+            <p>
+                {"Développeur depuis 2007, j'ai touché à plusieurs technologies telles que PHP, JavaScript, ou la stack .Net."}<br/><br/>
+                {"C'est dans cette dernière que je me suis spécialisé, tout en gardant un sens critique exacerbé vis-à-vis des technologies de Microsoft."}<br/><br/>
+                {"Je ne regrette cependant pas mon choix au vu des dernières évolutions de .Net Core"}<br/><br/>
+            </p>
+            <p>
+                {"Mes maitres à penser dans l'industrie viennent de langages et d'horizons différents."}<br/><br/>
+                {"Ils se nomment Martin Fowler, Greg Young, José Valim, Miran Lipovača ou encore Uncle Bob pour ne citer qu'eux."}<br/><br/>
             </p>
         </section>
     );

@@ -4,8 +4,8 @@
 
         #main{
             display: grid;
-            grid-template-columns: 40% 60%;
-            grid-template-rows:300px 500px 300px 2000px;
+            grid-template-columns: 40% 5% 55%;
+            grid-template-rows:600px 500px 300px 2000px;
             margin:10px;
         }
         .about{
@@ -27,7 +27,7 @@
         .exp{
             grid-row-start: 1;
             grid-row-end:4;
-            grid-column: 2;
+            grid-column: 3;
             overflow: visible;
         }
     }}

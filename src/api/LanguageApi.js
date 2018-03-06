@@ -15,7 +15,7 @@ class LanguageApi
 {
     static getAll()
     {
-         return new Promise((resolve, reject) => { setTimeout(() => {resolve(Object.assign([], Languages));}, delay);});
+         return new Promise((resolve) => { setTimeout(() => {resolve(Object.assign([], Languages));}, delay);});
     }
 }
 

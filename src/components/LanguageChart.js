@@ -1,4 +1,5 @@
 import React from 'react'
+import PropTypes from 'prop-types';
 import * as d3 from 'd3'
 
 class LanguageChart extends React.Component
@@ -68,5 +69,11 @@ class LanguageChart extends React.Component
                         </text>
                     </g>
     }
+}
+LanguageChart.propTypes = {
+    height:PropTypes.number,
+    language:PropTypes.string,
+    rate:PropTypes.number,
+    transform:PropTypes.number,
 }
 export default LanguageChart;

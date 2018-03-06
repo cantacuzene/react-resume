@@ -1,14 +1,14 @@
 import React from 'react';
-import {Link} from 'react-router';
+//import {Link} from 'react-router';
 import AboutMe from './AboutMe'
 import Skills from './Skills'
-import SpiderWebCharts from './SpiderWebChart'
+//import SpiderWebCharts from './SpiderWebChart'
 
 import Education from './Education'
 import Languages from './Languages'
 import Experiences from './Experiences'
 import HighchartsMore from 'highcharts/highcharts-more';
-import SkillsApi from '../api/SkillsApi'
+//import SkillsApi from '../api/SkillsApi'
 
 const HomePage = () => {
   return (

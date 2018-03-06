@@ -1,4 +1,4 @@
-import delay from './delay.js'
+/*import delay from './delay.js'
 
 
 
@@ -32,4 +32,4 @@ class SkillsApi
     }
 }
 
-export default SkillsApi;
+export default SkillsApi;*/
