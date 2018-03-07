@@ -5,12 +5,15 @@ const Timeline = ()=>{
     return(
         <div className="container">
         <section id="timeline">
+        <TimelineItem title="Software Architect" company="Karib IT SAS" start="01/2018" end="maintenant" 
+            description="Création d’une société de R&D informatique dans le but d’effectuer de la prestation de service auprès d’entreprises locales et internationales" 
+            stack=".Net Core, Python, Django, VS Code, heroku, CI/CD, git, DDD, TDD, React, webpack, babel"/>
 
             <TimelineItem title="Software Architect" company="Zags!" start="04/2015" end="05/2017" 
             description="Scrum master, puis Architecte chez un éditeur de logiciel franco-américain spécialisé dans le domaine de l'assurance" 
             scrum="Suivi de reporting, garant des cérémonies agiles, référent technique et manager d’une équipe de 5 personnes. Maintenance et évolutions sur le scope fonctionnel group life EMEA de la Zags Suite."
             architect="Participation à la définition et à la mise en place d’une architecture CQS pour les nouveaux modules, basée sur des services Restful combinés à un front React. Participation aux ateliers de définition du besoin fonctionnel. Mise en place des chaines de build/release linux/docker pour dotnet Core et javascript dans VSTS. Référent technique pour les équipes de développement. Javascript & git evangelist."
-            stack="Asp.Net Mvc 4, .Net 4.5.2, WCF, Visual studio 2015, Roslyn, VSTS, Moq, Xunit, TDD/DDD, OAuth 2.0, Azure, JS, React, Scrum, .Net Core, VS Code, VS 2017, docker, CI/CD, TFS/GIT"/>
+            stack="Asp.Net Mvc 4, .Net 4.5.2, WCF, Visual studio 2015, Roslyn, VSTS, Moq, Xunit, TDD/DDD, OAuth 2.0, Azure, JS, React, Scrum, .Net Core, VS Code, VS 2017, docker, CI/CD, TFS, git, webpack, babel"/>
              <TimelineItem contentClassName="right" title="Product Owner" company="MGEN" start="07/2014" end="03/2015" 
              description="Mission de maitrise d’ouvrage dans le domaine du recouvrement sur l’ERP Qualiac"
              operations="Rédaction de spécifications fonctionnelles , recette et création de scripts d’automatisations de tâches récurrentes."
