@@ -35,6 +35,7 @@ const Header  = ()=>{
                         {/* <img  src="./img/hca.png" /><br/> */}
                         Hugo Cantacuzene
                         <h5>Software Architect</h5>
+                        <i>Schoelcher, Martinique</i>
                     </section>
             </nav>
         </header>
