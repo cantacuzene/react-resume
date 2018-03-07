@@ -5,7 +5,7 @@ const Timeline = ()=>{
     return(
         <div className="container">
         <section id="timeline">
-        <TimelineItem title="Software Architect" company="Karib IT SAS" start="01/2018" end="maintenant" 
+        <TimelineItem title="Software Architect" company="Karib IT SAS" start="01/2018" end="maintenant" contentClassName="right"
             description="Création d’une société de R&D informatique dans le but d’effectuer de la prestation de service auprès d’entreprises locales et internationales" 
             stack=".Net Core, Python, Django, VS Code, heroku, CI/CD, git, DDD, TDD, React, webpack, babel"/>
 
