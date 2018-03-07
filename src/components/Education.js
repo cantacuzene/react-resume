@@ -8,7 +8,22 @@ const Education = () =>{
                 Formation initiale
         </h2>
         <p>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+            <div className="school">
+                <span className="left">2008</span>
+                <span className="right">EPITECH</span>
+             </div>
+             <div className="diplome">
+                {"Master Expert en Technologies de l'Information"}<br/>
+                <i className="grey">Paris, France</i>
+             </div>
+             <div className="school">
+                <span className="left">2006</span><span className="right">EPITECH</span>
+             </div>
+             <div className="diplome">
+                {"Bachelor en Technologies de l'Information"}<br/>
+                <i className="grey">Paris, France</i>
+             </div>
+     
         </p>
     </section>
     );

@@ -17,8 +17,20 @@ const AboutMe = () => {
                 {"Je ne regrette cependant pas mon choix au vu des dernières évolutions de .Net Core"}<br/><br/>
             </p>
             <p>
-                {"Mes maitres à penser dans l'industrie viennent de langages et d'horizons différents."}<br/><br/>
+                {"Mes maîtres à penser dans l'industrie viennent de langages et d'horizons différents."}<br/>
                 {"Ils se nomment Martin Fowler, Greg Young, José Valim, Miran Lipovača ou encore Uncle Bob pour ne citer qu'eux."}<br/><br/>
+            </p>
+            <p>
+                {"Les sujets qui m'interessent aujourd'hui sont les suivants:"}<br/>
+                <ul>
+                    <li>La programation fonctionnelle</li>
+                    <li>La DataViz</li>
+                    <li>Les Technologies Front</li>
+                    <li>Le DDD</li>
+                    <li>Le TDD</li>
+                    <li>Les Middleware pipelines</li>
+                    <li>Les architectures micro services et server-less</li>
+                </ul>
             </p>
         </section>
     );

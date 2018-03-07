@@ -16,20 +16,17 @@ body
   box-sizing:border-box;
   display:flex;
   flex-direction: column;
-    font-family: $font-josephin;
+  font-family: $font-josephin;
+  font-weight:300;
   #main{
     width:100%;
     height: 60%;
-    background-color: white;
-   // display:flex;
-  //  flex-wrap: wrap;
-   // flex-direction: row;  
+    background-color: white; 
   }
   .sub{
     width:100%;
   }
   #aside{
-  //  width:30%;
     background-color: $asidePanelColor;
   }
 }
@@ -50,7 +47,7 @@ aside{
 }
 
   //secondpage
-
+/*
   #contact2{
       padding-top: 10px;
   padding-bottom: 10px;
@@ -65,7 +62,7 @@ aside{
     article{
       text-align: center;
     }
-}
+}*/
 
 
 footer{
@@ -75,20 +72,20 @@ footer{
   }
 }
 
-
+/*
 #githubFlag{
   position: absolute; top: 0; right: 0; border: 0;
 }
-
+*/
 .experience{
   width: 64%;
   height:50%;
   overflow: hidden;
 }
-
+/*
 #app{
   flex:1;
-}
+}*/
 
 .svgContainer{
     display: inline-block;
@@ -119,4 +116,23 @@ footer{
 h5{
   font-size: 20pt;
   font-style: italic;
+}
+
+.school{
+  color:$blue;
+  font-size: bold;
+  .left{
+      margin:45px;
+  }
+  .right{
+
+  }
+}
+.diplome{
+  margin-left:130px;
+  margin-top:10px;
+  margin-bottom: 10px;
+}
+.grey{
+  color:lightgray;
 }

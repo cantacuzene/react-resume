@@ -18,7 +18,7 @@ const graphOptions=
         size: '80%'
     },
     xAxis: {
-        categories: ['C#', 'HTML', 'CSS','Javascript','Docker','SQL',
+        categories: ['C#', 'HTML', 'CSS','JS','Docker','SQL',
         'Linux','dotnet core', 'Hexagonal Architecture','React','Go','Ruby','Scrum Master', 'web architecture'],
         tickmarkPlacement: 'on',
         lineWidth: 0
@@ -70,7 +70,7 @@ class Skills extends React.Component {
         return (
          <section className="sub skills" >
             <h2>
-                    Domaine d expertise
+                    {"Domaine d'expertise"}
             </h2>
             <div id={this.props.container}>
             </div>
