@@ -7,7 +7,6 @@ const Education = () =>{
         <h2>
                 Formation initiale
         </h2>
-        <p>
             <div className="school">
                 <span className="left">2008</span>
                 <span className="right">EPITECH</span>
@@ -23,8 +22,6 @@ const Education = () =>{
                 {"Bachelor en Technologies de l'Information"}<br/>
                 <i className="grey">Paris, France</i>
              </div>
-     
-        </p>
     </section>
     );
 };

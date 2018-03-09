@@ -111,6 +111,23 @@ footer{
     position: absolute;
     top: 10px;
     left: 0;
+
+    g:first-child
+    {
+      -moz-transform: translate(125px, 95px);
+      -ms-transform:  translate(125px, 95px);
+      -o-transform: translate(125px, 95px);
+      -webkit-transform:  translate(125px, 95px);
+      transform: translate(125px, 95px);
+    }
+
+    g:nth-child(2){
+      -moz-transform: translate(333px, 95px);
+      -ms-transform:  translate(333px, 95px);
+      -o-transform: translate(333px, 95px);
+      -webkit-transform:  translate(333px, 95px);
+      transform-origin: translate(333px, 95px);
+    }
 }
 
 h5{

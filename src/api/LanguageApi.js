@@ -1,9 +1,9 @@
 import delay from './delay.js'
 
 const Languages=[
-    {
+   {
         name:'English',
-        rating:0.87
+        rating:0.87,
     },
     {
         name:'French',

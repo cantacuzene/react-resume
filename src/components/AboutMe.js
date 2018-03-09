@@ -22,6 +22,7 @@ const AboutMe = () => {
             </p>
             <p>
                 {"Les sujets qui m'interessent aujourd'hui sont les suivants:"}<br/>
+            </p>
                 <ul>
                     <li>La programation fonctionnelle</li>
                     <li>La DataViz</li>
@@ -31,7 +32,7 @@ const AboutMe = () => {
                     <li>Les Middleware pipelines</li>
                     <li>Les architectures micro services et server-less</li>
                 </ul>
-            </p>
+
         </section>
     );
 }

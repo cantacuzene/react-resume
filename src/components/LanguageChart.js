@@ -33,7 +33,7 @@ class LanguageChart extends React.Component
         };
 
 
-        return <g transform={this.props.transform}>
+        return <g >
                         <defs>
                             <filter id={"inset-shadow1"}>
                                 <feOffset dx="0" dy="0"/>
@@ -74,6 +74,6 @@ LanguageChart.propTypes = {
     height:PropTypes.number,
     language:PropTypes.string,
     rate:PropTypes.number,
-    transform:PropTypes.number,
+ 
 }
 export default LanguageChart;
