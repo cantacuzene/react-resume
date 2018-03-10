@@ -7,21 +7,34 @@ import * as _ from 'ramda';
 
 
 
-let TagDrawer= _.curry( (width,height,language) =>{
+let ChartTagDrawer= _.curry( (width,height,language) =>{
     return (
          <LanguageChart language={language.name} 
          rate={language.rating} width={width} height={height} />
     );
 });
 
-let DrawLanguageChart = _.curry((width,height,TagDrawer) =>{
+let svgTagDrawer = _.curry((width,height,ChartTagDrawer) =>{
     return(
-
         <svg  className="svg-content-responsive" preserveAspectRatio="xMinYMax meet" viewBox={"0 0 "+width+" "+height}>
-        {TagDrawer}
+        {ChartTagDrawer}
        </svg>
-       
     )
+});
+
+let SectionTagDrawer = _.curry((chartid,svgTagDrawer) => {
+    return (
+        <section className="sub lang" >
+           <h2>
+                   Langues
+           </h2>
+           <div className="center">
+           <div id={chartid} className="svgContainerWebChart"> 
+               {svgTagDrawer}
+               </div>
+            </div>   
+       </section>
+   );
 });
 
 class Languages extends React.Component
@@ -45,23 +58,15 @@ class Languages extends React.Component
 
 
     render(){
+        let DataToChart= _.map(ChartTagDrawer(this.props.width,this.props.height));
+        let ChartToSvg = svgTagDrawer(this.props.width,this.props.height);
+        let SvgToSection = SectionTagDrawer(this.props.chartid);
         let draw =_.pipe(
-            _.map(TagDrawer(this.props.width,this.props.height)),
-            DrawLanguageChart(this.props.width,this.props.height)
+            DataToChart,
+            ChartToSvg,
+            SvgToSection
         );
-        return (
-             <section className="sub lang" >
-                <h2>
-                        Langues
-                </h2>
-                <div className="center">
-                <div id={this.props.chartid} className="svgContainerWebChart"> 
-                    {draw(this.state.Languages)}
-                    </div>
-                 </div>   
-            </section>
-        );
-
+        return draw(this.state.Languages);
     }
 }
 Languages.propTypes = {
