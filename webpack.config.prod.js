@@ -65,7 +65,11 @@ export default {
       {
         test: /\.jsx?$/,
         exclude: /node_modules/,
-        use: ['babel-loader']
+        use: {
+          loader: 'babel-loader',
+          options: {
+            presets: ['@babel/preset-stage-1'],
+          }}
       },
       {
         test: /\.eot(\?v=\d+.\d+.\d+)?$/,

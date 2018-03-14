@@ -1,6 +1,5 @@
 import React from 'react'
 import LanguageChart from './LanguageChart'
-import {getLanguages} from '../api/LanguageApi'
 import PropTypes from 'prop-types';
 import * as _ from 'ramda';
 
@@ -31,35 +30,21 @@ let SectionTagDrawer = _.curry(
     </section>
 );
 
-class Languages extends React.Component
+const LanguageList = (props)=> 
 {
-    constructor(props) 
-    {
-        super(props);
-        this.state={Languages:[]};
-    }
-    componentDidMount()
-    {
-        getLanguages.fork(
-            ()=>this.setState({Languages:[]})
-            ,(data) => this.setState({Languages:data})
-        )
-    }
+        let TransformDataToChart= _.map(ChartTagDrawer(props.width,props.height));
+        let BuildsvgContainer = svgTagDrawer(props.width,props.height);
+        let BuldSectionConainer = SectionTagDrawer(props.chartid);
 
-    render(){
-        let TransformDataToChart= _.map(ChartTagDrawer(this.props.width,this.props.height));
-        let BuildsvgContainer = svgTagDrawer(this.props.width,this.props.height);
-        let BuldSectionConainer = SectionTagDrawer(this.props.chartid);
-
-        return this.state.Languages
+        return props.Languages
         |>  TransformDataToChart
         |> BuildsvgContainer
         |> BuldSectionConainer
-    }
 }
-Languages.propTypes = {
+
+LanguageList.propTypes = {
     chartid:PropTypes.string,
     width:PropTypes.number,
     height:PropTypes.number,
 }
-export default Languages;
+export default LanguageList;
