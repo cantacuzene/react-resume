@@ -37,22 +37,13 @@ class Languages extends React.Component
     {
         super(props);
         this.state={Languages:[]};
-        console.log("tutu");
-     //   getLanguages.getAll().then((data)=>{
-     //       this.setState({Languages:data});
-      //  })
-
     }
     componentDidMount()
     {
-        console.log("titi");
         getLanguages.fork(
             ()=>this.setState({Languages:[]})
-            ,(data) => 
-                {console.log("toto");
-                return this.setState({Languages:data})}
+            ,(data) => this.setState({Languages:data})
         )
-        
     }
 
     render(){
@@ -61,9 +52,9 @@ class Languages extends React.Component
         let BuldSectionConainer = SectionTagDrawer(this.props.chartid);
 
         return this.state.Languages
-        |> (_ => TransformDataToChart(_))
-        |> (_ => BuildsvgContainer(_))
-        |> (_ => BuldSectionConainer(_))
+        |>  TransformDataToChart
+        |> BuildsvgContainer
+        |> BuldSectionConainer
     }
 }
 Languages.propTypes = {
