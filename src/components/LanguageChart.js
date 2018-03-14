@@ -37,21 +37,21 @@ class LanguageChart extends React.Component
                         <defs>
                             <filter id={"inset-shadow1"}>
                                 <feOffset dx="0" dy="0"/>
-                                <feGaussianBlur is stdDeviation="5" result="offset-blur"/>
-                                <feComposite is operator="out" in="SourceGraphic" in2="offset-blur" result="inverse"/>
-                                <feFlood is flood-color="grey" flood-opacity="0.5" result="color"/>
-                                <feComposite is operator="in" in="color" in2="inverse" result="shadow"/>
-                                <feComposite is operator="over" in="shadow" in2="SourceGraphic"/>
+                                <feGaussianBlur stdDeviation="5" result="offset-blur"/>
+                                <feComposite  operator="out" in="SourceGraphic" in2="offset-blur" result="inverse"/>
+                                <feFlood  floodColor="grey" floodOpacity="0.5" result="color"/>
+                                <feComposite  operator="in" in="color" in2="inverse" result="shadow"/>
+                                <feComposite  operator="over" in="shadow" in2="SourceGraphic"/>
                             </filter>
                         </defs>
                         <defs>
                             <filter id={"inset-shadow2"}>
                                 <feOffset dx="0" dy="0"/>
-                                <feGaussianBlur is stdDeviation="1" result="offset-blur"/>
-                                <feComposite is operator="out" in="SourceGraphic" in2="offset-blur" result="inverse"/>
-                                <feFlood is flood-color="white" flood-opacity="0.5" result="color"/>
-                                <feComposite is operator="in" in="color" in2="inverse" result="shadow"/>
-                                <feComposite is operator="over" in="shadow" in2="SourceGraphic"/>
+                                <feGaussianBlur  stdDeviation="1" result="offset-blur"/>
+                                <feComposite  operator="out" in="SourceGraphic" in2="offset-blur" result="inverse"/>
+                                <feFlood  floodColor="white" floodOpacity="0.5" result="color"/>
+                                <feComposite  operator="in" in="color" in2="inverse" result="shadow"/>
+                                <feComposite  operator="over" in="shadow" in2="SourceGraphic"/>
                             </filter>
                         </defs>
 

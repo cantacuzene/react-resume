@@ -1,5 +1,5 @@
 /* eslint react/prop-types: 0 */
-import React from 'react'
+import React, { Fragment } from 'react';
 
 class TimelineItem extends React.Component{
 
@@ -8,32 +8,32 @@ class TimelineItem extends React.Component{
         let stack=null;
         if(this.props.stack)
         {
-            stack=<p className> <h3>Stack:</h3>
-                    {this.props.stack}</p>
+            stack=<Fragment><h3>Stack:</h3><p> 
+                    {this.props.stack}</p></Fragment>
         }
 
         let scrum=null;
         if(this.props.scrum)
         {
-            scrum=<p className> <h3>Scrum Master role:</h3>
-                    {this.props.scrum}</p>
+            scrum=<Fragment><h3>Scrum Master role:</h3><p> 
+                    {this.props.scrum}</p></Fragment>
         }
         let architect=null;
         if(this.props.architect)
         {
-            architect=<p className> <h3>Architect role:</h3>
-                    {this.props.architect}</p>
+            architect=<Fragment><h3>Architect role:</h3><p> 
+                    {this.props.architect}</p></Fragment>
         }
         let description=null;
         if(this.props.description)
         {
-            description=<p className> <h3>Description:</h3>
-                    {this.props.description}</p>
+            description=<Fragment><h3>Description:</h3><p> 
+                    {this.props.description}</p></Fragment>
         }
         let operations=null;
         if(this.props.operations)
         {
-            operations=<p className> {this.props.operations}</p>
+            operations=<Fragment><p> {this.props.operations}</p></Fragment>
         }
         return (
 

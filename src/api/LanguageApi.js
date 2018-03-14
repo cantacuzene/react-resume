@@ -1,22 +1,12 @@
-import delay from './delay.js'
+import * as Future from 'fluture';
+var fetchf = Future.encaseP(fetch);
 
-const Languages=[
-   {
-        name:'English',
-        rating:0.87,
-    },
-    {
-        name:'French',
-        rating:1
-    }
-];
 
-class LanguageApi
+export  let getLanguages = fetchf(  'http://localhost:3333/api/Languages')
+.chain(res => Future.tryP(() => 
 {
-    static getAll()
-    {
-         return new Promise((resolve) => { setTimeout(() => {resolve(Object.assign([], Languages));}, delay);});
-    }
-}
+    //console.log(res.json())
 
-export default LanguageApi;
+    return res.json()
+}
+));

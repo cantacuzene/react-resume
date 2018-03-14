@@ -13,7 +13,7 @@ export default {
     './src/webpack-public-path',
     'react-hot-loader/patch',
     'webpack-hot-middleware/client?reload=true',
-    'babel-polyfill',
+   // 'babel-polyfill',
     path.resolve(__dirname, 'src/index.js') // Defining path seems necessary for this to work consistently on Windows machines.
   ],
   target: 'web',
@@ -43,7 +43,12 @@ export default {
       {
         test: /\.jsx?$/,
         exclude: /node_modules/,
-        use: ['babel-loader']
+        use: {
+          loader: 'babel-loader',
+          options: {
+            presets: ['@babel/preset-stage-1'],
+          //  plugins: [require('@babel/plugin-proposal-pipeline-operator')]
+          }}
       },
       {
         test: /\.eot(\?v=\d+.\d+.\d+)?$/,
