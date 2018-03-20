@@ -37,7 +37,7 @@ const LanguageList = (props)=>
         let BuldSectionConainer = SectionTagDrawer(props.chartid);
 
         return props.Languages
-        |>  TransformDataToChart
+        |> TransformDataToChart
         |> BuildsvgContainer
         |> BuldSectionConainer
 }

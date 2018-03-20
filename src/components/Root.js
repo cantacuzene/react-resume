@@ -4,8 +4,6 @@ import { ConnectedRouter } from 'react-router-redux';
 import { Provider } from 'react-redux';
 import App from './App';
 
-require("babel-core/register");
-require("babel-polyfill");
 
 export default class Root extends Component {
   render() {
