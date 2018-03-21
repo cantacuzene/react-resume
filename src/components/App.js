@@ -5,13 +5,17 @@ import HomePage from './HomePage'
 import {getLanguages} from '../api/LanguageApi'
 import {getSkills} from '../api/SkillsApi'
 import {getExperiences} from '../api/Experiences'
+import {getEductaions} from '../api/EducationApi'
+import {getAbouts} from '../api/AboutApi'
 
 class App extends React.Component {
   constructor(props) 
   {
       super(props);
       this.state={Languages:[],
-        Experiences:[],
+        Experiences:[],Educations:[],Abouts:{
+          cover:[],interests:[]
+        },
         Skills:{
         name:[],
         rate:[]
@@ -26,7 +30,22 @@ class App extends React.Component {
       getExperiences.fork(
         ()=>this.setState({Experiences:[]})
         ,(data) => this.setState({Experiences:data})
-    )
+    );
+    getEductaions.fork(
+      ()=>this.setState({Educations:[]})
+      ,(data) => this.setState({Educations:data})
+  );
+  getAbouts.fork(
+    ()=>{   
+      this.setState({Abouts:{
+        cover:[],interests:[]
+      }})}
+    ,(data) => {
+      return this.setState({Abouts:{
+        cover:data.cover,interests:data.interests
+      }})
+    }
+      );
       getSkills.fork(
         ()=> this.setState({
           Skills:{
@@ -47,7 +66,8 @@ class App extends React.Component {
     return (
       <div>
         <Header />
-        <HomePage Languages={this.state.Languages} Skills={this.state.Skills} Experiences={this.state.Experiences}/>
+        <HomePage Languages={this.state.Languages} Skills={this.state.Skills} Experiences={this.state.Experiences} 
+          Educations={this.state.Educations} Abouts={this.state.Abouts}/>
       </div>
     );
   }

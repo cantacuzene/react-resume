@@ -1,7 +1,6 @@
 /* eslint-disable */
 var express = require('express');
 var path = require('path');
-const config = require('./src/config/config')
 var port = process.env.PORT || 3333;
 var app = express();
 
@@ -24,11 +23,16 @@ app.get('/api/Skills', (_req, res) => {
   res.sendFile(path.join(__dirname, 'data/Skills.json'));
 });
 
+app.get('/api/Educations', (_req, res) => {
+  res.sendFile(path.join(__dirname, 'data/Educations.json'));
+});
 
 app.get('/api/Experiences', (_req, res) => {
   res.sendFile(path.join(__dirname, 'data/Experiences.json'));
 });
-
+app.get('/api/About', (_req, res) => {
+  res.sendFile(path.join(__dirname, 'data/About.json'));
+});
 app.listen(port, (err) => {
   if (err) {
     console.log(err);

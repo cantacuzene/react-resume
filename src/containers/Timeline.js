@@ -5,7 +5,7 @@ import * as _ from 'ramda'
 
 
 
-const drawTimeLineItem =(experience)=> <TimelineItem {...experience}/>
+const drawTimeLineItem =(experience)=> <TimelineItem key={`tli-${experience.id}`} {...experience}/>
 const Timeline = (props)=>{
     return(
         <div className="container">

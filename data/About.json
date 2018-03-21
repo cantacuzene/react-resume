@@ -1,0 +1,64 @@
+{
+    "cover": [{
+            "id": 0,
+            "data": "Passionné d'informatique depuis ma plus tendre enfance, j'ai non seulement grandi avec les ordinateurs, mais aussi avec le WEB."
+        },
+        {
+            "id": 1,
+            "value": "C'est donc tout naturellement que je me suis tourné vers des études d'informatiques à l'EPITECH."
+        },
+        {
+            "id": 2,
+            "value": "Développeur depuis 2007, j'ai touché à plusieurs technologies telles que PHP, JavaScript, ou la stack .Net."
+        },
+        {
+            "id": 3,
+            "value": "C'est dans cette dernière que je me suis spécialisé, tout en gardant un sens critique exacerbé vis-à-vis des technologies de Microsoft."
+        },
+        {
+            "id": 4,
+            "value": "Je ne regrette cependant pas mon choix au vu des dernières évolutions de .Net Core"
+        },
+        {
+            "id": 5,
+            "value": "Mes maîtres à penser dans l'industrie viennent de langages et d'horizons différents."
+        },
+        {
+            "id": 6,
+            "value": "Ils se nomment Martin Fowler, Greg Young, José Valim, Miran Lipovača ou encore Uncle Bob pour ne citer qu'eux."
+        },
+        {
+            "id": 7,
+            "value": "Les sujets qui m'interessent aujourd'hui sont les suivants:"
+        }
+    ],
+    "interests": [{
+            "id": 0,
+            "value": "La programation fonctionnelle"
+        },
+        {
+            "id": 1,
+            "value": "La DataViz"
+        },
+        {
+            "id": 2,
+            "value": "Les Technologies Front"
+        },
+        {
+            "id": 3,
+            "value": "Le DDD"
+        },
+        {
+            "id": 4,
+            "value": "Le TDD"
+        },
+        {
+            "id": 5,
+            "value": "Les Middleware pipelines"
+        },
+        {
+            "id": 6,
+            "value": "Les architectures micro services et server-less"
+        }
+    ]
+}

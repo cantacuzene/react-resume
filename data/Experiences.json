@@ -1,4 +1,5 @@
 [{
+    "id":5,
         "title": "Software Architect",
         "company": "Karib IT SAS",
         "start": "01/2018",
@@ -9,6 +10,7 @@
     },
 
     {
+        "id":4,
         "title": "Software Architect",
         "company": "Zags!",
         "start": "04/2015",
@@ -20,6 +22,7 @@
     },
 
     {
+        "id":3,
         "contentClassName": "right",
         "title": "Product Owner",
         "company": "MGEN",
@@ -30,6 +33,7 @@
         "stack": "Oracle Sql Developer, Linqpad, Linq, c# 4.0, php 5, Oracle 10g, Qualiac"
     },
     {
+        "id":2,
         "title": "Lead Software Engineer",
         "company": "Natixis Asset Management",
         "start": "04/2010",
@@ -39,6 +43,7 @@
         "stack": "Visual Studio 2010, SQL Server, RedGate Ants, TDD, Teamcity, FXcop, SVN, Resharper, Nunit, MsTest, WCF, Javascript, IIS .Net 4, WCF, Linq, ASP.Net, MVC, JQuery, C#, EF"
     },
     {
+        "id":1,
         "contentClassName": "right",
         "title": "Software Engineer",
         "company": "ITS Group",
@@ -49,6 +54,7 @@
         "stack": "php 5.x, SQL server 2000, Asp, Apache 2, MySQL 5.x, LAMP Gupta 3.1, SQL server 2000, Asp .NET 1.1.4, Workflow fundation, .net 3.5, Linq to SQL"
     },
     {
+        "id":0,
         "title": "Intern",
         "company": "France Télévision (R.F.O.)",
         "start": "05/2006",

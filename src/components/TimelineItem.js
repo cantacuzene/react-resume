@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 const drawData =(name,data)=>data? <Fragment><h3>{name}:</h3><p>{data}</p></Fragment>:<Fragment></Fragment>
 
 const TimelineItem =(props) =>
-<div className="timeline-item">
+<div className="timeline-item" >
     <div className="timeline-icon"></div>
     <div  className={ `timeline-content ${props.contentClassName}` }>
         <h2>
@@ -26,6 +26,6 @@ TimelineItem.propTypes = {
     operations:PropTypes.string,
     end:PropTypes.string,
     title:PropTypes.string,
-    company:PropTypes.string,
+    company:PropTypes.string
 }
 export default TimelineItem;

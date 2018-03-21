@@ -3,7 +3,7 @@ import {conf} from '../config/config'
 var fetchf = Future.encaseP(fetch);
 
 
-export  let getLanguages = fetchf(  `http://localhost:${conf.port}/api/Languages`)
+export  let getAbouts= fetchf(  `http://localhost:${conf.port}/api/About`)
 .chain(res => Future.tryP(() => 
 {
     return res.json()
