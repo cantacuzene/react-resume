@@ -12,7 +12,7 @@ const HomePage = (props) => {
           <section id="main">
 
             <AboutMe />
-            <Skills modules={[HighchartsMore]} container={"polarChart"}/>
+            <Skills modules={[HighchartsMore]} container={"polarChart"} Skills={props.Skills}/>
 
             <Education/>
             <LanguageList chartid={"myd3chart"} width={500} height={190} Languages={props.Languages}/>
@@ -21,6 +21,7 @@ const HomePage = (props) => {
   );
 };
 HomePage.propTypes = {
-  Languages:PropTypes.array
+  Languages:PropTypes.array,
+  Skills:PropTypes.object
 }
 export default HomePage;

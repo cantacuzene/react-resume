@@ -1,7 +1,8 @@
-import * as R from "ramda";
-import Maybe from 'folktale/maybe'
+import * as _ from 'ramda'
 
-export let _ = R;
-export let Either = R.either;
-export let Identity =R.identity;
-export {Maybe};
+export const trace = _.curry((tag,x)=>{
+    /* eslint-disable no-console */
+    console.log(tag,x);
+    /* eslint-enable no-console */
+    return x
+})

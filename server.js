@@ -20,6 +20,10 @@ app.get('/api/Languages', (_req, res) => {
   res.sendFile(path.join(__dirname, 'data/Languages.json'));
 });
 
+app.get('/api/Skills', (_req, res) => {
+  res.sendFile(path.join(__dirname, 'data/Skills.json'));
+});
+
 app.listen(port, (err) => {
   if (err) {
     console.log(err);
