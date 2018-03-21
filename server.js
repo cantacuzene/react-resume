@@ -24,6 +24,11 @@ app.get('/api/Skills', (_req, res) => {
   res.sendFile(path.join(__dirname, 'data/Skills.json'));
 });
 
+
+app.get('/api/Experiences', (_req, res) => {
+  res.sendFile(path.join(__dirname, 'data/Experiences.json'));
+});
+
 app.listen(port, (err) => {
   if (err) {
     console.log(err);

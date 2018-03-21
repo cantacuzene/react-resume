@@ -1,58 +1,31 @@
-/* eslint react/prop-types: 0 */
 import React, { Fragment } from 'react';
+import PropTypes from 'prop-types'
+const drawData =(name,data)=>data? <Fragment><h3>{name}:</h3><p>{data}</p></Fragment>:<Fragment></Fragment>
 
-class TimelineItem extends React.Component{
-
-    render(){
-
-        let stack=null;
-        if(this.props.stack)
-        {
-            stack=<Fragment><h3>Stack:</h3><p> 
-                    {this.props.stack}</p></Fragment>
-        }
-
-        let scrum=null;
-        if(this.props.scrum)
-        {
-            scrum=<Fragment><h3>Scrum Master role:</h3><p> 
-                    {this.props.scrum}</p></Fragment>
-        }
-        let architect=null;
-        if(this.props.architect)
-        {
-            architect=<Fragment><h3>Architect role:</h3><p> 
-                    {this.props.architect}</p></Fragment>
-        }
-        let description=null;
-        if(this.props.description)
-        {
-            description=<Fragment><h3>Description:</h3><p> 
-                    {this.props.description}</p></Fragment>
-        }
-        let operations=null;
-        if(this.props.operations)
-        {
-            operations=<Fragment><p> {this.props.operations}</p></Fragment>
-        }
-        return (
-
-            <div className="timeline-item">
-                <div className="timeline-icon"></div>
-                <div  className={ `timeline-content ${this.props.contentClassName}` }>
-                    <h2>
-                        {this.props.start} - {this.props.end} <br/> {this.props.title}, {this.props.company}
-                    </h2>
-                    {description}
-                    {scrum}
-                    {architect}
-                    {operations}
-                    {stack}
-                </div>
-            </div>
-
-        );
-    }
+const TimelineItem =(props) =>
+<div className="timeline-item">
+    <div className="timeline-icon"></div>
+    <div  className={ `timeline-content ${props.contentClassName}` }>
+        <h2>
+            {props.start} - {props.end} <br/> {props.title}, {props.company}
+        </h2>
+        {drawData("Description",props.description)}
+        {drawData("Scrum",props.scrum)}
+        {drawData("Architect",props.architect)}
+        {drawData("Operations",props.operations)}
+        {drawData("Stack",props.stack)}
+    </div>
+</div>
+TimelineItem.propTypes = {
+    description:PropTypes.string,
+    scrum:PropTypes.string,
+    contentClassName:PropTypes.string,
+    stack:PropTypes.string,
+    start:PropTypes.string,
+    architect:PropTypes.string,
+    operations:PropTypes.string,
+    end:PropTypes.string,
+    title:PropTypes.string,
+    company:PropTypes.string,
 }
-
 export default TimelineItem;

@@ -16,12 +16,13 @@ const HomePage = (props) => {
 
             <Education/>
             <LanguageList chartid={"myd3chart"} width={500} height={190} Languages={props.Languages}/>
-            <Experiences />
+            <Experiences Experiences={props.Experiences} />
         </section>
   );
 };
 HomePage.propTypes = {
   Languages:PropTypes.array,
-  Skills:PropTypes.object
+  Skills:PropTypes.object,
+  Experiences:PropTypes.array
 }
 export default HomePage;

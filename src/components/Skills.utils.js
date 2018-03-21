@@ -42,11 +42,12 @@ export const graphOptions=(names, ratings)=>{return (
     });};
 
 
-export const DrawSkillsPanel=_.curry((container,config)=><section className="sub skills" >
-<h2>
+export const DrawSkillsPanel=_.curry((container,config) =>
+<section className="sub skills" >
+    <h2>
         {"Domaine d'expertise"}
-</h2>
-<div id={container}>
-<ReactHighcharts config = {config}></ReactHighcharts>
-</div>
+    </h2>
+    <div id={container}>
+        <ReactHighcharts config = {config}></ReactHighcharts>
+    </div>
 </section>);
