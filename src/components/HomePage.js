@@ -2,9 +2,10 @@ import React from 'react';
 import AboutMe from './AboutMe'
 import Skills from './Skills'
 import Education from './Education'
-import LanguageList from './Languages'
+import LanguageList from './LanguagesList'
 import Experiences from './Experiences'
 import HighchartsMore from 'highcharts/highcharts-more';
+import PropTypes from 'prop-types';
 
 const HomePage = (props) => {
   return (
@@ -19,4 +20,7 @@ const HomePage = (props) => {
         </section>
   );
 };
+HomePage.propTypes = {
+  Languages:PropTypes.array
+}
 export default HomePage;

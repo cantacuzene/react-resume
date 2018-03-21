@@ -1,5 +1,5 @@
 import React from 'react'
-import LanguageList from '../Languages'
+import LanguageList from '../LanguagesList'
 import renderer from 'react-test-renderer'
 //import HomePage from '../HomePage';
 
@@ -33,8 +33,3 @@ describe('LanguageList', ()=>{
 
 
 });
-/*
-            <LanguageList 
-            {...articles}
-            />
-*/
