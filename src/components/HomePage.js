@@ -1,27 +1,30 @@
 import React from 'react';
-//import {Link} from 'react-router';
 import AboutMe from './AboutMe'
 import Skills from './Skills'
-//import SpiderWebCharts from './SpiderWebChart'
-
 import Education from './Education'
-import Languages from './Languages'
+import LanguageList from './LanguagesList'
 import Experiences from './Experiences'
 import HighchartsMore from 'highcharts/highcharts-more';
-//import SkillsApi from '../api/SkillsApi'
+import PropTypes from 'prop-types';
 
-const HomePage = () => {
+const HomePage = (props) => {
   return (
           <section id="main">
 
-            <AboutMe />
-            <Skills modules={[HighchartsMore]} container={"polarChart"}/>
+            <AboutMe cover={props.Abouts.cover} interests={props.Abouts.interests}/>
+            <Skills modules={[HighchartsMore]} container={"polarChart"} Skills={props.Skills}/>
 
-            <Education/>
-            <Languages chartid={"myd3chart"} width={500} height={190} />
-            <Experiences />
+            <Education Educations={props.Educations}/>
+            <LanguageList chartid={"myd3chart"} width={500} height={190} Languages={props.Languages}/>
+            <Experiences Experiences={props.Experiences} />
         </section>
   );
 };
-// <SpiderWebCharts width={500} height={500} Data={SkillsApi.get()} />
+HomePage.propTypes = {
+  Languages:PropTypes.array,
+  Skills:PropTypes.object,
+  Experiences:PropTypes.array,
+  Educations:PropTypes.array,
+  Abouts:PropTypes.object
+}
 export default HomePage;

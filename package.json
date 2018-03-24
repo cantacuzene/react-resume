@@ -10,7 +10,8 @@
     "remove-demo": "babel-node tools/removeDemo.js",
     "start-message": "babel-node tools/startMessage.js",
     "prestart": "npm run start-message",
-    "start": "concurrently -k -r -s first \"npm run test:watch\" \"npm run open:src\" \"npm run lint:watch\"",
+    "start": "concurrently -k -r -s first \"npm run test:watch\" \"npm run open:src\" \"npm run lint:watch\" ",
+    "start2": "concurrently -k -r -s first \"npm run test:watch\" \"npm run open:src\" \"npm run lint:watch\" \"pm2 start server.js --watch\"",
     "open:src": "babel-node tools/srcServer.js",
     "open:dist": "babel-node tools/distServer.js",
     "lint": "esw webpack.config.* src tools --color",
@@ -33,31 +34,45 @@
   "license": "MIT",
   "dependencies": {
     "d3": "^4.13.0",
-    "express": "^4.16.2",
+    "express": "^4.16.3",
+    "fantasy-io": "0.0.1",
+    "fluture": "^8.0.2",
+    "folktale": "^2.1.0",
     "highcharts": "^6.0.7",
+    "highcharts-more": "^0.1.7",
     "object-assign": "4.1.0",
+    "pm2": "^2.10.1",
+    "pointfree-fantasy": "^0.1.3",
+    "ramda": "^0.25.0",
     "react": "16.2.0",
     "react-dom": "16.2.0",
+    "react-highcharts": "^16.0.2",
     "react-redux": "5.0.5",
     "react-router-dom": "4.2.2",
     "react-router-redux": "5.0.0-alpha.6",
     "redux": "3.6.0",
-    "redux-thunk": "2.1.0"
+    "redux-thunk": "2.1.0",
+    "whatwg-fetch": "^2.0.3"
   },
   "devDependencies": {
+    "@babel/cli": "7.0.0-beta.42",
+    "@babel/core": "^7.0.0-beta.42",
+    "@babel/node": "7.0.0-beta.42",
+    "@babel/plugin-proposal-pipeline-operator": "^7.0.0-beta.42",
+    "@babel/plugin-transform-react-constant-elements": "7.0.0-beta.42",
+    "@babel/polyfill": "7.0.0-beta.42",
+    "@babel/preset-env": "7.0.0-beta.42",
+    "@babel/preset-flow": "7.0.0-beta.42",
+    "@babel/preset-react": "7.0.0-beta.42",
+    "@babel/preset-stage-1": "7.0.0-beta.42",
+    "@babel/register": "7.0.0-beta.42",
     "autoprefixer": "7.1.4",
-    "babel-cli": "6.24.1",
-    "babel-core": "6.25.0",
-    "babel-eslint": "7.2.3",
-    "babel-jest": "20.0.3",
-    "babel-loader": "7.1.1",
-    "babel-plugin-transform-react-constant-elements": "6.23.0",
-    "babel-plugin-transform-react-remove-prop-types": "0.4.6",
-    "babel-polyfill": "6.23.0",
-    "babel-preset-env": "1.6.0",
-    "babel-preset-react": "6.24.1",
+    "babel-core": "^7.0.0-bridge.0",
+    "babel-eslint": "^8.2.1",
+    "babel-jest": "^23.0.0-alpha.0",
+    "babel-loader": "8.0.0-beta.0",
+    "babel-plugin-transform-react-remove-prop-types": "0.4.13",
     "babel-preset-react-hmre": "1.1.1",
-    "babel-preset-stage-1": "6.24.1",
     "browser-sync": "2.18.12",
     "chalk": "2.0.1",
     "concurrently": "3.5.0",
@@ -73,10 +88,10 @@
     "extract-text-webpack-plugin": "3.0.1",
     "file-loader": "0.11.2",
     "history": "4.6.0",
-    "html-webpack-plugin": "2.29.0",
+    "html-webpack-plugin": "3.0.7",
     "identity-obj-proxy": "3.0.0",
-    "jest": "20.0.4",
-    "jest-cli": "20.0.4",
+    "jest": "^22.4.2",
+    "jest-cli": "^22.4.2",
     "json-loader": "0.5.4",
     "mockdate": "2.0.1",
     "node": "8.9.4",
@@ -84,21 +99,22 @@
     "opn-cli": "3.1.0",
     "postcss-loader": "2.0.6",
     "prompt": "1.0.0",
-    "prop-types": "^15.5.10",
+    "prop-types": "^15.6.1",
     "raf": "3.3.2",
-    "react-hot-loader": "3.0.0-beta.6",
+    "react-hot-loader": "4.0.0",
     "react-test-renderer": "16.0.0",
     "redux-immutable-state-invariant": "2.0.0",
     "redux-mock-store": "1.3.0",
+    "regenerator-runtime": "^0.11.1",
     "replace": "0.3.0",
     "rimraf": "2.6.1",
     "sass-loader": "6.0.6",
     "style-loader": "0.19.0",
     "url-loader": "0.5.9",
-    "webpack": "3.1.0",
-    "webpack-bundle-analyzer": "2.8.2",
-    "webpack-dev-middleware": "1.11.0",
-    "webpack-hot-middleware": "2.18.2",
+    "webpack": "^4.1.1",
+    "webpack-bundle-analyzer": "2.11.1",
+    "webpack-dev-middleware": "3.0.0",
+    "webpack-hot-middleware": "2.21.2",
     "webpack-md5-hash": "0.0.5"
   },
   "keywords": [],
@@ -120,16 +136,15 @@
     "env": {
       "development": {
         "presets": [
-          "env",
-          "react",
-          "react-hmre",
-          "stage-1"
+          "@babel/preset-env",
+          "@babel/preset-react",
+          "@babel/preset-stage-1"
         ]
       },
       "production": {
         "presets": [
           [
-            "env",
+            "@babel/preset-env",
             {
               "es2015": {
                 "modules": false
@@ -140,19 +155,20 @@
               }
             }
           ],
-          "react",
-          "stage-1"
+          "@babel/preset-react",
+          "@babel/preset-stage-1"
         ],
         "plugins": [
-          "transform-react-constant-elements",
+          "@babel/plugin-proposal-pipeline-operator",
+          "@babel/transform-react-constant-elements",
           "transform-react-remove-prop-types"
         ]
       },
       "test": {
         "presets": [
-          "env",
-          "react",
-          "stage-1"
+          "@babel/preset-env",
+          "@babel/preset-react",
+          "@babel/preset-stage-1"
         ]
       }
     }

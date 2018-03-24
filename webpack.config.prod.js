@@ -16,7 +16,9 @@ export default {
     extensions: ['*', '.js', '.jsx', '.json']
   },
   devtool: 'source-map', // more info:https://webpack.js.org/guides/production/#source-mapping and https://webpack.js.org/configuration/devtool/
-  entry: path.resolve(__dirname, 'src/index'),
+  entry: [
+   // 'babel-polyfill',
+    path.resolve(__dirname, 'src/index')],
   target: 'web',
   output: {
     path: path.resolve(__dirname, 'dist'),
@@ -63,7 +65,11 @@ export default {
       {
         test: /\.jsx?$/,
         exclude: /node_modules/,
-        use: ['babel-loader']
+        use: {
+          loader: 'babel-loader',
+          options: {
+            presets: ['@babel/preset-stage-1'],
+          }}
       },
       {
         test: /\.eot(\?v=\d+.\d+.\d+)?$/,
