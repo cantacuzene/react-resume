@@ -2,11 +2,8 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import Header from './Header'
 import HomePage from './HomePage'
-import {getLanguages} from '../api/LanguageApi'
-import {getSkills} from '../api/SkillsApi'
-import {getExperiences} from '../api/Experiences'
-import {getEductaions} from '../api/EducationApi'
-import {getAbouts} from '../api/AboutApi'
+import {getRessources} from '../api/apiHelpers'
+
 
 class App extends React.Component {
   constructor(props) 
@@ -23,19 +20,19 @@ class App extends React.Component {
   }
   componentDidMount()
   {
-      getLanguages.fork(
+    getRessources('Languages').fork(
           ()=>this.setState({Languages:[]})
           ,(data) => this.setState({Languages:data})
       );
-      getExperiences.fork(
+      getRessources('Experiences').fork(
         ()=>this.setState({Experiences:[]})
         ,(data) => this.setState({Experiences:data})
     );
-    getEductaions.fork(
+    getRessources('Educations').fork(
       ()=>this.setState({Educations:[]})
       ,(data) => this.setState({Educations:data})
   );
-  getAbouts.fork(
+  getRessources('Abouts').fork(
     ()=>{   
       this.setState({Abouts:{
         cover:[],interests:[]
@@ -46,7 +43,7 @@ class App extends React.Component {
       }})
     }
       );
-      getSkills.fork(
+      getRessources('Skills').fork(
         ()=> this.setState({
           Skills:{
             name:[],
