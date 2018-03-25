@@ -19,7 +19,6 @@ export const LanguagesReducer = (state= initialState.Languages,action)=>{
     switch (action.type)
     {
         case types.FETCH_LANGUAGES_REQUEST:
-            console.log("test")
             return state;
         case types.FETCH_LANGUAGES_SUCCESS:
             newState= [...action.payload, ...state];
@@ -41,7 +40,6 @@ export const LanguagesReducer = (state= initialState.Languages,action)=>{
                 names:action.payload.map(x=>x.name),
                 ratings:action.payload.map(x=>x.rating)
               }
-              console.log(newState,'//////////');
             return newState;
         default:
             return state;
