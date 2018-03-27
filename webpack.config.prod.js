@@ -12,6 +12,7 @@ const GLOBALS = {
 };
 
 export default {
+  mode:'production',
   resolve: {
     extensions: ['*', '.js', '.jsx', '.json']
   },
@@ -57,8 +58,6 @@ export default {
       trackJSToken: ''
     }),
 
-    // Minify JS
-    new webpack.optimize.UglifyJsPlugin({ sourceMap: true }),
   ],
   module: {
     rules: [
