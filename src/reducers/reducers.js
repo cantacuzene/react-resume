@@ -21,7 +21,7 @@ export const LanguagesReducer = (state= initialState.Languages,action)=>{
         case types.FETCH_LANGUAGES_REQUEST:
             return state;
         case types.FETCH_LANGUAGES_SUCCESS:
-            newState= [...action.payload, ...state];
+            newState= [...action.payload];
             return newState;
         default:
             return state;
@@ -35,7 +35,6 @@ export const LanguagesReducer = (state= initialState.Languages,action)=>{
         case types.FETCH_SKILLS_REQUEST:
             return state;
         case types.FETCH_SKILLS_SUCCESS:
-
             newState={
                 names:action.payload.map(x=>x.name),
                 ratings:action.payload.map(x=>x.rating)
