@@ -10,7 +10,7 @@ const GLOBALS = {
   'process.env.NODE_ENV': JSON.stringify('production'),
   __DEV__: false,
   'process.env.host':process.env.host,
-  'process.env.port':process.env.PORT,
+  'process.env.PORT':process.env.PORT,
 };
 
 export default {
