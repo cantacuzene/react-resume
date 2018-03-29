@@ -48,7 +48,6 @@ export default {
           loader: 'babel-loader',
           options: {
             presets: ['@babel/preset-stage-1'],
-          //  plugins: [require('@babel/plugin-proposal-pipeline-operator')]
           }}
       },
       {

@@ -21,7 +21,7 @@ export const LanguagesReducer = (state= initialState.Languages,action)=>{
         case types.FETCH_LANGUAGES_REQUEST:
             return state;
         case types.FETCH_LANGUAGES_SUCCESS:
-            newState= [...action.payload, ...state];
+            newState= [...action.payload];
             return newState;
         default:
             return state;
@@ -35,7 +35,6 @@ export const LanguagesReducer = (state= initialState.Languages,action)=>{
         case types.FETCH_SKILLS_REQUEST:
             return state;
         case types.FETCH_SKILLS_SUCCESS:
-
             newState={
                 names:action.payload.map(x=>x.name),
                 ratings:action.payload.map(x=>x.rating)
@@ -54,7 +53,7 @@ export const LanguagesReducer = (state= initialState.Languages,action)=>{
         case types.FETCH_EDUCATION_REQUEST:
             return state;
         case types.FETCH_EDUCATION_SUCCESS:
-            newState= [...action.payload, ...state];
+            newState= [...action.payload];
             return newState;
         default:
             return state;
@@ -69,8 +68,8 @@ export const LanguagesReducer = (state= initialState.Languages,action)=>{
             return state;
         case types.FETCH_ABOUTS_SUCCESS:
             newState= {
-                cover:[...action.payload.cover,...state.cover],
-                interests:[...action.payload.interests,...state.interests],
+                cover:[...action.payload.cover],
+                interests:[...action.payload.interests],
               }
             return newState;
         default:
@@ -85,7 +84,7 @@ export const LanguagesReducer = (state= initialState.Languages,action)=>{
         case types.FETCH_EXPERIENCES_REQUEST:
             return state;
         case types.FETCH_EXPERIENCES_SUCCESS:
-            newState = [...action.payload, ...state];
+            newState = [...action.payload];
             return newState;
         default:
             return state;

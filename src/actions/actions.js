@@ -24,8 +24,9 @@ export const fetchSkillsSucceded=(payload)=>{return {
     payload
 }};
 
-export const fetchSkillsError=()=>{return {
-    type: types.FETCH_SKILLS_ERROR
+export const fetchSkillsError=(error)=>{return {
+    type: types.FETCH_SKILLS_ERROR,
+    error
 }};
 
 export const fetchAboutsRequest=()=>{return {
@@ -37,8 +38,9 @@ export const fetchAboutsSucceded=(payload)=>{return {
     payload
 }};
 
-export const fetchAboutsError=()=>{return {
-    type: types.FETCH_ABOUTS_ERROR
+export const fetchAboutsError=(error)=>{return {
+    type: types.FETCH_ABOUTS_ERROR,
+    error
 }};
 export const fetchEducationsRequest=()=>{return {
     type: types.FETCH_EDUCATION_REQUEST
@@ -49,8 +51,9 @@ export const fetchEducationsSucceded=(payload)=>{return {
     payload
 }};
 
-export const fetchEducationsError=()=>{return {
-    type: types.FETCH_EDUCATION_ERROR
+export const fetchEducationsError=(error)=>{return {
+    type: types.FETCH_EDUCATION_ERROR,
+    error
 }};
 export const fetchExperiencesRequest=()=>{return {
     type: types.FETCH_EXPERIENCES_REQUEST
@@ -61,6 +64,7 @@ export const fetchExperiencesSucceded=(payload)=>{return {
     payload
 }};
 
-export const fetchExperiencesError=()=>{return {
-    type: types.FETCH_EXPERIENCES_ERROR
+export const fetchExperiencesError=(error)=>{return {
+    type: types.FETCH_EXPERIENCES_ERROR,
+    error
 }};
