@@ -1,4 +1,4 @@
 export const conf ={
-    host:process.env.host||'resumehca.herokuapp.com',
-    port:process.env.PORT || 80
+    host:process.env.host,//||'resumehca.herokuapp.com',
+    port:process.env.PORT //|| 80
 };
