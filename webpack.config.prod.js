@@ -9,8 +9,8 @@ import MiniCssExtractPlugin from 'mini-css-extract-plugin'
 const GLOBALS = {
   'process.env.NODE_ENV': JSON.stringify('production'),
   __DEV__: false,
-  host:process.env.host||'localhost',
-  port:process.env.PORT||3333,
+  host:process.env.host,
+  port:process.env.PORT,
 };
 
 export default {
