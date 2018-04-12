@@ -8,35 +8,33 @@ import App from './components/App';
 //import HomePage from './components/HomePage';
 import "./styles/stylesheet.scss";
 import * as actions from './actions/actions'
-import {getRessources} from './api/apiHelpers'
-const store = configureStore();
+import {initialState} from './reducers/initialState'
+
+
+const store = configureStore(initialState);
 
 // Create an enhanced history that syncs navigation events with the store
 //const history = syncHistoryWithStore(browserHistory, store);
 
-          
- const fetchAndDispatch=(ressource,requestAction,errorAction,sucessAction)=>()=>{
-  return (dispatch)=>{
-    
-    dispatch(requestAction());
-   getRessources(ressource).fork(
-     (error)=>dispatch(errorAction(error)),
-     (data)=>{dispatch(sucessAction(data));
-     })
-   }};
+const config= store.getState()?.Config;
 
-const fetchLanguages=fetchAndDispatch(`Languages`,actions.fetchLanguagesRequest,actions.fetchLanguagesError,actions.fetchLanguagesSucceded);
-const fetchExperiences= fetchAndDispatch('Experiences',actions.fetchExperiencesRequest,actions.fetchExperiencesError,actions.fetchExperiencesSucceded);
-const fetchSkills= fetchAndDispatch('Skills',actions.fetchSkillsRequest,actions.fetchSkillsError,actions.fetchSkillsSucceded);  
-const fetchEducations= fetchAndDispatch('Educations',actions.fetchEducationsRequest,actions.fetchEducationsError,actions.fetchEducationsSucceded)
-const fetchAbouts = fetchAndDispatch('About',actions.fetchAboutsRequest,actions.fetchAboutsError,actions.fetchAboutsSucceded)
-   
+const defaultLanguage = config.languages.filter(x=>x.selected)[0];
+
+/*
+const fetchLanguages=fetchAndDispatch(defaultLanguage.code,`Languages`,actions.LanguageActionCreator);
+const fetchExperiences= fetchAndDispatch(defaultLanguage.code,'Experiences',actions.ExperiencesActionCreator);
+const fetchSkills= fetchAndDispatch(defaultLanguage.code,'Skills',actions.SkillsActionCreator); 
+const fetchEducations= fetchAndDispatch(defaultLanguage.code,'Educations',actions.EducationsActionCreator);
+const fetchAbouts = fetchAndDispatch(defaultLanguage.code,'About',actions.AboutsActionCreator);
 
 store.dispatch(fetchLanguages());
 store.dispatch(fetchExperiences());
 store.dispatch(fetchSkills());
 store.dispatch(fetchEducations());
 store.dispatch(fetchAbouts());
+*/
+
+store.dispatch(actions.changeWebSiteLanguage(defaultLanguage.code));
 
 render(
     <AppContainer>

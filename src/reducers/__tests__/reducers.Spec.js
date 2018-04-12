@@ -17,21 +17,21 @@ describe('reducers',()=>{
 
     it('LanguageReducer with request action',()=>{
 
-        const dummyAction = actions.fetchLanguagesRequest();
+        const dummyAction = actions.LanguageActions.request();
         const SystemUnderTest = reducers.LanguagesReducer(initTialState().Languages,dummyAction)
         expect(SystemUnderTest).toEqual(initTialState().Languages);
     });
 
     it('LanguageReducer with success action',()=>{
         const dummyPayload=[{id:0,name:'french',rating:1},{id:1,name:'french',rating:1}];
-        const dummyAction = actions.fetchLanguagesSucceded(dummyPayload);
+        const dummyAction = actions.LanguageActions.success(dummyPayload);
         const SystemUnderTest = reducers.LanguagesReducer(initTialState().Languages,dummyAction)
         expect(SystemUnderTest).toEqual(dummyPayload);
     });
 
     it('SkillsReducer with request action',()=>{
 
-        const dummyAction = actions.fetchSkillsRequest();
+        const dummyAction = actions.SkillsActions.request();
         const SystemUnderTest = reducers.SkillsReducer(initTialState(),dummyAction)
         expect(SystemUnderTest).toEqual(initTialState());
     });
@@ -39,7 +39,7 @@ describe('reducers',()=>{
 
     it('SkillsReducer with success action',()=>{
         const dummyPayload=[{"name":"C#", "rating":90}, {"name": "HTML", "rating":80}];
-        const dummyAction = actions.fetchSkillsSucceded(dummyPayload);
+        const dummyAction = actions.SkillsActions.success(dummyPayload);
         const SystemUnderTest = reducers.SkillsReducer(initTialState().Skills,dummyAction)
         expect(SystemUnderTest).toEqual({
             names:dummyPayload.map(x=>x.name),
@@ -49,7 +49,7 @@ describe('reducers',()=>{
 
     it('EducationsReducer with request action',()=>{
 
-        const dummyAction = actions.fetchEducationsRequest();
+        const dummyAction = actions.EducationsActions.request();
         const SystemUnderTest = reducers.EducationsReducer(initTialState(),dummyAction)
         expect(SystemUnderTest).toEqual(initTialState());
     });
@@ -62,7 +62,7 @@ describe('reducers',()=>{
             "location":"Paris, France",
             "title":"Master Expert en Technologies de l'Information"   
         }];
-        const dummyAction = actions.fetchEducationsSucceded(dummyPayload);
+        const dummyAction = actions.EducationsActions.success(dummyPayload);
         const SystemUnderTest = reducers.EducationsReducer(initTialState().Educations,dummyAction)
         expect(SystemUnderTest).toEqual(dummyPayload);
     });
@@ -71,7 +71,7 @@ describe('reducers',()=>{
 
     it('AboutsReducer with request action',()=>{
 
-        const dummyAction = actions.fetchAboutsRequest();
+        const dummyAction = actions.AboutsActions.request();
         const SystemUnderTest = reducers.AboutsReducer(initTialState(),dummyAction)
         expect(SystemUnderTest).toEqual(initTialState());
     });
@@ -88,14 +88,14 @@ describe('reducers',()=>{
                 "value": "Les architectures micro services et server-less"
             }]
           };
-        const dummyAction = actions.fetchAboutsSucceded(dummyPayload);
+        const dummyAction = actions.AboutsActions.success(dummyPayload);
         const SystemUnderTest = reducers.AboutsReducer(initTialState().Abouts,dummyAction)
         expect(SystemUnderTest).toEqual(dummyPayload);
     });
 
     it('ExperiencesReducer with request action',()=>{
 
-        const dummyAction = actions.fetchExperiencesRequest();
+        const dummyAction = actions.ExperiencesActions.request();
         const SystemUnderTest = reducers.ExperiencesReducer(initTialState(),dummyAction)
         expect(SystemUnderTest).toEqual(initTialState());
     });
@@ -111,7 +111,7 @@ describe('reducers',()=>{
                 "description": "Création d’une société de R&D informatique dans le but d’effectuer de la prestation de service auprès d’entreprises locales et internationales",
                 "stack": ".Net Core, Python, Django, VS Code, heroku, CI/CD, git, DDD, TDD, React, webpack, babel"
             }];
-        const dummyAction = actions.fetchExperiencesSucceded(dummyPayload);
+        const dummyAction = actions.ExperiencesActions.success(dummyPayload);
         const SystemUnderTest = reducers.ExperiencesReducer(initTialState().Experiences,dummyAction)
         expect(SystemUnderTest).toEqual(dummyPayload);
     });

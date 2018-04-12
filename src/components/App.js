@@ -3,13 +3,14 @@ import PropTypes from 'prop-types';
 import Header from './Header'
 import HomePage from './HomePage'
 
-import * as actions from '../actions'
-import { bindActionCreators } from 'redux'
+import {actions} from '../actions'
+//import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
 
-const App = ({Languages=[],Skills={  name:[],rate:[]},Abouts={ cover:[],interests:[]},Experiences=[],Educations=[]}) => (
+
+const App = ({Languages,Skills,Abouts,Experiences,Educations,Config,changeLanguage}) => (
       <div>
-        <Header />
+        <Header Config={Config} changeLanguage={changeLanguage} />
         <HomePage Languages={Languages} Skills={Skills} Experiences={Experiences} 
           Educations={Educations} Abouts={Abouts}/>
       </div>
@@ -21,7 +22,9 @@ App.propTypes = {
     Skills:PropTypes.object,
     Experiences:PropTypes.array,
     Educations:PropTypes.array,
-    Abouts:PropTypes.object
+    Abouts:PropTypes.object,
+    Config:PropTypes.object,
+    changeLanguage:PropTypes.func.isRequired
 };
 
 const mapStateToProps= state =>(
@@ -30,11 +33,16 @@ const mapStateToProps= state =>(
     Skills:state.Skills,
     Abouts:state.Abouts,
     Experiences:state.Experiences,
-    Educations:state.Educations
+    Educations:state.Educations,
+    Config:state.Config
   });
 
-const mapDispatchToProps = dispatch =>({
-  actions: bindActionCreators(actions, dispatch)
-})
+const mapDispatchToProps = dispatch =>{
+  return{
+  //actions: bindActionCreators(actions, dispatch),
+  //changeWebSiteLanguage:code => dispatch(actions.changeWebSiteLanguage(code)),
+  changeLanguage: code => { dispatch(actions.changeWebSiteLanguage(code))  }
+
+}}
 
 export default connect(mapStateToProps,mapDispatchToProps)(App);

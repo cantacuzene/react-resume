@@ -1,3 +1,39 @@
+.grayscale{
+    filter: grayscale(100%);
+}
+.grayscale:hover{
+    filter: grayscale(0%);
+}
+.topMenu{
+    width:100%;
+    height:40px;
+    line-height: 40px;
+    background-color:black;
+    padding-left:10px;
+    padding-right:10px;
+    margin-bottom:10px;
+    
+    color:white;
+    div{
+        display: inline-block;
+        text-align: right;
+        width:65%;
+
+    }
+    span{
+        margin-left: 10px;
+        margin-right: 10px;
+        a:hover{
+            color:$blue;
+        }
+    }
+    .left{
+        text-align: left;
+    }
+    .right{
+        text-align: right;
+    }
+}
 nav{
     width:100%;
     text-align: center;
@@ -18,6 +54,12 @@ nav{
                   font-size: 2em;
               }
           }
+          a:hover{
+            i.fa{
+                font-size: 2em;
+                color:darken( $blue, 15% );
+            }
+          }
     }
     display:block;
 }
@@ -35,7 +77,13 @@ nav{
 
 @supports (display:grid)
 {
+
     @media screen and (min-width:700px) {
+        .topMenu{
+            div{
+                width:83%;
+            }
+        }
         nav{
             display:grid;
             grid-template-columns: 15% 15% 1fr 15% 15%;
@@ -62,6 +110,13 @@ nav{
             #linkedin{
                 grid-column: 5;
                 grid-row: 1;
+            }
+        }
+    }
+    @media screen and (min-width:1000px) {
+        .topMenu{
+            div{
+                width:89%;
             }
         }
     }

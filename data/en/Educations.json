@@ -1,0 +1,16 @@
+[
+    {
+        "id":1,
+        "year":2008,
+        "school":"EPITECH",
+        "location":"Paris, France",
+        "title":"Master: Expert in Information Technologies"   
+    },
+    {
+        "id":0,
+        "year":2006,
+        "school":"EPITECH",
+        "location":"Paris, France",
+        "title":"Bachelor in Information Technologies"
+    }
+]

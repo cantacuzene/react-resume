@@ -1,8 +1,21 @@
 import React from 'react'
+import {PropTypes} from 'prop-types'
 
-const Header = () => {
+const Header = (props) => {
+    //console.log(props.languages);
+   const langs= props.Config.languages.filter(x=>x.selected==false).map((x)=>{
+return (<a href='#' key={x.id} onClick={()=>props.changeLanguage(x.code)}><span className={`flag-icon flag-icon-${x.code=='en'?'us':x.code} grayscale left`}  ></span></a>)});
     return (
         <header>
+            <div className='topMenu'>
+            Switch to:
+            {langs}
+            <div className='right'>
+                <span><a>me</a></span>
+                <span><a>blog</a></span>
+                <span><a>karib.it</a></span>
+            </div>
+            </div>
             <nav>
                 <section id="email">
                     <a href="mailto:(h.cantacuzene@gmail.com)" alt="send me an email">
@@ -41,5 +54,8 @@ const Header = () => {
         </header>
     );
 }
-
+Header.propTypes ={
+    Config: PropTypes.object,
+    changeLanguage:PropTypes.func.isRequired
+}
 export default Header;

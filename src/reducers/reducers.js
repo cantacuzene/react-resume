@@ -1,17 +1,8 @@
 import * as types  from '../actions/ActionTypes';
+import {initialState} from './initialState'
 
 
 
-export const  initialState= {Languages:[],
-    Experiences:[],
-    Educations:[],
-    Abouts:{
-      cover:[],interests:[]
-    },
-    Skills:{
-    names:[],
-    ratings:[]
-  }};
 
 export const LanguagesReducer = (state= initialState.Languages,action)=>{
    
@@ -85,6 +76,26 @@ export const LanguagesReducer = (state= initialState.Languages,action)=>{
             return state;
         case types.FETCH_EXPERIENCES_SUCCESS:
             newState = [...action.payload];
+            return newState;
+        default:
+            return state;
+    }
+  }
+
+
+  export const ConfigReducer = (state= initialState.Config,action)=>{
+    let newState;
+    switch (action.type)
+    {
+        case types.CHANGE_WEBSITE_LANGUAGE:
+            newState = {languages:state.languages.map((x)=>{
+                let {code,selected,label,id} = x;
+                if(code == action.language)
+                    selected = true;
+                if(code != action.language)
+                    selected = false
+                return {code,selected,label,id}
+            })};
             return newState;
         default:
             return state;

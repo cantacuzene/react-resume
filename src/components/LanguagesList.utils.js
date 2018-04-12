@@ -1,12 +1,9 @@
 import React from 'react'
 import * as _ from 'ramda';
 
-//disable until babel-eslint fix
-/*eslint-disable */
 export let ChartTagDrawer= _.curry( 
     (LanguageChart,width,height,language) =><LanguageChart key={language?.id} language={language?.name} rate={language?.rating} width={width} height={height} />
 );
-/*eslint-enable */
 
 export let svgTagDrawer = _.curry(
     (width,height,ChartTagDrawer) =>

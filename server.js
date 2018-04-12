@@ -12,27 +12,29 @@ app.use(function(req, res, next) {
 });
 
 app.get('/', (_req, res) => {
-  res.sendFile(path.join(__dirname, 'dist/index.html'));
+  res.sendFile(path.join(__dirname, `dist/${_req.params.lang}/index.html`));
 });
 
-app.get('/api/Languages', (_req, res) => {
-  res.sendFile(path.join(__dirname, 'data/Languages.json'));
+app.get('/api/:lang/Languages', (_req, res) => {
+  res.sendFile(path.join(__dirname, `data/${_req.params.lang}/Languages.json`));
 });
 
-app.get('/api/Skills', (_req, res) => {
-  res.sendFile(path.join(__dirname, 'data/Skills.json'));
+app.get('/api/:lang/Skills', (_req, res) => {
+  res.sendFile(path.join(__dirname, `data/${_req.params.lang}/Skills.json`));
 });
 
-app.get('/api/Educations', (_req, res) => {
-  res.sendFile(path.join(__dirname, 'data/Educations.json'));
+app.get('/api/:lang/Educations', (_req, res) => {
+  res.sendFile(path.join(__dirname, `data/${_req.params.lang}/Educations.json`));
 });
 
-app.get('/api/Experiences', (_req, res) => {
-  res.sendFile(path.join(__dirname, 'data/Experiences.json'));
+app.get('/api/:lang/Experiences', (_req, res) => {
+  res.sendFile(path.join(__dirname, `data/${_req.params.lang}/Experiences.json`));
 });
-app.get('/api/About', (_req, res) => {
-  res.sendFile(path.join(__dirname, 'data/About.json'));
+app.get('/api/:lang/About', (_req, res) => {
+  res.sendFile(path.join(__dirname, `data/${_req.params.lang}/About.json`));
 });
+
+
 app.listen(port, (err) => {
   if (err) {
     console.log(err);

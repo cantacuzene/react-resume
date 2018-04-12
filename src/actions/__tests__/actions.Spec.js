@@ -1,17 +1,17 @@
-import * as action from '../actions'
+import * as actions from '../actions'
 import * as types from '../ActionTypes'
 
 describe("actions::Languages",()=>{
     it('fetchLanguagesRequest action creator behaves as expected',()=>{
         const expectedType = types.FETCH_LANGUAGES_REQUEST
-        const sut = action.fetchLanguagesRequest();
+        const sut = actions.LanguageActions.request();
         expect(sut.type).toBe(expectedType)
     })
 
     it('fetchLanguagesSucceded action creator behaves as expected',()=>{
         const expectedType = types.FETCH_LANGUAGES_SUCCESS;
         const expectedPayload = {dummyObject:true};
-        const sut = action.fetchLanguagesSucceded(expectedPayload);
+        const sut = actions.LanguageActions.success(expectedPayload);
         expect(sut.type).toBe(expectedType);
         expect(sut.payload).toBe(expectedPayload);
     })
@@ -19,7 +19,7 @@ describe("actions::Languages",()=>{
     it('fetchLanguagesError action creator behaves as expected',()=>{
         const expectedType = types.FETCH_LANGUAGES_ERROR;
         const expectedError = {dummyObject:true};
-        const sut = action.fetchLanguagesError(expectedError);
+        const sut = actions.LanguageActions.fail(expectedError);
         expect(sut.type).toBe(expectedType);
         expect(sut.error).toBe(expectedError);
     })
@@ -29,14 +29,14 @@ describe("actions::Languages",()=>{
 describe("actions::Skills",()=>{
     it('fetchSkillsRequest action creator behaves as expected',()=>{
         const expectedType = types.FETCH_SKILLS_REQUEST
-        const sut = action.fetchSkillsRequest();
+        const sut = actions.SkillsActions.request();
         expect(sut.type).toBe(expectedType)
     })
 
     it('fetchSkillsSucceded action creator behaves as expected',()=>{
         const expectedType = types.FETCH_SKILLS_SUCCESS;
         const expectedPayload = {dummyObject:true};
-        const sut = action.fetchSkillsSucceded(expectedPayload);
+        const sut = actions.SkillsActions.success(expectedPayload);
         expect(sut.type).toBe(expectedType);
         expect(sut.payload).toBe(expectedPayload);
     })
@@ -44,7 +44,7 @@ describe("actions::Skills",()=>{
     it('fetchSkillsError action creator behaves as expected',()=>{
         const expectedType = types.FETCH_SKILLS_ERROR;
         const expectedError = {dummyObject:true};
-        const sut = action.fetchSkillsError(expectedError);
+        const sut = actions.SkillsActions.fail(expectedError);
         expect(sut.type).toBe(expectedType);
         expect(sut.error).toBe(expectedError);
     })
@@ -54,14 +54,14 @@ describe("actions::Skills",()=>{
 describe("actions::Experiences",()=>{
     it('fetchExperiencesRequest action creator behaves as expected',()=>{
         const expectedType = types.FETCH_EXPERIENCES_REQUEST
-        const sut = action.fetchExperiencesRequest();
+        const sut = actions.ExperiencesActions.request();
         expect(sut.type).toBe(expectedType)
     })
 
     it('fetchExperiencesSucceded action creator behaves as expected',()=>{
         const expectedType = types.FETCH_EXPERIENCES_SUCCESS;
         const expectedPayload = {dummyObject:true};
-        const sut = action.fetchExperiencesSucceded(expectedPayload);
+        const sut = actions.ExperiencesActions.success(expectedPayload);
         expect(sut.type).toBe(expectedType);
         expect(sut.payload).toBe(expectedPayload);
     })
@@ -69,7 +69,7 @@ describe("actions::Experiences",()=>{
     it('fetchExperiencesError action creator behaves as expected',()=>{
         const expectedType = types.FETCH_EXPERIENCES_ERROR;
         const expectedError = {dummyObject:true};
-        const sut = action.fetchExperiencesError(expectedError);
+        const sut = actions.ExperiencesActions.fail(expectedError);
         expect(sut.type).toBe(expectedType);
         expect(sut.error).toBe(expectedError);
     })
@@ -79,14 +79,14 @@ describe("actions::Experiences",()=>{
 describe("actions::Experiences",()=>{
     it('fetchEducationsRequest action creator behaves as expected',()=>{
         const expectedType = types.FETCH_EDUCATION_REQUEST
-        const sut = action.fetchEducationsRequest();
+        const sut = actions.EducationsActions.request();
         expect(sut.type).toBe(expectedType)
     })
 
     it('fetchEducationsSucceded action creator behaves as expected',()=>{
         const expectedType = types.FETCH_EDUCATION_SUCCESS;
         const expectedPayload = {dummyObject:true};
-        const sut = action.fetchEducationsSucceded(expectedPayload);
+        const sut = actions.EducationsActions.success(expectedPayload);
         expect(sut.type).toBe(expectedType);
         expect(sut.payload).toBe(expectedPayload);
     })
@@ -94,7 +94,7 @@ describe("actions::Experiences",()=>{
     it('fetchEducationsError action creator behaves as expected',()=>{
         const expectedType = types.FETCH_EDUCATION_ERROR;
         const expectedError = {dummyObject:true};
-        const sut = action.fetchEducationsError(expectedError);
+        const sut = actions.EducationsActions.fail(expectedError);
         expect(sut.type).toBe(expectedType);
         expect(sut.error).toBe(expectedError);
     })
@@ -104,14 +104,14 @@ describe("actions::Experiences",()=>{
 describe("actions::Abouts",()=>{
     it('fetchEducationsRequest action creator behaves as expected',()=>{
         const expectedType = types.FETCH_ABOUTS_REQUEST
-        const sut = action.fetchAboutsRequest();
+        const sut = actions.AboutsActions.request();
         expect(sut.type).toBe(expectedType)
     })
 
     it('fetchEducationsSucceded action creator behaves as expected',()=>{
         const expectedType = types.FETCH_ABOUTS_SUCCESS;
         const expectedPayload = {dummyObject:true};
-        const sut = action.fetchAboutsSucceded(expectedPayload);
+        const sut = actions.AboutsActions.success(expectedPayload);
         expect(sut.type).toBe(expectedType);
         expect(sut.payload).toBe(expectedPayload);
     })
@@ -119,7 +119,7 @@ describe("actions::Abouts",()=>{
     it('fetchEducationsError action creator behaves as expected',()=>{
         const expectedType = types.FETCH_ABOUTS_ERROR;
         const expectedError = {dummyObject:true};
-        const sut = action.fetchAboutsError(expectedError);
+        const sut = actions.AboutsActions.fail(expectedError);
         expect(sut.type).toBe(expectedType);
         expect(sut.error).toBe(expectedError);
     })

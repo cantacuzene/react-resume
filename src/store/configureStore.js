@@ -6,10 +6,14 @@ import createHistory from 'history/createBrowserHistory';
 import { routerMiddleware } from 'react-router-redux';
 import logger from 'redux-logger'
 import rootReducer from '../reducers';
+import * as FlutureMiddleware from '../Middleware/loadData'
+
+const dataLoaderMiddleware=FlutureMiddleware.createFlutureMiddleware(FlutureMiddleware.config()); 
 export const history = createHistory();
 function configureStoreProd(initialState) {
   const reactRouterMiddleware = routerMiddleware(history);
   const middlewares = [
+    dataLoaderMiddleware,
     // Add other middleware on this line...
 
     // thunk middleware can also accept an extra argument to be passed to each thunk action
@@ -28,6 +32,7 @@ function configureStoreProd(initialState) {
 function configureStoreDev(initialState) {
   const reactRouterMiddleware = routerMiddleware(history);
   const middlewares = [
+    dataLoaderMiddleware,
     // Add other middleware on this line...
 
     // Redux middleware that spits an error on you when you try to mutate your state either inside a dispatch or between dispatches.
@@ -37,7 +42,7 @@ function configureStoreDev(initialState) {
     // https://github.com/gaearon/redux-thunk#injecting-a-custom-argument
     thunk,
     reactRouterMiddleware,
-    logger
+    //logger
 
   ];
 
