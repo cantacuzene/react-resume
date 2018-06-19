@@ -3,9 +3,9 @@
         "title": "Software Architect",
         "company": "Karib IT SAS",
         "start": "01/2018",
-        "end": "maintenant",
+        "end": "now",
         "contentClassName": "right",
-        "description": "EnglishYo!Création d’une société de R&D informatique dans le but d’effectuer de la prestation de service auprès d’entreprises locales et internationales",
+        "description": "Created a R&D software company which aims to provide consulting services for caribbean or north american businesses",
         "stack": ".Net Core, Python, Django, VS Code, heroku, CI/CD, git, DDD, TDD, React, webpack, babel"
     },
 
@@ -15,9 +15,9 @@
         "company": "Zags!",
         "start": "04/2015",
         "end": "05/2017",
-        "description": "Scrum master, puis Architecte chez un éditeur de logiciel franco-américain spécialisé dans le domaine de l'assurance",
-        "scrum": "Suivi de reporting, garant des cérémonies agiles, référent technique et manager d’une équipe de 5 personnes. Maintenance et évolutions sur le scope fonctionnel group life EMEA de la Zags Suite.",
-        "architect": "Participation à la définition et à la mise en place d’une architecture CQS pour les nouveaux modules, basée sur des services Restful combinés à un front React. Participation aux ateliers de définition du besoin fonctionnel. Mise en place des chaines de build/release linux/docker pour dotnet Core et javascript dans VSTS. Référent technique pour les équipes de développement. Javascript & git evangelist.",
+        "description": "Worked as a Scrum master, then as a software Architect in a french american inssurance software company",
+        "scrum": "Reporting, agile ceremonies supervisor, technical lead and manager of a 5 person team. Maintenance and evolution on the EMEA group life functional scope of the Zags Suite.",
+        "architect": "Worked on an REST/CQS microservices desing for new modules as well as their React front-end counterparts. Technical advisor in the functional design workshops. Implemented CI/CD build pipelines using linux/docker for dotnet Core and javascript. Technical lead for the development teams. Javascript & git evangelist.",
         "stack": "Asp.Net Mvc 4, .Net 4.5.2, WCF, Visual studio 2015, Roslyn, VSTS, Moq, Xunit, TDD/DDD, OAuth 2.0, Azure, JS, React, Scrum, .Net Core, VS Code, VS 2017, docker, CI/CD, TFS, git, webpack, babel"
     },
 
@@ -28,8 +28,8 @@
         "company": "MGEN",
         "start": "07/2014",
         "end": "03/2015",
-        "description": "Mission de maitrise d’ouvrage dans le domaine du recouvrement sur l’ERP Qualiac",
-        "operations": "Rédaction de spécifications fonctionnelles , recette et création de scripts d’automatisations de tâches récurrentes.",
+        "description": "Product owner in the functional design team for debt-collection domain on Qualiac ERP.",
+        "operations": " Functional specifications,script automatisation for acceptance testing.",
         "stack": "Oracle Sql Developer, Linqpad, Linq, c# 4.0, php 5, Oracle 10g, Qualiac"
     },
     {
@@ -38,8 +38,8 @@
         "company": "Natixis Asset Management",
         "start": "04/2010",
         "end": "07/2014",
-        "description": "Lead Developper dans une équipe de 2.5 ETP travaillant sur plusieurs domaines fonctionnels (RH, Référentiel, Déontologie, Juridique, Commercial ) en back office dans le milieu de l’Asset Management.",
-        "operations": "Rédaction de dossier d’architecture pour la mise en place des projets. Rédaction de spécifications techniques, création, et TMA sur plusieurs projets ASP.Net et services WCF. Réfèrent technique lors des appels d’offres mobilité et refonte des sites institutionnels.",
+        "description": "Lead Developper in a 2.5 FTE team. Worked on several functional domains for back office applications in an Asset management company (HR, Repository, Deontology, Legal, Sales ).",
+        "operations": "Wrote Architectural and technical specifications for several projects. Maintained multiple ASP.Net web applications and WCF services. Technical advisor on mobility projects and institutional websites re-designs.",
         "stack": "Visual Studio 2010, SQL Server, RedGate Ants, TDD, Teamcity, FXcop, SVN, Resharper, Nunit, MsTest, WCF, Javascript, IIS .Net 4, WCF, Linq, ASP.Net, MVC, JQuery, C#, EF"
     },
     {
@@ -49,8 +49,8 @@
         "company": "ITS Group",
         "start": "12/2007",
         "end": "04/2010",
-        "description": "Développement Web et RIA via le CMS OSCAR, Maintenance et évolution des progiciels et sites Web du GIDEC",
-        "operations": "Refonte du système de génération de commandes du GIDEC. Coordination des équipes d’hébergement d’intégra et de Hotline de Spinea pour le GIDEC.",
+        "description": "Development of rich internet application with OSCAR CMS,designed and implemented evolutions of the GIDEC Web sites and softwares",
+        "operations": "Re-design of the GIDEC orders generation system. Coordination of the hosting and hotline teams for the GIDEC.",
         "stack": "php 5.x, SQL server 2000, Asp, Apache 2, MySQL 5.x, LAMP Gupta 3.1, SQL server 2000, Asp .NET 1.1.4, Workflow fundation, .net 3.5, Linq to SQL"
     },
     {
@@ -59,7 +59,7 @@
         "company": "France Télévision (R.F.O.)",
         "start": "05/2006",
         "end": "10/2006",
-        "description": "Rédaction d’un audit sur la migration des contrôleurs de domaine du réseau de diffusion de RFO(serveurs en production), et création d’un programme de génération de méta donnée Hrml pour le logiciel chrono-player de Netia (pige antenne)",
+        "description": "Active directory Domain controler re-design of the broadcasting network at RFO",
         "stack": "Net 2.0, Traffic , Oracle, Active Directory, Windows server 2003 "
     }
 ]

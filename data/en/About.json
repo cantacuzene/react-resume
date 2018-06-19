@@ -1,64 +1,64 @@
 {
     "cover": [{
             "id": 0,
-            "value": "This is EnglishYo!!Passionné d'informatique depuis ma plus tendre enfance, j'ai non seulement grandi avec les ordinateurs, mais aussi avec le WEB."
+            "value":"Since I was a toddler I've always loved IT. Not only was I surrended by micro computers but I also grew up with the word wide web."
         },
         {
             "id": 1,
-            "value": "C'est donc tout naturellement que je me suis tourné vers des études d'informatiques à l'EPITECH."
+            "value": "By the time I graduated, choosing a major was obvious to me. I had to study computer science at the EPITECH"
         },
         {
             "id": 2,
-            "value": "Développeur depuis 2007, j'ai touché à plusieurs technologies telles que PHP, JavaScript, ou la stack .Net."
+           "value": "Working in the software industry since 2007, I've used several technologies such as PHP, JavaScript, or the .Net stack."
         },
         {
             "id": 3,
-            "value": "C'est dans cette dernière que je me suis spécialisé, tout en gardant un sens critique exacerbé vis-à-vis des technologies de Microsoft."
+            "value": "I chose to specialise in the later, but still kept a critical mind toward Microsoft technologies."
         },
         {
             "id": 4,
-            "value": "Je ne regrette cependant pas mon choix au vu des dernières évolutions de .Net Core"
+            "value": "After a few years and knowing where .Net Core is headed, I'm glad I made this choice."
         },
         {
             "id": 5,
-            "value": "Mes maîtres à penser dans l'industrie viennent de langages et d'horizons différents."
+            "value": "My influences are people from very different background in the industry."
         },
         {
             "id": 6,
-            "value": "Ils se nomment Martin Fowler, Greg Young, José Valim, Miran Lipovača ou encore Uncle Bob pour ne citer qu'eux."
+            "value": "They are named Martin Fowler, Greg Young, José Valim, Miran Lipovača or Uncle Bob."
         },
         {
             "id": 7,
-            "value": "Les sujets qui m'interessent aujourd'hui sont les suivants:"
+            "value": "The issues I'm keen on these days are:"
         }
     ],
     "interests": [{
             "id": 0,
-            "value": "La programation fonctionnelle"
+            "value": "functional programing"
         },
         {
             "id": 1,
-            "value": "La DataViz"
+            "value": "DataViz"
         },
         {
             "id": 2,
-            "value": "Les Technologies Front"
+            "value": "Front-End Technologies"
         },
         {
             "id": 3,
-            "value": "Le DDD"
+            "value": "DDD"
         },
         {
             "id": 4,
-            "value": "Le TDD"
+            "value": "TDD"
         },
         {
             "id": 5,
-            "value": "Les Middleware pipelines"
+            "value": "Middleware pipelines"
         },
         {
             "id": 6,
-            "value": "Les architectures micro services et server-less"
+            "value": "Micro services and server-less architectures"
         }
     ]
 }
