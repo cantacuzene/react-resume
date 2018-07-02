@@ -1,40 +1,36 @@
 {
     "cover": [{
             "id": 0,
-            "value":"Since I was a toddler I've always loved computer science. Not only was I surrended by micro computers but I also grew up with the word wide web."
+            "value":"Since I was a toddler I've always loved computer science. Not only was I surrounded by computers but I also grew up with the world wide web."
         },
         {
             "id": 1,
-            "value": "By the time I graduated, choosing a major was obvious to me. I had to study computer science at the EPITECH"
+            "value": "By the time I graduated, choosing a major was an easy choice. I had to study computer science at EPITECH"
         },
         {
             "id": 2,
-           "value": "Working in the software industry since 2007, I've used several technologies such as PHP, JavaScript, or the .Net stack."
+           "value": "Working in the software industry since 2007, I've used several technologies such as PHP, JavaScript, or the .NET stack."
         },
         {
             "id": 3,
-            "value": "I chose to specialise in the later, but still kept a critical mind toward Microsoft technologies."
+            "value": "I chose to specialise in the latter, but still kept a critical mindset toward Microsoft technologies."
         },
         {
             "id": 4,
-            "value": "After a few years and knowing where .Net Core is headed, I'm glad I made this choice."
+            "value": "After a few years and knowing where .NET Core is headed, I'm glad I made this choice."
         },
         {
             "id": 5,
-            "value": "My influences are people from very different background in the industry."
+            "value": "I am influenced by people with very different background in the industry. Folks like Martin Fowler, Greg Young, José Valim, Miran Lipovača or Kent Beck."
         },
         {
             "id": 6,
-            "value": "They are named Martin Fowler, Greg Young, José Valim, Miran Lipovača or Uncle Bob."
-        },
-        {
-            "id": 7,
-            "value": "The issues I'm keen on these days are:"
+            "value": "The pratices I'm particulary  keen on these days are:"
         }
     ],
     "interests": [{
             "id": 0,
-            "value": "functional programing"
+            "value": "Functional programing"
         },
         {
             "id": 1,
@@ -42,7 +38,7 @@
         },
         {
             "id": 2,
-            "value": "Front-End Technologies"
+            "value": "Front-end Technologies"
         },
         {
             "id": 3,
