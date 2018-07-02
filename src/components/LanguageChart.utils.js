@@ -52,7 +52,6 @@ export let DrawChart = (language,rate,color,innerRadius,styleText,drawArc,drawAr
     style={styleText}>
     
         <tspan x="0" dy="0">{language}</tspan>
-        <tspan x="0" dy="1.2em">{rate*100+'%'}</tspan>
 </text>
 </g>
 

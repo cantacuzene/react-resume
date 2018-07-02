@@ -141,12 +141,6 @@ exports[`LanguageList renders correctly 1`] = `
             >
               English
             </tspan>
-            <tspan
-              dy="1.2em"
-              x="0"
-            >
-              87%
-            </tspan>
           </text>
         </g>
         <g>
@@ -270,12 +264,6 @@ exports[`LanguageList renders correctly 1`] = `
               x="0"
             >
               French
-            </tspan>
-            <tspan
-              dy="1.2em"
-              x="0"
-            >
-              100%
             </tspan>
           </text>
         </g>
