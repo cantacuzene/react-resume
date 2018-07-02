@@ -7,7 +7,8 @@ const TimelineItem =(props) =>
     <div className="timeline-icon"></div>
     <div  className={ `timeline-content ${props.contentClassName}` }>
         <h2>
-            {props.start} - {props.end} <br/> {props.title}, {props.company}
+              {props.title}, {props.company}<br/>
+              <span className='timeline-date'>{props.start} - {props.end}</span>
         </h2>
         {drawData("Description",props.description)}
         {drawData("Scrum",props.scrum)}

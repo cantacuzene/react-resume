@@ -118,6 +118,9 @@ a {
 				margin: -20px -20px 0 -20px;
 				font-weight: 300;
 				@include prefix(border-radius, 3px 3px 0 0);
+				.timeline-date{
+					font-size: 10px;
+				}
 			}
 
 			&:before {
