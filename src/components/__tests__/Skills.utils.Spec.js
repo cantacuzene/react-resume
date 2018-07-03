@@ -17,7 +17,7 @@ describe('skills.utils',()=>{
             names:[12],
             ratings:[0]
         }
-        const SystemUnderTest = utils.DrawSkillsPanel(dummyContainer,dummyConfig);
+        const SystemUnderTest = utils.DrawSkillsPanel(dummyContainer,'title',dummyConfig);
         expect(SystemUnderTest.props.children[1].props.id).toBe(dummyContainer);
         expect(SystemUnderTest.props.children[1].props.children.props.config).toBe(dummyConfig);
     });

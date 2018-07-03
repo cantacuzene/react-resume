@@ -33,6 +33,9 @@ app.get('/api/:lang/Experiences', (_req, res) => {
 app.get('/api/:lang/About', (_req, res) => {
   res.sendFile(path.join(__dirname, `data/${_req.params.lang}/About.json`));
 });
+app.get('/api/:lang/Titles', (_req, res) => {
+  res.sendFile(path.join(__dirname, `data/${_req.params.lang}/Titles.json`));
+});
 
 
 app.listen(port, (err) => {

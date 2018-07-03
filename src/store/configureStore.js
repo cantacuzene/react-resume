@@ -42,7 +42,7 @@ function configureStoreDev(initialState) {
     // https://github.com/gaearon/redux-thunk#injecting-a-custom-argument
     thunk,
     reactRouterMiddleware,
-    //logger
+   // logger
 
   ];
 

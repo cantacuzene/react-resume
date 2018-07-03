@@ -17,7 +17,22 @@ export const LanguageActions={
         error
     }},
 }
-
+export const TitlesActions={
+    request:(language)=>{ return{
+        type: types.FETCH_TITLES_REQUEST,
+        language
+    }},
+    
+     success:(payload)=>{return {
+        type: types.FETCH_TITLES_SUCCESS,
+        payload
+    }},
+    
+    fail:(error)=>{return {
+        type: types.FETCH_TITLES_ERROR,
+        error
+    }},
+}
 
 export const SkillsActions={
     request:(language)=>{ return{

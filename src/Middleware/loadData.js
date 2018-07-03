@@ -8,12 +8,15 @@ export const config =()=>
 {
     let configMap = new Map();
     configMap.set(types.CHANGE_WEBSITE_LANGUAGE, (dispatch,action)=>{
-
+        dispatch(actions.TitlesActions.request(action.language));
         dispatch(actions.LanguageActions.request(action.language));
         dispatch(actions.AboutsActions.request(action.language));
         dispatch(actions.EducationsActions.request(action.language));
         dispatch(actions.ExperiencesActions.request(action.language));
         dispatch(actions.SkillsActions.request(action.language));
+    });
+    configMap.set(types.FETCH_TITLES_REQUEST,(dispatch,action)=>{
+        dispatch(fetchAndDispatch(action.language,`Titles`,actions.TitlesActions)())
     });
     configMap.set(types.FETCH_LANGUAGES_REQUEST,(dispatch,action)=>{
         dispatch(fetchAndDispatch(action.language,`Languages`,actions.LanguageActions)())

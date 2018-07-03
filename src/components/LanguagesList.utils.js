@@ -1,5 +1,6 @@
 import React from 'react'
 import * as _ from 'ramda';
+import TitleH2 from './Titles'
 
 export let ChartTagDrawer= _.curry( 
     (LanguageChart,width,height,language) =><LanguageChart key={language?.id} language={language?.name} rate={language?.rating} width={width} height={height} />
@@ -13,11 +14,9 @@ export let svgTagDrawer = _.curry(
 );
 
 export let SectionTagDrawer = _.curry(
-    (chartid,svgTagDrawer) =>
+    (titles,chartid,svgTagDrawer) =>
     <section className="sub lang" >
-        <h2>
-                Langues
-        </h2>
+        <TitleH2 text={titles.Languages} />
         <div className="center">
         <div id={chartid} className="svgContainerWebChart"> 
             {svgTagDrawer}

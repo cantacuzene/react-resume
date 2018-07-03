@@ -18,7 +18,8 @@ describe('LanguageList', ()=>{
     }],
     "chartid":"myd3chart" ,
     "width":500, 
-    "height":190
+    "height":190,
+    "Titles":{"Languages":'Languages'}
 }
 
     it('renders correctly', ()=>{

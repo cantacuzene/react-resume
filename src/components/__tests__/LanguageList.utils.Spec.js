@@ -59,7 +59,7 @@ describe('Language.utils',()=>{
             chartid:42,
             dumyJsx:<div />
         }
-        const SystemUnderTest = utils.SectionTagDrawer(dummyData.chartid,dummyData.dummyJsx);
+        const SystemUnderTest = utils.SectionTagDrawer({'Languages':'Languages'},dummyData.chartid,dummyData.dummyJsx);
         expect(SystemUnderTest.props.children[1].props.children.props.id).toBe(dummyData.chartid);
     })
     
@@ -68,7 +68,7 @@ describe('Language.utils',()=>{
             chartid:null,
             dumyJsx:<div />
         }
-        const SystemUnderTest = utils.SectionTagDrawer(dummyData.chartid,dummyData.dummyJsx);
+        const SystemUnderTest = utils.SectionTagDrawer({'Languages':'Languages'},dummyData.chartid,dummyData.dummyJsx);
         expect(SystemUnderTest.props.children[1].props.children.props.id).toBe(dummyData.chartid);
     })
 })

@@ -19,6 +19,22 @@ export const LanguagesReducer = (state= initialState.Languages,action)=>{
     }
   }
 
+  export const TitlesReducer = (state= initialState.Titles,action)=>{
+   
+    let newState;
+    switch (action.type)
+    {
+        case types.FETCH_TITLES_REQUEST:
+            return state;
+        case types.FETCH_TITLES_SUCCESS:
+            newState= action.payload;
+            return newState;
+        default:
+            return state;
+    }
+  }
+
+
   export const SkillsReducer = (state= initialState.Skills,action)=>{
     let newState;
     switch (action.type)

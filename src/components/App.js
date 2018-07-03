@@ -8,11 +8,11 @@ import {actions} from '../actions'
 import { connect } from 'react-redux'
 
 
-const App = ({Languages,Skills,Abouts,Experiences,Educations,Config,changeLanguage}) => (
+const App = ({Languages,Skills,Abouts,Experiences,Educations,Config,changeLanguage,Titles}) => (
       <div>
         <Header Config={Config} changeLanguage={changeLanguage} />
         <HomePage Languages={Languages} Skills={Skills} Experiences={Experiences} 
-          Educations={Educations} Abouts={Abouts}/>
+          Educations={Educations} Abouts={Abouts} Titles={Titles}/>
       </div>
 );
 
@@ -24,6 +24,7 @@ App.propTypes = {
     Educations:PropTypes.array,
     Abouts:PropTypes.object,
     Config:PropTypes.object,
+    Titles:PropTypes.object,
     changeLanguage:PropTypes.func.isRequired
 };
 
@@ -34,6 +35,7 @@ const mapStateToProps= state =>(
     Abouts:state.Abouts,
     Experiences:state.Experiences,
     Educations:state.Educations,
+    Titles:state.Titles,
     Config:state.Config
   });
 

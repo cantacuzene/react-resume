@@ -1,6 +1,7 @@
 import React, { Fragment } from 'react'
 import * as _ from 'ramda'
 import PropTypes from 'prop-types'
+import TitleH2 from './Titles'
 
 const EducationItem =(props) =>
 <Fragment>
@@ -22,14 +23,13 @@ EducationItem.propTypes={
 const Education = (props) =>{
     return (
     <section className="sub form">
-        <h2>
-                Formation initiale
-        </h2>
+        <TitleH2 text={props.Titles.Education}/>
         {props.Educations |> _.map((x)=><EducationItem key={`edu-${x.id}`} {...x} />)}
     </section>
     );
 };
 Education.propTypes ={
-    Educations:PropTypes.array
+    Educations:PropTypes.array,
+    Titles:PropTypes.object
 }
 export default Education;

@@ -1,6 +1,7 @@
 import React from 'react';
 import ReactHighcharts from 'react-highcharts'
 import HighchartsMore from 'highcharts-more';
+import TitleH2 from './Titles'
 import * as _ from 'ramda'
 HighchartsMore(ReactHighcharts.Highcharts);
 
@@ -42,11 +43,8 @@ export const graphOptions=(names, ratings)=>{return (
     });};
 
 
-export const DrawSkillsPanel=_.curry((container,config) =>
-<section className="sub skills" >
-    <h2>
-        {"Domaine d'expertise"}
-    </h2>
+export const DrawSkillsPanel=_.curry((container,titles,config) =><section className="sub skills" >
+    <TitleH2 text={titles.Skills}/>
     <div id={container}>
         <ReactHighcharts config = {config}></ReactHighcharts>
     </div>

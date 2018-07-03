@@ -6,9 +6,10 @@ import {ChartTagDrawer,svgTagDrawer,SectionTagDrawer} from './LanguagesList.util
 
 const LanguageList = (props)=> 
 {
+ 
         let TransformDataToChart= _.map(ChartTagDrawer(LanguageChart,props.width,props.height));
         let BuildsvgContainer = svgTagDrawer(props.width,props.height);
-        let BuldSectionConainer = SectionTagDrawer(props.chartid);
+        let BuldSectionConainer = SectionTagDrawer(props.Titles,props.chartid);
 
         return props.Languages
         |> TransformDataToChart
@@ -20,6 +21,7 @@ LanguageList.propTypes = {
     chartid:PropTypes.string,
     width:PropTypes.number,
     height:PropTypes.number,
-    Languages:PropTypes.array
+    Languages:PropTypes.array,
+    Titles:PropTypes.object
 }
 export default LanguageList;

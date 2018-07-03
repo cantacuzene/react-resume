@@ -9,9 +9,8 @@ const rootReducer = combineReducers({
   Skills:reducers.SkillsReducer,
   Abouts:reducers.AboutsReducer,
   Educations:reducers.EducationsReducer,
+  Titles: reducers.TitlesReducer,
   routing: routerReducer,
-
-
 });
 
 export default rootReducer;

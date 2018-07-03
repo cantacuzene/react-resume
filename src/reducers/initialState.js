@@ -5,11 +5,11 @@ export const  initialState= {Languages:[],
   Abouts:{
     cover:[],interests:[]
   },
+  Titles:{},
   Config:{
     languages:[{code:'en',label:'englsih',selected:false,id:0},{code:'fr',label:'français',selected:true,id:1}]
   },
   Skills:{
   names:[],
   ratings:[],
-
 }};
