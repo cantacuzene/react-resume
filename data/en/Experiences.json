@@ -6,7 +6,7 @@
         "end": "now",
         "contentClassName": "right",
         "description": "Created a R&D software company which aims to provide consulting services for caribbean or north american businesses",
-        "stack": ".Net Core, Python, Django, VS Code, heroku, CI/CD, git, DDD, TDD, React, webpack, babel"
+        "stack": ".NET Core, Python, Django, VS Code, heroku, CI/CD, git, DDD, TDD, React, webpack, babel"
     },
 
     {
@@ -18,7 +18,7 @@
         "description": "Worked as a Scrum master, then as a software Architect in a french-american inssurance software company, contracting for Microsoft Services and AXA on a 1 000 000+ codebase.",
         "scrum": "Reporting, agile ceremonies supervisor, technical lead and manager of a 5 person team. Maintenance and evolution on the EMEA group life functional scope of the Zags Suite.",
         "architect": "Worked on an REST/CQS microservices desing for new modules as well as their React front-end counterparts. Technical advisor in the functional design workshops. Implemented CI/CD build pipelines using linux/docker for dotnet Core and javascript. Technical lead for the development teams. Javascript & git evangelist.",
-        "stack": "Asp.Net Mvc 4, .Net 4.5.2, WCF, Visual studio 2015, Roslyn, VSTS, Moq, Xunit, TDD/DDD, OAuth 2.0, Azure, JS, React, Scrum, .Net Core, VS Code, VS 2017, docker, CI/CD, TFS, git, webpack, babel"
+        "stack": "Asp.NET Mvc 4, .NET 4.5.2, WCF, Visual studio 2015, Roslyn, VSTS, Moq, Xunit, TDD/DDD, OAuth 2.0, Azure, JS, React, Scrum, .NET Core, VS Code, VS 2017, docker, CI/CD, TFS, git, webpack, babel"
     },
 
     {
@@ -40,7 +40,7 @@
         "end": "07/2014",
         "description": "Lead Developper in a 2.5 FTE team. Worked on several functional domains for back office applications in an Asset management company (HR, Repository, Deontology, Legal, Sales ).",
         "operations": "Wrote Architectural and technical specifications for several projects. Maintained multiple ASP.Net web applications and WCF services. Technical advisor on mobility projects and institutional websites re-designs.",
-        "stack": "Visual Studio 2010, SQL Server, RedGate Ants, TDD, Teamcity, FXcop, SVN, Resharper, Nunit, MsTest, WCF, Javascript, IIS .Net 4, WCF, Linq, ASP.Net, MVC, JQuery, C#, EF"
+        "stack": "Visual Studio 2010, SQL Server, RedGate Ants, TDD, Teamcity, FXcop, SVN, Resharper, Nunit, MsTest, WCF, Javascript, IIS ,.NET 4, WCF, Linq, ASP.Net, MVC, JQuery, C#, EF"
     },
     {
         "id":1,
@@ -51,7 +51,7 @@
         "end": "04/2010",
         "description": "Development of rich internet application with OSCAR CMS,designed and implemented evolutions of the GIDEC Web sites and softwares",
         "operations": "Re-design of the GIDEC orders generation system. Coordination of the hosting and hotline teams for the GIDEC.",
-        "stack": "php 5.x, SQL server 2000, Asp, Apache 2, MySQL 5.x, LAMP Gupta 3.1, SQL server 2000, Asp .NET 1.1.4, Workflow fundation, .net 3.5, Linq to SQL"
+        "stack": "php 5.x, SQL server 2000, Asp, Apache 2, MySQL 5.x, LAMP Gupta 3.1, SQL server 2000, Asp .NET 1.1.4, Workflow fundation, .NET 3.5, Linq to SQL"
     },
     {
         "id":0,
@@ -60,6 +60,6 @@
         "start": "05/2006",
         "end": "10/2006",
         "description": "Active directory Domain controler re-design of the broadcasting network at RFO",
-        "stack": "Net 2.0, Traffic , Oracle, Active Directory, Windows server 2003 "
+        "stack": ".NET 2.0, Traffic , Oracle, Active Directory, Windows server 2003 "
     }
 ]
