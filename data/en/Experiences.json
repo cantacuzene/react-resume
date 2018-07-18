@@ -5,7 +5,7 @@
         "start": "01/2018",
         "end": "now",
         "contentClassName": "right",
-        "description": "Created a R&D software company which aims to provide consulting services for caribbean or north american businesses",
+        "description": "Created a R&D software company which aims to provide consulting services for Caribbean or north American businesses",
         "stack": ".NET Core, Python, Django, VS Code, heroku, CI/CD, git, DDD, TDD, React, webpack, babel"
     },
 
@@ -15,9 +15,9 @@
         "company": "Zags!",
         "start": "04/2015",
         "end": "05/2017",
-        "description": "Worked as a Scrum master, then as a software Architect in a french-american inssurance software company, contracting for Microsoft Services and AXA on a 1 000 000+ codebase.",
+        "description": "Worked as a Scrum master, then as a software Architect in a french-american insurance software company, contracting for Microsoft Services and AXA on a 1 000 000+ codebase.",
         "scrum": "Reporting, agile ceremonies supervisor, technical lead and manager of a 5 person team. Maintenance and evolution on the EMEA group life functional scope of the Zags Suite.",
-        "architect": "Worked on an REST/CQS microservices desing for new modules as well as their React front-end counterparts. Technical advisor in the functional design workshops. Implemented CI/CD build pipelines using linux/docker for dotnet Core and javascript. Technical lead for the development teams. Javascript & git evangelist.",
+        "architect": "Worked on an REST/CQS microservices design for new modules as well as their React front-end counterparts. Technical advisor in the functional design workshops. Implemented CI/CD build pipelines using linux/docker for dotnet Core and javascript. Technical lead for the development teams. Javascript & git evangelist.",
         "stack": "Asp.NET Mvc 4, .NET 4.5.2, WCF, Visual studio 2015, Roslyn, VSTS, Moq, Xunit, TDD/DDD, OAuth 2.0, Azure, JS, React, Scrum, .NET Core, VS Code, VS 2017, docker, CI/CD, TFS, git, webpack, babel"
     },
 
