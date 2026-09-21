@@ -1,5 +1,6 @@
 import type { Experience, Lang, TimelineLabels } from '@/client/api/types'
 import { formatMonth } from '@/client/i18n/languages.utils'
+import { classNames } from '@/client/styles/classNames.utils'
 import styles from './Timeline.module.css'
 import type { Side } from './Timeline.utils'
 
@@ -13,7 +14,7 @@ export type TimelineItemProps = Readonly<{
 export const TimelineItem = ({ experience, t, lang, side }: TimelineItemProps) => (
   <article className={styles.item}>
     <div className={styles.icon} />
-    <div className={`${styles.content ?? ''} ${styles[side] ?? ''}`}>
+    <div className={classNames(styles.content, styles[side])}>
       <h3 className={styles.heading}>
         <span className={styles.title}>{experience.title}</span>
         <span>{experience.company}</span>

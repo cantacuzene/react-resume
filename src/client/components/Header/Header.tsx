@@ -2,6 +2,7 @@ import { FaEnvelope } from 'react-icons/fa'
 import type { AriaLabels, HeaderLabels, Profile, SiteLanguage } from '@/client/api/types'
 import { useLanguage } from '@/client/i18n/LanguageContext'
 import { otherLanguages } from '@/client/i18n/languages.utils'
+import { classNames } from '@/client/styles/classNames.utils'
 import { Flag } from './Flag'
 import styles from './Header.module.css'
 import { linkIcon } from './Header.utils'
@@ -37,10 +38,7 @@ export const Header = ({ profile, t, aria, languages }: HeaderProps) => {
         </div>
       </div>
       <nav className={styles.nav}>
-        <a
-          className={`${styles.link ?? ''} ${styles.email ?? ''}`}
-          href={`mailto:${profile.email}`}
-        >
+        <a className={classNames(styles.link, styles.email)} href={`mailto:${profile.email}`}>
           <FaEnvelope aria-hidden className={styles.icon} />
           <span>{t.emailMe}</span>
         </a>
@@ -49,7 +47,7 @@ export const Header = ({ profile, t, aria, languages }: HeaderProps) => {
           return (
             <a
               key={kind}
-              className={`${styles.link ?? ''} ${styles[kind.toLowerCase()] ?? ''}`}
+              className={classNames(styles.link, styles[kind.toLowerCase()])}
               href={url}
             >
               <Icon aria-hidden className={styles.icon} />

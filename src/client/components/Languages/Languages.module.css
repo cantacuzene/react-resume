@@ -1,0 +1,33 @@
+.languages {
+  width: 100%;
+  margin: 0 auto;
+  padding: 20px;
+  text-align: center;
+}
+
+.chart {
+  width: 100%;
+  max-width: 600px;
+}
+
+.track {
+  fill: #ccc;
+}
+
+.progress {
+  fill: #67baf5;
+}
+
+.centre {
+  fill: #fff;
+}
+
+.name {
+  font-size: 35px;
+  fill: #ccc;
+}
+
+.percent {
+  font-size: 20px;
+  fill: #ccc;
+}
