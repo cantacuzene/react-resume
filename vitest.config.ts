@@ -1,0 +1,19 @@
+import { defineConfig, mergeConfig } from 'vitest/config'
+import viteConfig from './vite.config.ts'
+
+export default mergeConfig(
+  viteConfig,
+  defineConfig({
+    test: {
+      environment: 'jsdom',
+      include: ['tests/**/*.test.{ts,tsx}'],
+      setupFiles: ['tests/support/setup.ts'],
+      coverage: {
+        provider: 'v8',
+        include: ['src/**/*.{ts,tsx}'],
+        exclude: ['src/main.tsx', 'src/gql/**'],
+        thresholds: { lines: 90, branches: 90 },
+      },
+    },
+  }),
+)
