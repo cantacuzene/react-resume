@@ -9,6 +9,7 @@
     "build": "tsc --noEmit && vite build",
     "typecheck": "tsc --noEmit",
     "lint": "eslint . --max-warnings 0",
+    "check:tests": "bun scripts/check-tests.ts",
     "test": "vitest run --coverage",
     "test:watch": "vitest",
     "format": "prettier --write .",
