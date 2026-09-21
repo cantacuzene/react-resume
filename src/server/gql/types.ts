@@ -142,8 +142,10 @@ export type SpokenLanguage = {
 
 export type TimelineLabels = {
   readonly __typename?: 'TimelineLabels';
+  readonly description: Scalars['String']['output'];
   /** Shown when Experience.end is null */
   readonly present: Scalars['String']['output'];
+  readonly stack: Scalars['String']['output'];
 };
 
 export type Translations = {
@@ -368,7 +370,9 @@ export type SpokenLanguageResolvers<ContextType = any, ParentType extends Resolv
 };
 
 export type TimelineLabelsResolvers<ContextType = any, ParentType extends ResolversParentTypes['TimelineLabels'] = ResolversParentTypes['TimelineLabels']> = {
+  description?: Resolver<ResolversTypes['String'], ParentType, ContextType>;
   present?: Resolver<ResolversTypes['String'], ParentType, ContextType>;
+  stack?: Resolver<ResolversTypes['String'], ParentType, ContextType>;
 };
 
 export type TranslationsResolvers<ContextType = any, ParentType extends ResolversParentTypes['Translations'] = ResolversParentTypes['Translations']> = {
