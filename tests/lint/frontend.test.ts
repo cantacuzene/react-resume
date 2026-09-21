@@ -74,10 +74,55 @@ describe('ESLint frontend rules', { timeout: 30_000 }, () => {
     ).toEqual([])
   })
 
+  it('forbids globalThis.fetch outside src/api', async () => {
+    expect(
+      await lintViolations(
+        source,
+        "export const load = (): Promise<Response> => globalThis.fetch('/x')\n",
+      ),
+    ).toContain('no-restricted-properties')
+  })
+
+  it('forbids window.fetch outside src/api', async () => {
+    expect(
+      await lintViolations(
+        source,
+        "export const load = (): Promise<Response> => window.fetch('/x')\n",
+      ),
+    ).toContain('no-restricted-properties')
+  })
+
+  it('allows globalThis.fetch in src/api', async () => {
+    expect(
+      await lintViolations(
+        api,
+        "export const load = (): Promise<Response> => globalThis.fetch('/x')\n",
+      ),
+    ).toEqual([])
+  })
+
   it('forbids hard-coded text in components', async () => {
     expect(
       await lintViolations(component, 'export const Greeting = () => <p>Hello</p>\n'),
     ).toContain('react/jsx-no-literals')
+  })
+
+  it('forbids function-declaration components', async () => {
+    expect(
+      await lintViolations(component, 'export function Title() {\n  return null\n}\n'),
+    ).toContain('react/function-component-definition')
+  })
+
+  it('forbids impure render (React Compiler purity)', async () => {
+    const code = [
+      'export const Random = () => {',
+      '  const value = Math.random()',
+      '  return <p>{value}</p>',
+      '}',
+      '',
+    ].join('\n')
+
+    expect(await lintViolations(component, code)).toContain('react-hooks/purity')
   })
 
   it('accepts a compliant test', async () => {

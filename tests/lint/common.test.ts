@@ -108,7 +108,57 @@ describe('ESLint common rules', { timeout: 30_000 }, () => {
     ).toEqual([])
   })
 
+  it('forbids snapshot test variants', async () => {
+    const code = [
+      "import { expect, it } from 'vitest'",
+      '',
+      "it('throws', () => {",
+      '  expect(() => 1).toThrowErrorMatchingInlineSnapshot()',
+      '})',
+      '',
+    ].join('\n')
+
+    expect(await lintViolations(test, code)).toContain('no-restricted-syntax')
+  })
+
+  it('forbids mocking own modules via a relative specifier', async () => {
+    expect(
+      await lintViolations(test, "import { vi } from 'vitest'\n\nvi.mock('../src/api/graphql')\n"),
+    ).toContain('no-restricted-syntax')
+  })
+
+  it('forbids mocking own modules via a dynamic import specifier', async () => {
+    expect(
+      await lintViolations(test, "import { vi } from 'vitest'\n\nvi.mock(import('@/App'))\n"),
+    ).toContain('no-restricted-syntax')
+  })
+
+  it('forbids tests from importing sources by reaching into src', async () => {
+    expect(
+      await lintViolations(test, "import { App } from '../src/App'\n\nexport const check = App\n"),
+    ).toContain('no-restricted-imports')
+  })
+
+  it('allows tests to import scripts outside src', async () => {
+    expect(
+      await lintViolations(
+        test,
+        "import { missingTests } from '../scripts/lib/missingTests'\n\nexport const check = missingTests\n",
+      ),
+    ).toEqual([])
+  })
+
+  it('forbids interface declarations', async () => {
+    expect(
+      await lintViolations(source, 'export interface A {\n  readonly x: number\n}\n'),
+    ).toContain('@typescript-eslint/consistent-type-definitions')
+  })
+
   it('ignores the legacy folder', async () => {
     expect(await isIgnored('legacy/src/index.js')).toBe(true)
+  })
+
+  it('ignores the .superpowers scratch folder', async () => {
+    expect(await isIgnored('.superpowers/x.ts')).toBe(true)
   })
 })

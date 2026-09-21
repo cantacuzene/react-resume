@@ -12,12 +12,17 @@ import tseslint from 'typescript-eslint'
 // docs/guidelines/common.md §4
 const commonTestRestrictions = [
   {
-    selector: 'CallExpression[callee.property.name=/^toMatch(Inline)?Snapshot$/]',
+    selector: 'CallExpression[callee.property.name=/Snapshot$/]',
     message: 'Snapshot tests are not allowed: assert on behaviour (docs/guidelines/common.md §4).',
   },
   {
     selector:
-      "CallExpression[callee.object.name='vi'][callee.property.name=/^(mock|doMock)$/][arguments.0.value=/^@\\W/]",
+      "CallExpression[callee.object.name='vi'][callee.property.name=/^(mock|doMock)$/][arguments.0.value=/^(@\\/|\\.)/]",
+    message: 'Do not mock own modules; mock only at the edges (docs/guidelines/common.md §4).',
+  },
+  {
+    selector:
+      "CallExpression[callee.object.name='vi'][callee.property.name=/^(mock|doMock)$/][arguments.0.source.value=/^(@\\/|\\.)/]",
     message: 'Do not mock own modules; mock only at the edges (docs/guidelines/common.md §4).',
   },
 ]
@@ -32,7 +37,7 @@ const frontendTestRestrictions = [
 ]
 
 export default defineConfig(
-  globalIgnores(['legacy/**', 'dist/**', 'coverage/**', 'src/gql/**']),
+  globalIgnores(['legacy/**', 'dist/**', 'coverage/**', 'src/gql/**', '.superpowers/**']),
 
   // docs/guidelines/common.md §1–§2
   {
@@ -53,6 +58,7 @@ export default defineConfig(
         { enforcement: 'ReadonlyShallow', ignoreInferredTypes: true },
       ],
       'import/no-default-export': 'error',
+      '@typescript-eslint/consistent-type-definitions': ['error', 'type'],
     },
   },
   {
@@ -83,16 +89,28 @@ export default defineConfig(
           message: 'Call fetch only from src/api/ (docs/guidelines/frontend.md §2).',
         },
       ],
+      'no-restricted-properties': [
+        'error',
+        ...['globalThis', 'window', 'self'].map((object) => ({
+          object,
+          property: 'fetch',
+          message: 'Call fetch only from src/api/ (docs/guidelines/frontend.md §2).',
+        })),
+      ],
     },
   },
 
-  // docs/guidelines/frontend.md §3: no hard-coded text
+  // docs/guidelines/frontend.md §1 and §3: components are arrow constants, no hard-coded text
   {
     files: ['src/**/*.tsx'],
     plugins: { react },
     settings: { react: { version: 'detect' } },
     rules: {
       'react/jsx-no-literals': ['error', { noStrings: true, ignoreProps: true }],
+      'react/function-component-definition': [
+        'error',
+        { namedComponents: 'arrow-function', unnamedComponents: 'arrow-function' },
+      ],
     },
   },
 
@@ -103,6 +121,17 @@ export default defineConfig(
     files: ['tests/**/*.{ts,tsx}'],
     rules: {
       'no-restricted-syntax': ['error', ...commonTestRestrictions, ...frontendTestRestrictions],
+      'no-restricted-imports': [
+        'error',
+        {
+          patterns: [
+            {
+              group: ['**/src/**'],
+              message: 'Import sources through the `@/` alias (docs/guidelines/common.md §4).',
+            },
+          ],
+        },
+      ],
     },
   },
   // Vitest runs without globals (test.globals is unset), so Testing Library cannot detect a
