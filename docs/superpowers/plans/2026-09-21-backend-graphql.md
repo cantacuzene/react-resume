@@ -55,11 +55,11 @@ Vitest 5, ESLint 9, Prettier, Lefthook.
   (same `id`s in the same order), skills, spoken languages and profile links. It does not apply to
   `about.cover` / `about.interests`: they are prose paragraphs, and the French cover has 8 against
   7 in English.
-- Skills are identical across languages except for the casing of "Web Architecture", so they are
-  language-neutral in `content/shared.ts`.
-- The French section titles for education, languages and experience are untranslated in
-  `data/fr/Titles.json`; the content uses "Formation", "Langues", "Expérience", and "À propos"
-  for about.
+- **Nothing in the French content stays in English.** The legacy French data has untranslated
+  section titles, experience titles and skill names; the content translates them all (tables in
+  Task 4). `content/index.test.ts` fails if a translatable string is identical in both languages.
+- Skills are listed per language (so their names can be translated); the content test checks both
+  languages keep the same ratings in the same order.
 
 ## File Map
 
@@ -879,7 +879,7 @@ git checkout -b backend/4-content
 ```ts
 // @vitest-environment node
 import { describe, expect, it } from 'vitest'
-import { content } from '@/server/content'
+import { content, type LangContent } from '@/server/content'
 
 type Leaf = Readonly<{ path: string; value: unknown }>
 
@@ -923,8 +923,40 @@ describe('content', () => {
     )
   })
 
+  it('translates every translatable string', () => {
+    const translatable = (langContent: LangContent): ReadonlyArray<Leaf> => [
+      ...leaves(langContent.translations, 'translations'),
+      ...leaves(langContent.siteLanguages.map(({ label }) => label), 'siteLanguages.label'),
+      ...leaves(langContent.resume.profile.jobTitle, 'profile.jobTitle'),
+      ...leaves(langContent.resume.profile.links.map(({ label }) => label), 'links.label'),
+      ...leaves(langContent.resume.about, 'about'),
+      ...leaves(langContent.resume.educations.map(({ title }) => title), 'educations.title'),
+      ...leaves(langContent.resume.experiences.map(({ title }) => title), 'experiences.title'),
+      ...leaves(
+        langContent.resume.experiences.map(({ description }) => description),
+        'experiences.description',
+      ),
+      ...leaves(langContent.resume.spokenLanguages.map(({ name }) => name), 'spokenLanguages'),
+    ]
+    const frenchByPath = new Map(translatable(fr).map(({ path, value }) => [path, value]))
+    const untranslated = translatable(en)
+      .filter(({ path, value }) => frenchByPath.get(path) === value)
+      .map(({ path }) => path)
+
+    expect(untranslated).toEqual([])
+  })
+
+  it('translates the multi-word skill names', () => {
+    const frenchNames = fr.resume.skills.map(({ name }) => name)
+
+    expect(frenchNames).toContain('Architecture hexagonale')
+    expect(frenchNames).toContain('Architecture web')
+  })
+
   it('lists the same skills, spoken languages and links in both languages', () => {
-    expect(fr.resume.skills).toHaveLength(en.resume.skills.length)
+    expect(fr.resume.skills.map(({ rating }) => rating)).toEqual(
+      en.resume.skills.map(({ rating }) => rating),
+    )
     expect(fr.resume.spokenLanguages).toHaveLength(en.resume.spokenLanguages.length)
     expect(fr.resume.profile.links.map(({ kind }) => kind)).toEqual(
       en.resume.profile.links.map(({ kind }) => kind),
@@ -981,7 +1013,7 @@ Expected: FAIL — cannot resolve `@/server/content`.
 `src/server/content/shared.ts`:
 
 ```ts
-import type { LinkKind, Skill } from '@/server/gql/types'
+import type { LinkKind } from '@/server/gql/types'
 
 // UTC month start: no timezone can shift the date into the previous month
 const month = (year: number, monthNumber: number): Date =>
@@ -998,23 +1030,6 @@ export const linkUrls: Readonly<Record<LinkKind, string>> = {
   LINKEDIN: 'https://www.linkedin.com/in/hugo-cantacuzene-903b9394',
   BADGES: 'https://backpack.openbadges.org/share/cc71ca2cf7aaf763192d151a1591309f/',
 }
-
-export const skills: ReadonlyArray<Skill> = [
-  { name: 'C#', rating: 90 },
-  { name: 'HTML', rating: 80 },
-  { name: 'CSS', rating: 70 },
-  { name: 'JS', rating: 80 },
-  { name: 'Docker', rating: 60 },
-  { name: 'SQL', rating: 70 },
-  { name: 'Linux', rating: 60 },
-  { name: 'dotnet core', rating: 60 },
-  { name: 'Hexagonal Architecture', rating: 70 },
-  { name: 'React', rating: 70 },
-  { name: 'Go', rating: 30 },
-  { name: 'Ruby', rating: 30 },
-  { name: 'Scrum Master', rating: 90 },
-  { name: 'Web Architecture', rating: 90 },
-]
 
 export const spokenLanguageRatings = { english: 0.87, french: 1 } as const
 
@@ -1094,7 +1109,6 @@ import {
   experienceFacts,
   linkUrls,
   person,
-  skills,
   spokenLanguageRatings,
 } from '@/server/content/shared'
 
@@ -1117,7 +1131,22 @@ export const en = {
         // data/en/About.json interests[0..6].value, verbatim
       ],
     },
-    skills,
+    skills: [
+      { name: 'C#', rating: 90 },
+      { name: 'HTML', rating: 80 },
+      { name: 'CSS', rating: 70 },
+      { name: 'JS', rating: 80 },
+      { name: 'Docker', rating: 60 },
+      { name: 'SQL', rating: 70 },
+      { name: 'Linux', rating: 60 },
+      { name: 'dotnet core', rating: 60 },
+      { name: 'Hexagonal Architecture', rating: 70 },
+      { name: 'React', rating: 70 },
+      { name: 'Go', rating: 30 },
+      { name: 'Ruby', rating: 30 },
+      { name: 'Scrum Master', rating: 90 },
+      { name: 'Web Architecture', rating: 90 },
+    ],
     educations: [
       { ...educationFacts.master, title: 'Master: Expert in Information Technologies' },
       { ...educationFacts.bachelor, title: 'Bachelor in Information Technologies' },
@@ -1161,8 +1190,9 @@ file contains the real strings and none of these markers.
 
 `src/server/content/fr.ts`, same shape. Copy verbatim from `data/fr/About.json` (cover: 8
 strings, interests: 7 strings) and each `description` from `data/fr/Experiences.json` by `id`.
-Experience and education titles are copied from `data/fr/*.json` by `id` (the experience titles
-are in English in the source and stay as they are).
+Every other French string is written below; none stays in English. If a copied description or
+paragraph from `data/fr/` is itself in English, translate it and say so in the report (the
+"translates every translatable string" test fails otherwise).
 
 ```ts
 import type { LangContent } from '@/server/content'
@@ -1171,7 +1201,6 @@ import {
   experienceFacts,
   linkUrls,
   person,
-  skills,
   spokenLanguageRatings,
 } from '@/server/content/shared'
 
@@ -1194,18 +1223,33 @@ export const fr = {
         // data/fr/About.json interests[0..6].value, verbatim
       ],
     },
-    skills,
+    skills: [
+      { name: 'C#', rating: 90 },
+      { name: 'HTML', rating: 80 },
+      { name: 'CSS', rating: 70 },
+      { name: 'JS', rating: 80 },
+      { name: 'Docker', rating: 60 },
+      { name: 'SQL', rating: 70 },
+      { name: 'Linux', rating: 60 },
+      { name: 'dotnet core', rating: 60 },
+      { name: 'Architecture hexagonale', rating: 70 },
+      { name: 'React', rating: 70 },
+      { name: 'Go', rating: 30 },
+      { name: 'Ruby', rating: 30 },
+      { name: 'Scrum Master', rating: 90 },
+      { name: 'Architecture web', rating: 90 },
+    ],
     educations: [
       { ...educationFacts.master, title: "Master Expert en Technologies de l'Information" },
       { ...educationFacts.bachelor, title: "Bachelor en Technologies de l'Information" },
     ],
     experiences: [
-      { ...experienceFacts.karibIt, title: 'Software Architect', description: '…id 5…' },
-      { ...experienceFacts.zags, title: 'Software Architect', description: '…id 4…' },
-      { ...experienceFacts.mgen, title: 'Product Owner', description: '…id 3…' },
-      { ...experienceFacts.natixis, title: 'Lead Software Engineer', description: '…id 2…' },
-      { ...experienceFacts.itsGroup, title: 'Software Engineer', description: '…id 1…' },
-      { ...experienceFacts.rfo, title: 'Intern', description: '…id 0…' },
+      { ...experienceFacts.karibIt, title: 'Architecte logiciel', description: '…id 5…' },
+      { ...experienceFacts.zags, title: 'Architecte logiciel', description: '…id 4…' },
+      { ...experienceFacts.mgen, title: 'Product Owner (responsable produit)', description: '…id 3…' },
+      { ...experienceFacts.natixis, title: 'Lead développeur', description: '…id 2…' },
+      { ...experienceFacts.itsGroup, title: 'Ingénieur logiciel', description: '…id 1…' },
+      { ...experienceFacts.rfo, title: 'Stagiaire', description: '…id 0…' },
     ],
     spokenLanguages: [
       { name: 'Anglais', rating: spokenLanguageRatings.english },
@@ -1230,10 +1274,6 @@ export const fr = {
   ],
 } satisfies LangContent
 ```
-
-Before writing the titles, check them against the source:
-`python3 -c "import json;print([(e['id'],e['title']) for e in json.load(open('data/fr/Experiences.json'))])"`
-If a French title differs from the one above, use the source's.
 
 - [ ] **Step 7: Write the index**
 
