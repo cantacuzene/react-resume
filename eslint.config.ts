@@ -37,7 +37,7 @@ const frontendTestRestrictions = [
 ]
 
 export default defineConfig(
-  globalIgnores(['legacy/**', 'dist/**', 'coverage/**', 'src/gql/**', '.superpowers/**']),
+  globalIgnores(['legacy/**', 'dist/**', 'coverage/**', 'src/*/gql/**', '.superpowers/**']),
 
   // docs/guidelines/common.md §1–§2
   {
@@ -68,7 +68,7 @@ export default defineConfig(
 
   // docs/guidelines/frontend.md §1–§2: components and hooks
   {
-    files: ['src/**/*.{ts,tsx}', 'tests/**/*.{ts,tsx}'],
+    files: ['src/client/**/*.{ts,tsx}', 'tests/**/*.{ts,tsx}'],
     extends: [reactHooks.configs.flat.recommended],
     plugins: { 'react-prefer-function-component': preferFunctionComponent },
     rules: {
@@ -77,16 +77,16 @@ export default defineConfig(
     },
   },
 
-  // docs/guidelines/frontend.md §2: fetch only in src/api/
+  // docs/guidelines/frontend.md §2: fetch only in src/client/api/
   {
-    files: ['src/**/*.{ts,tsx}'],
-    ignores: ['src/api/**'],
+    files: ['src/client/**/*.{ts,tsx}'],
+    ignores: ['src/client/api/**'],
     rules: {
       'no-restricted-globals': [
         'error',
         {
           name: 'fetch',
-          message: 'Call fetch only from src/api/ (docs/guidelines/frontend.md §2).',
+          message: 'Call fetch only from src/client/api/ (docs/guidelines/frontend.md §2).',
         },
       ],
       'no-restricted-properties': [
@@ -94,7 +94,7 @@ export default defineConfig(
         ...['globalThis', 'window', 'self'].map((object) => ({
           object,
           property: 'fetch',
-          message: 'Call fetch only from src/api/ (docs/guidelines/frontend.md §2).',
+          message: 'Call fetch only from src/client/api/ (docs/guidelines/frontend.md §2).',
         })),
       ],
     },
@@ -102,7 +102,7 @@ export default defineConfig(
 
   // docs/guidelines/frontend.md §1 and §3: components are arrow constants, no hard-coded text
   {
-    files: ['src/**/*.tsx'],
+    files: ['src/client/**/*.tsx'],
     plugins: { react },
     settings: { react: { version: 'detect' } },
     rules: {

@@ -11,7 +11,7 @@ export default mergeConfig(
       coverage: {
         provider: 'v8',
         include: ['src/**/*.{ts,tsx}'],
-        exclude: ['src/main.tsx', 'src/gql/**'],
+        exclude: ['src/client/main.tsx', 'src/server/main.ts', 'src/*/gql/**'],
         thresholds: { lines: 90, branches: 90 },
       },
     },

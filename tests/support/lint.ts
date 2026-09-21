@@ -2,9 +2,9 @@ import { ESLint } from 'eslint'
 
 // Virtual files linted by the rule tests. They must never exist on disk.
 export const VIRTUAL_FILES = {
-  source: 'src/__lint__.ts',
-  api: 'src/api/__lint__.ts',
-  component: 'src/components/__lint__.tsx',
+  source: 'src/client/__lint__.ts',
+  api: 'src/client/api/__lint__.ts',
+  component: 'src/client/components/__lint__.tsx',
   test: 'tests/__lint__.test.tsx',
   config: '__lint__.config.ts',
 } as const

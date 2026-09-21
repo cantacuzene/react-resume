@@ -12,11 +12,11 @@ const listFiles = (directory: string): ReadonlyArray<string> =>
 const missing = missingTests(listFiles('src'), listFiles('tests'))
 
 if (missing.length > 0) {
-  console.error('Missing tests (docs/guidelines/frontend.md §4):')
+  console.error('Missing tests (docs/guidelines/frontend.md §4, backend.md §2):')
   missing.forEach(({ source, expectedTest }) => {
     console.error(`  src/${source} → tests/${expectedTest}`)
   })
   process.exit(1)
 }
 
-console.log('check-tests: every component and utils file has a test')
+console.log('check-tests: every component, utils, server and shared module has a test')
