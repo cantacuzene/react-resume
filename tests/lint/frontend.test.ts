@@ -62,19 +62,19 @@ describe('ESLint frontend rules', { timeout: 30_000 }, () => {
     expect(await lintViolations(source, code)).toContain('react-hooks/exhaustive-deps')
   })
 
-  it('forbids fetch outside src/api', async () => {
+  it('forbids fetch outside src/client/api', async () => {
     expect(
       await lintViolations(source, "export const load = (): Promise<Response> => fetch('/x')\n"),
     ).toContain('no-restricted-globals')
   })
 
-  it('allows fetch in src/api', async () => {
+  it('allows fetch in src/client/api', async () => {
     expect(
       await lintViolations(api, "export const load = (): Promise<Response> => fetch('/x')\n"),
     ).toEqual([])
   })
 
-  it('forbids globalThis.fetch outside src/api', async () => {
+  it('forbids globalThis.fetch outside src/client/api', async () => {
     expect(
       await lintViolations(
         source,
@@ -83,7 +83,7 @@ describe('ESLint frontend rules', { timeout: 30_000 }, () => {
     ).toContain('no-restricted-properties')
   })
 
-  it('forbids window.fetch outside src/api', async () => {
+  it('forbids window.fetch outside src/client/api', async () => {
     expect(
       await lintViolations(
         source,
@@ -92,7 +92,7 @@ describe('ESLint frontend rules', { timeout: 30_000 }, () => {
     ).toContain('no-restricted-properties')
   })
 
-  it('allows globalThis.fetch in src/api', async () => {
+  it('allows globalThis.fetch in src/client/api', async () => {
     expect(
       await lintViolations(
         api,

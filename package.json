@@ -7,6 +7,8 @@
   "packageManager": "bun@1.4.2",
   "scripts": {
     "dev": "vite",
+    "dev:server": "bun --watch src/server/main.ts",
+    "start": "bun src/server/main.ts",
     "build": "tsc --noEmit && vite build",
     "typecheck": "tsc --noEmit",
     "lint": "eslint . --max-warnings 0",
@@ -15,17 +17,27 @@
     "test:watch": "vitest",
     "format": "prettier --write .",
     "format:check": "prettier --check .",
-    "verify": "bun run format:check && bun run lint && bun run typecheck && bun run check:tests && bun run test",
-    "prepare": "lefthook install"
+    "verify": "bun run format:check && bun run lint && bun run typecheck && bun run check:gql && bun run check:tests && bun run test",
+    "prepare": "lefthook install",
+    "codegen": "graphql-codegen --config codegen.config.ts",
+    "check:gql": "bun run codegen && git diff --exit-code -- src/server/gql"
   },
   "dependencies": {
+    "@graphql-tools/schema": "^10.1.1",
+    "graphql": "^17.0.2",
+    "graphql-scalars": "^2.0.0",
+    "graphql-yoga": "^5.24.1",
     "react": "^19.3.0",
     "react-dom": "^19.3.0"
   },
   "devDependencies": {
+    "@graphql-codegen/cli": "^7.4.2",
+    "@graphql-codegen/typescript": "^6.1.0",
+    "@graphql-codegen/typescript-resolvers": "^6.1.0",
     "@testing-library/dom": "^10.4.2",
     "@testing-library/jest-dom": "^7.0.1",
     "@testing-library/react": "^16.3.3",
+    "@types/bun": "^1.4.2",
     "@types/node": "^26.6.2",
     "@types/react": "^19.3.0",
     "@types/react-dom": "^19.3.0",

@@ -1,0 +1,115 @@
+scalar Date
+
+enum Lang {
+  FR
+  EN
+}
+
+type Query {
+  resume(lang: Lang!): Resume!
+  translations(lang: Lang!): Translations!
+  siteLanguages(lang: Lang!): [SiteLanguage!]!
+}
+
+type Resume {
+  profile: Profile!
+  about: About!
+  skills: [Skill!]!
+  educations: [Education!]!
+  experiences: [Experience!]!
+  spokenLanguages: [SpokenLanguage!]!
+}
+
+type Profile {
+  name: String!
+  jobTitle: String!
+  location: String!
+  email: String!
+  links: [ProfileLink!]!
+}
+
+enum LinkKind {
+  GITHUB
+  LINKEDIN
+  BADGES
+}
+
+type ProfileLink {
+  kind: LinkKind!
+  url: String!
+  "Translated, e.g. \"My GitHub profile\""
+  label: String!
+}
+
+type About {
+  cover: [String!]!
+  interests: [String!]!
+}
+
+type Skill {
+  name: String!
+  "0–100"
+  rating: Int!
+}
+
+type Education {
+  id: ID!
+  year: Int!
+  school: String!
+  location: String!
+  title: String!
+}
+
+type Experience {
+  id: ID!
+  title: String!
+  company: String!
+  start: Date!
+  "null means the current position"
+  end: Date
+  description: String!
+  stack: [String!]!
+}
+
+type SpokenLanguage {
+  name: String!
+  "0–1"
+  rating: Float!
+}
+
+type Translations {
+  sections: SectionTitles!
+  header: HeaderLabels!
+  timeline: TimelineLabels!
+  aria: AriaLabels!
+}
+
+type SectionTitles {
+  about: String!
+  skills: String!
+  education: String!
+  languages: String!
+  experiences: String!
+}
+
+type HeaderLabels {
+  switchTo: String!
+  emailMe: String!
+}
+
+type TimelineLabels {
+  "Shown when Experience.end is null"
+  present: String!
+}
+
+type AriaLabels {
+  switchLanguage: String!
+  retry: String!
+  loading: String!
+}
+
+type SiteLanguage {
+  code: Lang!
+  "In the requested language, e.g. lang FR gives \"Anglais\" for EN"
+  label: String!
+}
