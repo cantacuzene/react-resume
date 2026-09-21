@@ -38,9 +38,12 @@ Testing Library, MSW 2, ESLint `^9` (flat config, `typescript-eslint`, `eslint-p
   ```
   Co-Authored-By: Claude Opus 5 <noreply@anthropic.com>
   ```
-- One GitHub issue, branch and PR per task, **stacked**: task N's branch `tooling/N-<slug>` is
-  created from task N−1's branch (task 1 from `docs/react-guidelines`), and its PR targets that
-  branch with `Closes #<issue>` in the body. PRs are merged bottom-up.
+- One GitHub issue (label `enhancement`) lists every task as a checkbox. One branch and PR per
+  task, **stacked**: task N's branch `tooling/N-<slug>` is created from task N−1's branch (task 1
+  from `docs/react-guidelines`), and its PR targets that branch with `Part of #<issue>` in the
+  body (task 7: `Closes #<issue>`). Tick the task's box when its PR is opened. PRs are merged
+  bottom-up. Slugs: `1-legacy-bun`, `2-vite-scaffold`, `3-prettier`, `4-eslint-common`,
+  `5-eslint-frontend`, `6-check-tests`, `7-verify-ci`.
 
 ## File Map
 
