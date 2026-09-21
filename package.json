@@ -15,14 +15,21 @@
     "test:watch": "vitest",
     "format": "prettier --write .",
     "format:check": "prettier --check .",
-    "verify": "bun run format:check && bun run lint && bun run typecheck && bun run check:tests && bun run test",
-    "prepare": "lefthook install"
+    "verify": "bun run format:check && bun run lint && bun run typecheck && bun run check:gql && bun run check:tests && bun run test",
+    "prepare": "lefthook install",
+    "codegen": "graphql-codegen --config codegen.config.ts",
+    "check:gql": "bun run codegen && git diff --exit-code -- src/server/gql"
   },
   "dependencies": {
+    "graphql": "^17.0.2",
+    "graphql-scalars": "^2.0.0",
     "react": "^19.3.0",
     "react-dom": "^19.3.0"
   },
   "devDependencies": {
+    "@graphql-codegen/cli": "^7.4.2",
+    "@graphql-codegen/typescript": "^6.1.0",
+    "@graphql-codegen/typescript-resolvers": "^6.1.0",
     "@testing-library/dom": "^10.4.2",
     "@testing-library/jest-dom": "^7.0.1",
     "@testing-library/react": "^16.3.3",
