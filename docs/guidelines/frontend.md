@@ -68,7 +68,7 @@ In addition to the [common enforcement](common.md#5-enforcement):
 | Rule | Tool |
 |---|---|
 | Function components only | `eslint-plugin-react-prefer-function-component` |
-| Hooks correctness | `eslint-plugin-react-hooks` (`exhaustive-deps` as error) |
+| Hooks correctness & render purity | `eslint-plugin-react-hooks` flat `recommended` (includes the React Compiler rules `purity`, `immutability`, `set-state-in-render`, …), with `exhaustive-deps` raised to error |
 | `fetch` only in `src/api/` | `no-restricted-globals` (`fetch`), disabled for `src/api/**` |
 | No hard-coded UI text | `react/jsx-no-literals`, with per-file documented exceptions |
 | Testing Library conventions | `eslint-plugin-testing-library`, `eslint-plugin-jest-dom`, `no-restricted-syntax` banning `getByTestId` — scoped to `tests/**` |

@@ -110,7 +110,21 @@ LanguageProvider (lang)
   translations failed to load, so it uses a local fallback `{ FR: 'Réessayer', EN: 'Retry' }` for
   its button's `aria-label`. `react/jsx-no-literals` is disabled for that file only.
 
-## 5. Folder layout
+## 5. Repository & folder layout
+
+- **One package** at the repository root (no workspaces). New code lives in `src/`.
+- The old app (webpack/Babel sources, `package.json`, `yarn.lock`, build tools, `server.js`, …)
+  is moved as-is into `legacy/` for reference. It is **not** built, installed, linted or tested,
+  and is deleted once sub-project 2 has migrated its content. `data/` stays at the root until the
+  backend spec decides its place.
+- `tests/` mirrors `src/` exactly: `src/a/B.tsx` → `tests/a/B.test.tsx`,
+  `src/a/b.utils.ts` → `tests/a/b.utils.test.ts`.
+- **Delivery:** sub-project 1 delivers the tooling (§7), the test support infrastructure that does
+  not depend on the schema (`setup.ts`, MSW server, empty `handlers.ts`) and a minimal `App`
+  scaffold. §2–§4 and the schema-dependent support (`fixtures.ts`, `renderWithProviders`) are
+  implemented in sub-project 2.
+
+Target layout once sub-project 2 is done:
 
 ```
 src/
@@ -123,12 +137,16 @@ src/
   gql/          (generated)
 tests/
   api/          graphql.test.ts
-  components/   Header.test.tsx, Header.utils.test.ts, …
+  components/   Header/Header.test.tsx, Header/Header.utils.test.ts, …
   hooks/        useResumePage.test.tsx
   i18n/         LanguageContext.test.tsx, languages.utils.test.ts
-  support/      setup.ts, renderWithProviders.tsx, fixtures.ts, handlers.ts
+  lint/         common.test.ts, frontend.test.ts   (ESLint rules proven on code samples)
+  scripts/      lib/missingTests.test.ts
+  support/      setup.ts, server.ts, handlers.ts, lint.ts, renderWithProviders.tsx, fixtures.ts
 scripts/
   check-tests.ts
+  lib/missingTests.ts
+legacy/         old app, reference only
 ```
 
 ## 6. Test plan by unit
@@ -154,7 +172,13 @@ Coverage exclusions: `src/gql/**`, `src/main.tsx`. `check-tests.ts` exemptions: 
 
 ## 7. Tooling
 
-Bun is the package manager and script runner.
+Bun is the package manager and script runner. ESLint is pinned to `^9` (`eslint-plugin-react` and
+`eslint-plugin-import` do not support ESLint 10); TypeScript to `~6.0` (`typescript-eslint`
+requires `< 6.1`).
+
+Every lint rule is covered by a test in `tests/lint/` that lints a violating and a compliant code
+sample through the real config (ESLint `lintText` with virtual file paths allowed via
+`allowDefaultProject`, overridden in the test helper only).
 
 ### 7.1 Files
 
@@ -164,8 +188,8 @@ Bun is the package manager and script runner.
 | `.prettierrc` | Common guidelines §5 Prettier options |
 | `eslint.config.ts` | Flat config implementing the common §5 and frontend §5 tables; `tests/**` override for Testing Library rules; overrides for `src/api/**` (`fetch`), `LoadError` (`jsx-no-literals`), config files (default export); ignores `src/gql/**` |
 | `vitest.config.ts` | jsdom, `tests/**/*.test.ts(x)`, setup file, `@/` alias, v8 coverage with thresholds and exclusions from §6 |
-| `codegen.ts` | GraphQL Code Generator `client-preset` → `src/gql/` |
-| `scripts/check-tests.ts` | Walks `src/`, maps `*.tsx` / `*.utils.ts` to `tests/**/*.test.ts(x)`, exits non-zero listing missing tests |
+| `vite.config.ts`, `index.html` | Vite + React plugin, `@/` alias |
+| `scripts/check-tests.ts` | Walks `src/`, maps `*.tsx` / `*.utils.ts` to their mirrored `tests/` path, exits non-zero listing missing tests; pure mapping logic in `scripts/lib/missingTests.ts` |
 | `lefthook.yml` | pre-commit, sequential: 1) Prettier + `eslint --fix` on staged files with `stage_fixed: true`; 2) `bun run verify` |
 | `.github/workflows/ci.yml` | push + PR: `oven-sh/setup-bun` → `bun install --frozen-lockfile` → `bun run verify` |
 | `CLAUDE.md` | Links `docs/guidelines/common.md` (all code), `frontend.md` and `backend.md` as mandatory |
@@ -181,17 +205,17 @@ pre-commit requirement.
 "format:check": "prettier --check .",
 "typecheck":    "tsc --noEmit",
 "test":         "vitest run --coverage",
-"codegen":      "graphql-codegen",
 "check:tests":  "bun scripts/check-tests.ts",
-"check:gql":    "bun run codegen && git diff --exit-code src/gql",
-"verify":       "bun run format:check && bun run lint && bun run typecheck && bun run check:tests && bun run check:gql && bun run test"
+"verify":       "bun run format:check && bun run lint && bun run typecheck && bun run check:tests && bun run test"
 ```
+
+`codegen.ts`, the `codegen` and `check:gql` scripts, and the `check:gql` step in `verify` are
+added in sub-project 3, when the schema exists.
 
 ## 8. Out of scope (later specs)
 
-- Vite project setup, component-by-component migration, replacing the unmaintained
-  `react-highcharts`, SCSS handling — frontend spec.
-- GraphQL schema details, resolvers, translation data model, schema export for codegen,
-  deployment (current Heroku `Procfile`) — backend spec.
-- Repo layout (single package vs. Bun workspaces for web/api) — frontend spec, as it decides where
-  the §7 files live.
+- Component-by-component migration, replacing the unmaintained `react-highcharts`, SCSS
+  handling — frontend spec.
+- GraphQL schema details, resolvers, translation data model, codegen setup, where the backend
+  lives inside `src/`, deployment (the Heroku `Procfile` moves to `legacy/` and stops working
+  until then) — backend spec.
