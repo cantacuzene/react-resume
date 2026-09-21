@@ -20,10 +20,11 @@
     "verify": "bun run format:check && bun run lint && bun run typecheck && bun run check:gql && bun run check:tests && bun run test",
     "prepare": "lefthook install",
     "codegen": "graphql-codegen --config codegen.config.ts",
-    "check:gql": "bun run codegen && git diff --exit-code -- src/server/gql"
+    "check:gql": "bun run codegen && git diff --exit-code -- src/server/gql src/client/gql"
   },
   "dependencies": {
     "@graphql-tools/schema": "^10.1.1",
+    "@graphql-typed-document-node/core": "^3.2.0",
     "graphql": "^17.0.2",
     "graphql-scalars": "^2.0.0",
     "graphql-yoga": "^5.24.1",
@@ -32,6 +33,7 @@
   },
   "devDependencies": {
     "@graphql-codegen/cli": "^7.4.2",
+    "@graphql-codegen/client-preset": "^6.2.0",
     "@graphql-codegen/typescript": "^6.1.0",
     "@graphql-codegen/typescript-resolvers": "^6.1.0",
     "@testing-library/dom": "^10.4.2",

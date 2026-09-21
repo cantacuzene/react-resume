@@ -101,6 +101,15 @@ describe('ESLint frontend rules', { timeout: 30_000 }, () => {
     ).toEqual([])
   })
 
+  it('forbids server imports in client code', async () => {
+    expect(
+      await lintViolations(
+        source,
+        "import { content } from '@/server/content'\n\nexport const c = content\n",
+      ),
+    ).toContain('no-restricted-imports')
+  })
+
   it('forbids hard-coded text in components', async () => {
     expect(
       await lintViolations(component, 'export const Greeting = () => <p>Hello</p>\n'),

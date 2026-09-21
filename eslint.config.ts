@@ -114,6 +114,25 @@ export default defineConfig(
     },
   },
 
+  // docs/guidelines/frontend.md §2: the client reaches the server over GraphQL only
+  {
+    files: ['src/client/**/*.{ts,tsx}'],
+    rules: {
+      'no-restricted-imports': [
+        'error',
+        {
+          patterns: [
+            {
+              group: ['@/server/*'],
+              message:
+                'The client talks to the server over GraphQL only (docs/guidelines/frontend.md §2).',
+            },
+          ],
+        },
+      ],
+    },
+  },
+
   // docs/guidelines/backend.md §1: no React, client code or browser APIs on the server
   {
     files: ['src/server/**/*.ts'],
