@@ -114,6 +114,65 @@ export default defineConfig(
     },
   },
 
+  // docs/guidelines/backend.md §1: no React, client code or browser APIs on the server
+  {
+    files: ['src/server/**/*.ts'],
+    rules: {
+      'no-restricted-imports': [
+        'error',
+        {
+          paths: ['react', 'react-dom'].map((name) => ({
+            name,
+            message: 'No React on the server (docs/guidelines/backend.md §1).',
+          })),
+          patterns: [
+            {
+              group: ['react-dom/*', '@/client/*'],
+              message: 'The server never imports client code (docs/guidelines/backend.md §1).',
+            },
+          ],
+        },
+      ],
+      'no-restricted-globals': [
+        'error',
+        ...['window', 'document', 'localStorage', 'sessionStorage'].map((name) => ({
+          name,
+          message: 'No browser APIs on the server (docs/guidelines/backend.md §1).',
+        })),
+      ],
+    },
+  },
+
+  // docs/guidelines/common.md §3: src/shared is runtime-neutral
+  {
+    files: ['src/shared/**/*.ts'],
+    rules: {
+      'no-restricted-imports': [
+        'error',
+        {
+          paths: ['react', 'react-dom', 'bun'].map((name) => ({
+            name,
+            message: 'src/shared is runtime-neutral (docs/guidelines/common.md §3).',
+          })),
+          patterns: [
+            {
+              group: ['@/client/*', '@/server/*', 'node:*'],
+              message:
+                'src/shared imports nothing runtime-specific (docs/guidelines/common.md §3).',
+            },
+          ],
+        },
+      ],
+      'no-restricted-globals': [
+        'error',
+        ...['Bun', 'window', 'document', 'process'].map((name) => ({
+          name,
+          message: 'src/shared is runtime-neutral (docs/guidelines/common.md §3).',
+        })),
+      ],
+    },
+  },
+
   // docs/guidelines/frontend.md §4 and common.md §4: tests
   { ...testingLibrary.configs['flat/react'], files: ['tests/**/*.{ts,tsx}'] },
   { ...jestDom.configs['flat/recommended'], files: ['tests/**/*.{ts,tsx}'] },
