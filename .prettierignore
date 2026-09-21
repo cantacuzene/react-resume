@@ -1,0 +1,7 @@
+legacy/
+data/
+docs/
+coverage/
+dist/
+bun.lock
+.idea/
