@@ -1,0 +1,13 @@
+pre-commit:
+  piped: true
+  jobs:
+    - name: format staged files
+      glob: '*.{ts,tsx,js,json,md,yml,yaml,html,css,scss}'
+      run: bunx prettier --write --ignore-unknown {staged_files}
+      stage_fixed: true
+    - name: lint staged files
+      glob: '*.{ts,tsx}'
+      run: bunx eslint --fix --no-warn-ignored {staged_files}
+      stage_fixed: true
+    - name: verify
+      run: bun run verify
