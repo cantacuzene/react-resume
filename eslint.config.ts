@@ -2,6 +2,11 @@ import { defineConfig, globalIgnores } from 'eslint/config'
 import prettier from 'eslint-config-prettier/flat'
 import functional from 'eslint-plugin-functional'
 import importPlugin from 'eslint-plugin-import'
+import jestDom from 'eslint-plugin-jest-dom'
+import react from 'eslint-plugin-react'
+import reactHooks from 'eslint-plugin-react-hooks'
+import preferFunctionComponent from 'eslint-plugin-react-prefer-function-component'
+import testingLibrary from 'eslint-plugin-testing-library'
 import tseslint from 'typescript-eslint'
 
 // docs/guidelines/common.md §4
@@ -14,6 +19,15 @@ const commonTestRestrictions = [
     selector:
       "CallExpression[callee.object.name='vi'][callee.property.name=/^(mock|doMock)$/][arguments.0.value=/^@\\W/]",
     message: 'Do not mock own modules; mock only at the edges (docs/guidelines/common.md §4).',
+  },
+]
+
+// docs/guidelines/frontend.md §4
+const frontendTestRestrictions = [
+  {
+    selector:
+      'CallExpression[callee.property.name=/ByTestId$/], CallExpression[callee.name=/ByTestId$/]',
+    message: 'Query by role, label or text instead of test ids (docs/guidelines/frontend.md §4).',
   },
 ]
 
@@ -45,9 +59,51 @@ export default defineConfig(
     files: ['*.config.ts'],
     rules: { 'import/no-default-export': 'off' },
   },
+
+  // docs/guidelines/frontend.md §1–§2: components and hooks
+  {
+    files: ['src/**/*.{ts,tsx}', 'tests/**/*.{ts,tsx}'],
+    extends: [reactHooks.configs.flat.recommended],
+    plugins: { 'react-prefer-function-component': preferFunctionComponent },
+    rules: {
+      'react-hooks/exhaustive-deps': 'error',
+      'react-prefer-function-component/react-prefer-function-component': 'error',
+    },
+  },
+
+  // docs/guidelines/frontend.md §2: fetch only in src/api/
+  {
+    files: ['src/**/*.{ts,tsx}'],
+    ignores: ['src/api/**'],
+    rules: {
+      'no-restricted-globals': [
+        'error',
+        {
+          name: 'fetch',
+          message: 'Call fetch only from src/api/ (docs/guidelines/frontend.md §2).',
+        },
+      ],
+    },
+  },
+
+  // docs/guidelines/frontend.md §3: no hard-coded text
+  {
+    files: ['src/**/*.tsx'],
+    plugins: { react },
+    settings: { react: { version: 'detect' } },
+    rules: {
+      'react/jsx-no-literals': ['error', { noStrings: true, ignoreProps: true }],
+    },
+  },
+
+  // docs/guidelines/frontend.md §4 and common.md §4: tests
+  { ...testingLibrary.configs['flat/react'], files: ['tests/**/*.{ts,tsx}'] },
+  { ...jestDom.configs['flat/recommended'], files: ['tests/**/*.{ts,tsx}'] },
   {
     files: ['tests/**/*.{ts,tsx}'],
-    rules: { 'no-restricted-syntax': ['error', ...commonTestRestrictions] },
+    rules: {
+      'no-restricted-syntax': ['error', ...commonTestRestrictions, ...frontendTestRestrictions],
+    },
   },
 
   prettier,
