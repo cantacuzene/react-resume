@@ -105,6 +105,12 @@ export default defineConfig(
       'no-restricted-syntax': ['error', ...commonTestRestrictions, ...frontendTestRestrictions],
     },
   },
+  // Vitest runs without globals (test.globals is unset), so Testing Library cannot detect a
+  // global afterEach to register its own cleanup: this file's manual cleanup() is required.
+  {
+    files: ['tests/support/setup.ts'],
+    rules: { 'testing-library/no-manual-cleanup': 'off' },
+  },
 
   prettier,
 )
