@@ -1,0 +1,44 @@
+@import '@fontsource/josefin-sans/300.css';
+@import '@fontsource/josefin-sans/400.css';
+@import '@fontsource/josefin-sans/700.css';
+
+/* legacy/src/styles/_variables.scss and timeline.scss */
+:root {
+  --color-accent: #7cb5ec;
+  --color-accent-dark: #3d93e3;
+  --color-timeline: #7cb5ec;
+  --color-muted: lightgray;
+  --color-top-menu: black;
+  --color-panel: #fff;
+  --font-main: 'Josefin Sans', sans-serif;
+}
+
+/* legacy/src/styles/homePage.scss (base) */
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  height: 100%;
+}
+
+body {
+  min-height: 100%;
+  display: flex;
+  flex-direction: column;
+  font-family: var(--font-main);
+  font-weight: 300;
+}
+
+a {
+  text-decoration: none;
+}
+
+h5 {
+  font-size: 20pt;
+  font-style: italic;
+}
