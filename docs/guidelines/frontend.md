@@ -1,6 +1,7 @@
 # Frontend Guidelines (React)
 
-These rules apply to the React frontend, **in addition to** [`common.md`](common.md).
+These rules apply to the React frontend (`src/client/`), **in addition to**
+[`common.md`](common.md).
 
 ## 1. Components
 
@@ -33,7 +34,7 @@ These rules apply to the React frontend, **in addition to** [`common.md`](common
   booleans.
 - **Derived values are computed during render** with pure functions, never copied into state.
 - **Data hooks cancel stale requests** (`AbortController`) when their inputs change.
-- `fetch` is called only in `src/api/`. `useEffect` is used only in data hooks, context providers
+- `fetch` is called only in `src/client/api/`. `useEffect` is used only in data hooks, context providers
   and third-party integration code **(review)**.
 - Context is consumed only through a dedicated `useX()` hook that throws outside its provider.
 - Prefer props over context: only components that need to *change* shared state or are far from
@@ -51,8 +52,8 @@ These rules apply to the React frontend, **in addition to** [`common.md`](common
 
 - Vitest (jsdom), React Testing Library, `@testing-library/user-event`,
   `@testing-library/jest-dom`, MSW for the network (unhandled requests fail the test).
-- Every component (`src/**/*.tsx`) and every utils file (`src/**/*.utils.ts`) has a matching
-  `tests/**/*.test.ts(x)`. Entry points and generated code are exempt.
+- Every component (`src/client/**/*.tsx`) and every utils file (`src/client/**/*.utils.ts`) has a
+  matching `tests/client/**/*.test.ts(x)`. Entry points and generated code are exempt.
 - **Query priority:** `getByRole` > `getByLabelText` > `getByText`. `getByTestId` is banned.
 - Third-party renderers that cannot run in jsdom are replaced with `vi.mock` stubs; never mock own
   hooks or context.
@@ -69,7 +70,7 @@ In addition to the [common enforcement](common.md#5-enforcement):
 |---|---|
 | Function components only | `eslint-plugin-react-prefer-function-component` |
 | Hooks correctness & render purity | `eslint-plugin-react-hooks` flat `recommended` (includes the React Compiler rules `purity`, `immutability`, `set-state-in-render`, …), with `exhaustive-deps` raised to error |
-| `fetch` only in `src/api/` | `no-restricted-globals` (`fetch`), disabled for `src/api/**` |
+| `fetch` only in `src/client/api/` | `no-restricted-globals` (`fetch`), disabled for `src/client/api/**` |
 | No hard-coded UI text | `react/jsx-no-literals`, with per-file documented exceptions |
 | Testing Library conventions | `eslint-plugin-testing-library`, `eslint-plugin-jest-dom`, `no-restricted-syntax` banning `getByTestId` — scoped to `tests/**` |
 | Every component/util has a test | `scripts/check-tests.ts` |
