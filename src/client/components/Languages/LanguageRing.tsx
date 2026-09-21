@@ -44,7 +44,7 @@ export const LanguageRing = ({ name, rating, height, x }: LanguageRingProps) => 
       <text textAnchor="middle" className={styles.name}>
         {name}
       </text>
-      <text textAnchor="middle" dy="30" className={styles.percent}>
+      <text textAnchor="middle" dy="22" className={styles.percent}>
         {formatPercent(rating)}
       </text>
     </g>

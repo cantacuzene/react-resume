@@ -22,12 +22,13 @@
   fill: #fff;
 }
 
+/* legacy 35px: too wide for the 65px inner circle once the percentage sits below it */
 .name {
-  font-size: 35px;
-  fill: #ccc;
+  font-size: 20px;
+  fill: #aaa;
 }
 
 .percent {
-  font-size: 20px;
+  font-size: 16px;
   fill: #ccc;
 }
