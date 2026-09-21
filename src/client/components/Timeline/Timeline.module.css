@@ -1,0 +1,163 @@
+/* legacy/src/styles/timeline.scss and components/exp.scss (.experience); the unused .btn rules
+   are not ported */
+
+.experience {
+  width: 100%;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+.container {
+  max-width: 1100px;
+  margin: 0 auto;
+}
+
+.timeline {
+  position: relative;
+  width: 100%;
+  margin: 30px auto;
+  padding: 0 10px;
+  transition: all 0.4s ease;
+
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 50%;
+    width: 3px;
+    height: 100%;
+    background: var(--color-timeline);
+  }
+
+  &::after {
+    content: '';
+    display: table;
+    clear: both;
+    width: 100%;
+  }
+}
+
+.item {
+  position: relative;
+  margin-bottom: 50px;
+
+  &::before,
+  &::after {
+    content: '';
+    display: block;
+    clear: both;
+    width: 100%;
+  }
+}
+
+.icon {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  width: 50px;
+  height: 50px;
+  margin-left: -23px;
+  overflow: hidden;
+  background: var(--color-timeline);
+  border-radius: 50%;
+}
+
+.content {
+  width: 45%;
+  padding: 20px;
+  background: var(--color-panel);
+  border-radius: 5px;
+  box-shadow: 0 3px 0 rgb(0 0 0 / 10%);
+  transition: all 0.3s ease;
+
+  & p {
+    margin-top: 15px;
+  }
+
+  &::before {
+    content: '';
+    position: absolute;
+    top: 20px;
+    left: 45%;
+    width: 0;
+    height: 0;
+    border-top: 7px solid transparent;
+    border-bottom: 7px solid transparent;
+    border-left: 7px solid var(--color-timeline);
+  }
+}
+
+.left {
+  float: left;
+}
+
+.right {
+  float: right;
+
+  &::before {
+    right: 45%;
+    left: inherit;
+    border-right: 7px solid var(--color-timeline);
+    border-left: 0;
+  }
+}
+
+/* the legacy h2 inside .timeline-content (h3 here: the section title is the h2) */
+.heading {
+  margin: -20px -20px 0;
+  padding: 15px;
+  font-weight: 300;
+  color: #fff;
+  background: var(--color-timeline);
+  border-radius: 3px 3px 0 0;
+}
+
+.title::after {
+  content: ', ';
+}
+
+.dates {
+  display: block;
+  font-size: 10px;
+}
+
+.start::after {
+  content: ' - ';
+}
+
+.label {
+  margin-top: 15px;
+
+  &::after {
+    content: ':';
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .timeline {
+    width: 90%;
+    margin: 30px;
+    padding: 0;
+
+    &::before {
+      left: 0;
+    }
+  }
+
+  .icon {
+    left: 0;
+  }
+
+  .content {
+    width: 90%;
+    float: right;
+
+    &::before,
+    &.right::before {
+      left: 10%;
+      margin-left: -6px;
+      border-right: 7px solid var(--color-timeline);
+      border-left: 0;
+    }
+  }
+}
