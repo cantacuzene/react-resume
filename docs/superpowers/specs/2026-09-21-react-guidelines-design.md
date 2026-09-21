@@ -33,6 +33,9 @@ untranslated hard-coded strings. `appveyor.yml` is leftover react-slingshot boil
 
 ## 2. Backend contract consumed by the frontend
 
+> The full schema is defined in [the backend design](2026-09-21-backend-graphql-design.md#3-schema);
+> it supersedes the sketch below.
+
 `POST /graphql` (GraphQL Yoga on `Bun.serve`, detailed in the backend spec) replaces the six
 `/api/:lang/*` routes, including `/api/:lang/Titles`.
 
@@ -52,7 +55,7 @@ type Query {
 - The frontend sends one document, `ResumePage($lang)`, selecting all three fields: one round trip
   per language switch.
 - GraphQL Code Generator (`client-preset`) generates typed documents and types (including `Lang`)
-  into `src/gql/`. Generated code is committed and excluded from lint and coverage. The schema
+  into `src/client/gql/`. Generated code is committed and excluded from lint and coverage. The schema
   source path is defined in the backend spec.
 
 ## 3. State inventory
@@ -86,8 +89,8 @@ ignores stale responses.
 
 ### 3.3 API layer
 
-- `src/api/result.ts` — `Result<T, E>` type and constructors.
-- `src/api/graphql.ts` — `request<TData, TVars>(document, variables, signal):
+- `src/shared/result.ts` — `Result<T, E>` type and constructors (moved by the backend design).
+- `src/client/api/graphql.ts` — `request<TData, TVars>(document, variables, signal):
   Promise<Result<TData, ApiError>>`. Network failures, non-2xx responses and GraphQL `errors`
   arrays all become `Err`. Never throws.
 
@@ -124,25 +127,32 @@ LanguageProvider (lang)
   scaffold. §2–§4 and the schema-dependent support (`fixtures.ts`, `renderWithProviders`) are
   implemented in sub-project 2.
 
-Target layout once sub-project 2 is done:
+Target layout once sub-project 2 is done (the backend side is described in
+[the backend design](2026-09-21-backend-graphql-design.md#2-repository-layout)):
 
 ```
 src/
-  main.tsx
-  App.tsx
-  api/          graphql.ts, result.ts
-  components/   Header/Header.tsx, Header/Header.utils.ts, Skills/…, LoadError/…, Loading/…
-  hooks/        useResumePage.ts
-  i18n/         LanguageContext.tsx, languages.utils.ts
-  gql/          (generated)
+  client/
+    main.tsx
+    App.tsx
+    api/          graphql.ts
+    components/   Header/Header.tsx, Header/Header.utils.ts, Skills/…, LoadError/…, Loading/…
+    hooks/        useResumePage.ts
+    i18n/         LanguageContext.tsx, languages.utils.ts
+    gql/          (generated)
+  server/         schema.graphql, content/, resolvers.ts, yoga.ts, main.ts, gql/ (generated)
+  shared/         result.ts
 tests/
-  api/          graphql.test.ts
-  components/   Header/Header.test.tsx, Header/Header.utils.test.ts, …
-  hooks/        useResumePage.test.tsx
-  i18n/         LanguageContext.test.tsx, languages.utils.test.ts
-  lint/         common.test.ts, frontend.test.ts   (ESLint rules proven on code samples)
-  scripts/      lib/missingTests.test.ts
-  support/      setup.ts, server.ts, handlers.ts, lint.ts, renderWithProviders.tsx, fixtures.ts
+  client/
+    api/          graphql.test.ts
+    components/   Header/Header.test.tsx, Header/Header.utils.test.ts, …
+    hooks/        useResumePage.test.tsx
+    i18n/         LanguageContext.test.tsx, languages.utils.test.ts
+  server/         …
+  shared/         result.test.ts
+  lint/           common.test.ts, frontend.test.ts, backend.test.ts
+  scripts/        lib/missingTests.test.ts
+  support/        setup.ts, server.ts, handlers.ts, lint.ts, renderWithProviders.tsx, fixtures.ts
 scripts/
   check-tests.ts
   lib/missingTests.ts
@@ -168,7 +178,8 @@ legacy/         old app, reference only
 | d3 `LanguageChart` | Rendered directly (SVG in JSX): language label, arcs present. |
 | Highcharts `Skills` | `vi.mock` the Highcharts React wrapper with a stub exposing received `options`; option building covered by util tests. |
 
-Coverage exclusions: `src/gql/**`, `src/main.tsx`. `check-tests.ts` exemptions: the same.
+Coverage exclusions: `src/*/gql/**`, `src/client/main.tsx`, `src/server/main.ts`. `check-tests.ts`
+exemptions: the same, plus the server content data files.
 
 ## 7. Tooling
 
@@ -186,7 +197,7 @@ sample through the real config (ESLint `lintText` with virtual file paths allowe
 |---|---|
 | `tsconfig.json` | Common guidelines §1 compiler options; `@/*` → `src/*` path alias |
 | `.prettierrc` | Common guidelines §5 Prettier options |
-| `eslint.config.ts` | Flat config implementing the common §5 and frontend §5 tables; `tests/**` override for Testing Library rules; overrides for `src/api/**` (`fetch`), `LoadError` (`jsx-no-literals`), config files (default export); ignores `src/gql/**` |
+| `eslint.config.ts` | Flat config implementing the common §5 and frontend §5 tables; `tests/**` override for Testing Library rules; overrides for `src/client/api/**` (`fetch`), `LoadError` (`jsx-no-literals`), config files (default export); ignores `src/*/gql/**` |
 | `vitest.config.ts` | jsdom, `tests/**/*.test.ts(x)`, setup file, `@/` alias, v8 coverage with thresholds and exclusions from §6 |
 | `vite.config.ts`, `index.html` | Vite + React plugin, `@/` alias |
 | `scripts/check-tests.ts` | Walks `src/`, maps `*.tsx` / `*.utils.ts` to their mirrored `tests/` path, exits non-zero listing missing tests; pure mapping logic in `scripts/lib/missingTests.ts` |

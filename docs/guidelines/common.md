@@ -26,7 +26,8 @@ enforced automatically is marked **(review)**.
 - No classes, no `this`.
 - **Ramda** is the library for data transformation, composed with `pipe()`, typed via
   `types-ramda`. A pipeline that cannot be typed without `any` is rewritten as plain code.
-- **Errors are values.** I/O layers return a `Result<T, E>` union and never throw.
+- **Errors are values.** I/O layers return a `Result<T, E>` union (`src/shared/result.ts`) and
+  never throw.
 
 ## 3. Side effects
 
@@ -34,6 +35,8 @@ enforced automatically is marked **(review)**.
   dedicated modules (listed in each side's guidelines); everything else is pure **(review)**.
 - Data crossing a trust boundary (HTTP responses, request inputs, files) is validated where it
   enters.
+- `src/shared/` is runtime-neutral: no React, DOM, Bun or Node APIs, and no imports from
+  `src/client/` or `src/server/`.
 
 ## 4. Testing
 
@@ -59,6 +62,7 @@ enforced automatically is marked **(review)**.
 | Named exports only | `import/no-default-export` (config files overridden) |
 | No snapshots, no mocking own modules | `no-restricted-syntax` banning `toMatchSnapshot` and mocks of `@/…` — scoped to `tests/**` |
 | Coverage ≥ 90% | test runner coverage thresholds |
+| `src/shared/` is runtime-neutral | `no-restricted-imports`, `no-restricted-globals` scoped to `src/shared/**` |
 | Generated types up to date | regenerate + `git diff --exit-code` |
 
 - ESLint runs with `--max-warnings 0`.
