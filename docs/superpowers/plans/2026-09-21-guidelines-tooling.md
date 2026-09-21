@@ -38,7 +38,9 @@ Testing Library, MSW 2, ESLint `^9` (flat config, `typescript-eslint`, `eslint-p
   ```
   Co-Authored-By: Claude Opus 5 <noreply@anthropic.com>
   ```
-- Work on branch `chore/guidelines-tooling`, created from `docs/react-guidelines`.
+- One GitHub issue, branch and PR per task, **stacked**: task N's branch `tooling/N-<slug>` is
+  created from task N−1's branch (task 1 from `docs/react-guidelines`), and its PR targets that
+  branch with `Closes #<issue>` in the body. PRs are merged bottom-up.
 
 ## File Map
 
@@ -89,8 +91,11 @@ yourself.
 
 ```bash
 git checkout docs/react-guidelines
-git checkout -b chore/guidelines-tooling
+git checkout -b tooling/1-legacy-bun-package
 ```
+
+Later tasks create their branch from the previous task's branch in the same way (see Global
+Constraints).
 
 - [ ] **Step 3: Move the legacy app and delete AppVeyor**
 
