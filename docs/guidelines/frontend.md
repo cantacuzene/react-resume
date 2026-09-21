@@ -22,6 +22,12 @@ These rules apply to the React frontend (`src/client/`), **in addition to**
 - A component's output depends only on its props and the context it reads; no side effects during
   render.
 
+- Styles are CSS Modules next to their component (`X.module.css`); shared values are custom
+  properties in `src/client/styles/theme.css`. Punctuation between translated values comes from
+  CSS `::before` / `::after`, never from JSX text.
+- Icons come from `react-icons`; fonts are self-hosted with `@fontsource`. No runtime CDN.
+- Charts are JSX SVG; their geometry lives in a pure, tested `*.utils.ts`.
+
 ## 2. State & side effects
 
 - **State is the exception.** It may live only in:
@@ -39,6 +45,10 @@ These rules apply to the React frontend (`src/client/`), **in addition to**
 - Context is consumed only through a dedicated `useX()` hook that throws outside its provider.
 - Prefer props over context: only components that need to *change* shared state or are far from
   its source read context directly **(review)**.
+
+- The GraphQL URL comes from `VITE_GRAPHQL_URL` (default `http://localhost:4000/graphql`),
+  resolved in `src/client/api/graphql.utils.ts`. The client never imports `src/server/`; it
+  talks to the API over GraphQL only, with types generated into `src/client/gql/`.
 
 ## 3. Text & accessibility
 
@@ -73,5 +83,6 @@ In addition to the [common enforcement](common.md#5-enforcement):
 | `fetch` only in `src/client/api/` | `no-restricted-globals` (`fetch`), disabled for `src/client/api/**` |
 | No hard-coded UI text | `react/jsx-no-literals`, with per-file documented exceptions |
 | Testing Library conventions | `eslint-plugin-testing-library`, `eslint-plugin-jest-dom`, `no-restricted-syntax` banning `getByTestId` — scoped to `tests/**` |
+| Client never imports the server | `no-restricted-imports` (`@/server/*`) scoped to `src/client/**` |
 | Every component/util has a test | `scripts/check-tests.ts` |
 | Coverage | Vitest `coverage.thresholds` |

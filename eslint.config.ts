@@ -37,7 +37,7 @@ const frontendTestRestrictions = [
 ]
 
 export default defineConfig(
-  globalIgnores(['legacy/**', 'dist/**', 'coverage/**', 'src/*/gql/**', '.superpowers/**']),
+  globalIgnores(['dist/**', 'coverage/**', 'src/*/gql/**', '.superpowers/**']),
 
   // docs/guidelines/common.md §1–§2
   {
