@@ -9,6 +9,18 @@ runtime-neutral code in `src/shared/`.
 - [docs/guidelines/frontend.md](docs/guidelines/frontend.md): React frontend
 - [docs/guidelines/backend.md](docs/guidelines/backend.md): Bun backend
 
+## Workflow
+
+- Every piece of work starts with a GitHub issue (`enhancement` for features, `bug` for fixes)
+  and ships through pull requests. Nothing is committed straight to `master`.
+- One-step work: one branch from `master`, one PR targeting `master`, with `Closes #N` in its body.
+- Multi-step work: the issue lists every step as a checkbox, and each step gets its own branch
+  and PR, stacked. Step 1 branches from `master` and targets it; each later step branches from
+  the previous step's branch and targets it. Every PR says `Part of #N`, except the last, which
+  says `Closes #N`. Tick a step's box when its PR opens.
+- Always branch from an up-to-date `master` (`git checkout master && git pull --ff-only`).
+- Open each PR once `bun run verify` passes. The owner merges stacks bottom-up.
+
 ## Commands
 
 - `bun run verify`: every check; runs on pre-commit and in CI, and must pass
