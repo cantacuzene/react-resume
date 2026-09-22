@@ -154,10 +154,6 @@ describe('ESLint common rules', { timeout: 30_000 }, () => {
     ).toContain('@typescript-eslint/consistent-type-definitions')
   })
 
-  it('ignores the legacy folder', async () => {
-    expect(await isIgnored('legacy/src/index.js')).toBe(true)
-  })
-
   it('ignores the .superpowers scratch folder', async () => {
     expect(await isIgnored('.superpowers/x.ts')).toBe(true)
   })

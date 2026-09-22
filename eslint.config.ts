@@ -37,7 +37,7 @@ const frontendTestRestrictions = [
 ]
 
 export default defineConfig(
-  globalIgnores(['legacy/**', 'dist/**', 'coverage/**', 'src/*/gql/**', '.superpowers/**']),
+  globalIgnores(['dist/**', 'coverage/**', 'src/*/gql/**', '.superpowers/**']),
 
   // docs/guidelines/common.md §1–§2
   {
@@ -110,6 +110,25 @@ export default defineConfig(
       'react/function-component-definition': [
         'error',
         { namedComponents: 'arrow-function', unnamedComponents: 'arrow-function' },
+      ],
+    },
+  },
+
+  // docs/guidelines/frontend.md §2: the client reaches the server over GraphQL only
+  {
+    files: ['src/client/**/*.{ts,tsx}'],
+    rules: {
+      'no-restricted-imports': [
+        'error',
+        {
+          patterns: [
+            {
+              group: ['@/server/*'],
+              message:
+                'The client talks to the server over GraphQL only (docs/guidelines/frontend.md §2).',
+            },
+          ],
+        },
       ],
     },
   },

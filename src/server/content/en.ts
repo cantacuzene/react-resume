@@ -110,7 +110,7 @@ export const en = {
       experiences: 'Experience',
     },
     header: { switchTo: 'Switch to:', emailMe: 'Email me!' },
-    timeline: { present: 'Present' },
+    timeline: { present: 'Present', description: 'Description', stack: 'Stack' },
     aria: { switchLanguage: 'Switch language', retry: 'Retry', loading: 'Loading' },
   },
   siteLanguages: [

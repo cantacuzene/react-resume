@@ -1,4 +1,10 @@
-import type { RequestHandler } from 'msw'
+import { graphql, HttpResponse, type RequestHandler } from 'msw'
+import type { Lang } from '@/client/api/types'
+import { resumePageFixture } from './fixtures'
 
-// Default handlers shared by all tests. Sub-project 2 adds the ResumePage GraphQL handlers.
-export const handlers: ReadonlyArray<RequestHandler> = []
+// Default handlers shared by all tests
+export const handlers: ReadonlyArray<RequestHandler> = [
+  graphql.query<object, { lang: Lang }>('ResumePage', ({ variables }) =>
+    HttpResponse.json({ data: resumePageFixture(variables.lang) }),
+  ),
+]

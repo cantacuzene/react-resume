@@ -20,24 +20,35 @@
     "verify": "bun run format:check && bun run lint && bun run typecheck && bun run check:gql && bun run check:tests && bun run test",
     "prepare": "lefthook install",
     "codegen": "graphql-codegen --config codegen.config.ts",
-    "check:gql": "bun run codegen && git diff --exit-code -- src/server/gql"
+    "check:gql": "bun run codegen && git diff --exit-code -- src/server/gql src/client/gql"
   },
   "dependencies": {
+    "@fontsource/josefin-sans": "^5.3.0",
     "@graphql-tools/schema": "^10.1.1",
+    "@graphql-typed-document-node/core": "^3.2.0",
+    "d3-scale": "^4.0.2",
+    "d3-shape": "^3.2.0",
+    "date-fns": "^4.4.0",
     "graphql": "^17.0.2",
     "graphql-scalars": "^2.0.0",
     "graphql-yoga": "^5.24.1",
     "react": "^19.3.0",
-    "react-dom": "^19.3.0"
+    "react-dom": "^19.3.0",
+    "react-icons": "^5.7.0"
   },
   "devDependencies": {
     "@graphql-codegen/cli": "^7.4.2",
+    "@graphql-codegen/typed-document-node": "^7.1.0",
     "@graphql-codegen/typescript": "^6.1.0",
+    "@graphql-codegen/typescript-operations": "^6.1.7",
     "@graphql-codegen/typescript-resolvers": "^6.1.0",
     "@testing-library/dom": "^10.4.2",
     "@testing-library/jest-dom": "^7.0.1",
     "@testing-library/react": "^16.3.3",
+    "@testing-library/user-event": "^14.6.7",
     "@types/bun": "^1.4.2",
+    "@types/d3-scale": "^4.0.9",
+    "@types/d3-shape": "^3.2.0",
     "@types/node": "^26.6.2",
     "@types/react": "^19.3.0",
     "@types/react-dom": "^19.3.0",

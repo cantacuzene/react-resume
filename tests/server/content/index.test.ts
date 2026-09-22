@@ -35,6 +35,19 @@ describe('content', () => {
     expect(blank).toEqual([])
   })
 
+  it('labels the timeline fields in both languages', () => {
+    expect(fr.translations.timeline).toEqual({
+      present: "Aujourd'hui",
+      description: 'Descriptif',
+      stack: 'Technologies',
+    })
+    expect(en.translations.timeline).toEqual({
+      present: 'Present',
+      description: 'Description',
+      stack: 'Stack',
+    })
+  })
+
   it('lists the same experiences and educations in both languages', () => {
     expect(fr.resume.experiences.map(({ id }) => id)).toEqual(
       en.resume.experiences.map(({ id }) => id),

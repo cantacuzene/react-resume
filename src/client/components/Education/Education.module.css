@@ -1,0 +1,22 @@
+.education {
+  width: 100%;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+.school {
+  color: var(--color-accent);
+  font-weight: bold;
+}
+
+.year {
+  margin: 45px;
+}
+
+.degree {
+  margin: 10px 0 10px 130px;
+}
+
+.location {
+  color: var(--color-muted);
+}

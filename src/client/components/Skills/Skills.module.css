@@ -1,0 +1,38 @@
+.skills {
+  width: 100%;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+.chart {
+  display: block;
+  width: 100%;
+  max-width: 500px;
+  margin: 0 auto;
+  overflow: visible;
+}
+
+.ring {
+  fill: none;
+  stroke: #e6e6e6;
+}
+
+.axis {
+  stroke: #e6e6e6;
+}
+
+.values {
+  fill: none;
+  stroke: var(--color-accent);
+  stroke-width: 2;
+}
+
+.point {
+  fill: var(--color-accent);
+}
+
+.label {
+  font-size: 11px;
+  fill: #666;
+  dominant-baseline: middle;
+}

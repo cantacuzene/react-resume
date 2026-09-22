@@ -111,7 +111,7 @@ export const fr = {
       experiences: 'Expérience',
     },
     header: { switchTo: 'Changer de langue :', emailMe: 'Écrivez-moi !' },
-    timeline: { present: "Aujourd'hui" },
+    timeline: { present: "Aujourd'hui", description: 'Descriptif', stack: 'Technologies' },
     aria: { switchLanguage: 'Changer de langue', retry: 'Réessayer', loading: 'Chargement' },
   },
   siteLanguages: [

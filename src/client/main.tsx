@@ -1,6 +1,8 @@
+import '@/client/styles/theme.css'
 import { StrictMode } from 'react'
 import { createRoot } from 'react-dom/client'
 import { App } from '@/client/App'
+import { LanguageProvider } from '@/client/i18n/LanguageContext'
 
 const container = document.getElementById('root')
 
@@ -10,6 +12,8 @@ if (container === null) {
 
 createRoot(container).render(
   <StrictMode>
-    <App />
+    <LanguageProvider>
+      <App />
+    </LanguageProvider>
   </StrictMode>,
 )

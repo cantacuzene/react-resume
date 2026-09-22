@@ -100,6 +100,8 @@ type HeaderLabels {
 type TimelineLabels {
   "Shown when Experience.end is null"
   present: String!
+  description: String!
+  stack: String!
 }
 
 type AriaLabels {
