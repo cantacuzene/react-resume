@@ -47,6 +47,12 @@ date-fns, d3-scale, d3-shape, react-icons, `@fontsource/josefin-sans`, Vitest 5 
 
 ### Spec clarifications made while planning
 
+> **Changed during review of #24:** the client codegen uses `typescript-operations` +
+> `typed-document-node` instead of the `client-preset`. The query lives in
+> `src/client/api/ResumePage.graphql`, `documents.ts` does not exist, and consumers import
+> `ResumePageDocument` from `@/client/gql/graphql`. Task 2's code blocks below show the original
+> client-preset version; the spec (§3.1) describes the final one.
+
 - The `ResumePage` document lives in `src/client/api/documents.ts` (not inline in the hook), so
   codegen, fixtures and the hook share it before the hook exists. `src/client/api/types.ts`
   names the generated sub-types (`Resume`, `Profile`, …).

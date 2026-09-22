@@ -44,7 +44,8 @@ src/client/
   i18n/
     LanguageContext.tsx        LanguageProvider, useLanguage
     languages.utils.ts         otherLanguages, formatMonth
-  gql/                         client-preset output (generated, committed)
+    ResumePage.graphql         the page query
+  gql/                         graphql.ts: operation types + ResumePageDocument (generated, committed)
   components/
     SectionTitle/SectionTitle.tsx
     Header/Header.tsx, Header.utils.ts, Flag.tsx
@@ -71,8 +72,7 @@ tests/support/
 
 ### 3.1 Query and code generation
 
-The document is written inline with the generated `graphql()` function in
-`src/client/hooks/useResumePage.ts` (no separate `.graphql` file):
+The document lives in `src/client/api/ResumePage.graphql`:
 
 ```graphql
 query ResumePage($lang: Lang!) {
@@ -94,9 +94,14 @@ query ResumePage($lang: Lang!) {
 }
 ```
 
-- `codegen.config.ts` gains a second output: `src/client/gql/` with the `client-preset`,
-  `documents: ['src/client/**/*.{ts,tsx}']`, `schema: 'src/server/schema.graphql'`,
-  `config: { scalars: { Date: 'string' }, enumsAsTypes: true, useTypeImports: true }`.
+- `codegen.config.ts` gains a second output, `src/client/gql/graphql.ts`, from
+  `documents: ['src/client/**/*.graphql']` with the `typescript-operations` and
+  `typed-document-node` plugins and
+  `config: { scalars: { Date: 'string' }, enumsAsTypes: true, useTypeImports: true, immutableTypes: true }`.
+  It exports the operation types and a precompiled
+  `ResumePageDocument: TypedDocumentNode<ResumePageQuery, ResumePageQueryVariables>`.
+- The `client-preset` is not used: its `graphql()` types are keyed by the full query text, it
+  falls back to `unknown` / `{}` on any mismatch, and it ships each query twice.
 - `check:gql` diffs both `src/server/gql` and `src/client/gql`.
 - The client never imports from `src/server/` (ESLint, §9). The schema file is shared through
   codegen only.
@@ -300,7 +305,8 @@ changes:
 ## 9. Tooling and guideline changes
 
 - Dependencies: `date-fns`, `d3-scale`, `d3-shape`, `react-icons`, `@fontsource/josefin-sans`,
-  `@graphql-typed-document-node/core`; dev: `@graphql-codegen/client-preset`, `@types/d3-scale`,
+  `@graphql-typed-document-node/core`; dev: `@graphql-codegen/typescript-operations`,
+  `@graphql-codegen/typed-document-node`, `@types/d3-scale`,
   `@types/d3-shape`.
 - `codegen.config.ts`: client output (§3.1). `.prettierignore` already ignores `src/*/gql/`.
 - ESLint:
