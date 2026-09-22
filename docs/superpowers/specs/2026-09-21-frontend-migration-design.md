@@ -168,14 +168,25 @@ type ResumePageState =
 
 ### 3.5 Language
 
-Unchanged from the React guidelines design §3.1: `LanguageProvider` (`useState<Lang>`, default
-`FR`, `initialLang` prop), `useLanguage()` throws outside the provider, and the provider syncs
+As in the React guidelines design §3.1, `LanguageProvider` holds `useState<Lang>` with an
+`initialLang` prop, `useLanguage()` throws outside the provider, and the provider syncs
 `document.documentElement.lang` (`fr` / `en`).
+
+Without `initialLang`, the first language is, in order (issue #37):
+1. the visitor's earlier choice, saved in `localStorage` under `lang`;
+2. the first `navigator.languages` entry whose primary subtag is `fr` or `en` (`fr-CA` → FR);
+3. `EN`.
+
+Only `setLang` saves, so a visitor who never switches keeps following their browser. Reading or
+writing storage can throw (private browsing, blocked site data); the provider then ignores the
+saved value and the switch applies to the current visit only.
 
 `languages.utils.ts`:
 - `otherLanguages(current, siteLanguages)`: every site language except the current one.
 - `formatMonth(iso, lang)`: `parseISO` + date-fns `format` with the matching locale (`fr` /
   `enUS`): `MM/yyyy` in FR, `MMM yyyy` in EN.
+- `resolveInitialLang(saved, browserLanguages)`: the order above; an unknown saved value is
+  ignored.
 
 ## 4. Components
 
@@ -293,8 +304,8 @@ changes:
 | `graphql.utils.ts` | Every `parseResponse` branch: success, non-2xx, invalid JSON, missing `data`, `errors` |
 | `api/graphql.ts` | Through MSW: success; network error (`HttpResponse.error()`); HTTP 500; GraphQL `errors`; abort → `aborted`; never rejects |
 | `useResumePage` | `renderHook` + MSW: loading → success; loading → error for each failure; `retry` refetches; FR → EN → FR with delayed responses, FR wins; abort never surfaces as error |
-| `LanguageContext` | Default `FR`; `initialLang`; `setLang` updates consumers and `<html lang>`; `useLanguage` throws outside the provider |
-| `languages.utils.ts` | `otherLanguages`; `formatMonth` per language |
+| `LanguageContext` | Browser language, EN fallback, saved choice wins; a switch is saved and restored on remount, a detected language is not; storage errors do not break switching; `initialLang`; `setLang` updates consumers and `<html lang>`; `useLanguage` throws outside the provider |
+| `languages.utils.ts` | `otherLanguages`; `formatMonth` per language; `resolveInitialLang` priority, regions, unknown tags, fallback |
 | `Skills.utils.ts` | Axis angles, ring and polygon points for known inputs, label anchors |
 | `Languages.utils.ts` | Radii; arc paths start/end for ratings 0.5 and 1 |
 | `Header.utils.ts`, `Timeline.utils.ts` | Icon per `LinkKind`; side alternation |
@@ -326,4 +337,3 @@ changes:
 
 - Visual redesign, responsive layout work beyond what the legacy styles do.
 - Hosting and deployment.
-- Persisting the chosen language, browser-language detection (as in the React guidelines design).

@@ -13,4 +13,14 @@ describe('test isolation', () => {
 
     expect(screen.getByRole('main')).toBeInTheDocument()
   })
+
+  it('stores a value in localStorage', () => {
+    localStorage.setItem('lang', 'EN')
+
+    expect(localStorage.getItem('lang')).toBe('EN')
+  })
+
+  it('does not leak the previous test localStorage', () => {
+    expect(localStorage.getItem('lang')).toBeNull()
+  })
 })
