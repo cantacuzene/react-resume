@@ -10,6 +10,10 @@ beforeAll(() => {
 afterEach(() => {
   server.resetHandlers()
   cleanup()
+  // Files marked `@vitest-environment node` have no localStorage.
+  if (typeof localStorage !== 'undefined') {
+    localStorage.clear()
+  }
 })
 
 afterAll(() => {
