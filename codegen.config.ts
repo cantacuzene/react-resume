@@ -3,10 +3,10 @@ import type { CodegenConfig } from '@graphql-codegen/cli'
 const config: Readonly<CodegenConfig> = {
   schema: 'src/server/schema.graphql',
   generates: {
-    'src/client/gql/': {
-      preset: 'client',
-      documents: ['src/client/**/*.{ts,tsx}', '!src/client/gql/**'],
-      presetConfig: { fragmentMasking: false },
+    // Typed documents without the client preset's string-keyed graphql() map
+    'src/client/gql/graphql.ts': {
+      documents: ['src/client/**/*.graphql'],
+      plugins: ['typescript-operations', 'typed-document-node'],
       config: {
         scalars: { Date: 'string' },
         enumsAsTypes: true,
