@@ -69,7 +69,7 @@ export const en = {
         ...experienceFacts.karibIt,
         title: 'Software Architect',
         description:
-          'Created a R&D software company which aims to provide consulting services for Caribbean or north American businesses. Tech lead at La Française Asset Management, then at Euro Information for LFAM, across asset management domains: risk, reference data management, internal control, human resources and sales on CRM and BPMN software',
+          'Created a R&D software company which aims to provide consulting services for Caribbean or north American businesses. Tech lead at La Française Asset Management, then at Euro Information, across asset management domains: risk, reference data management, internal control, human resources and sales on CRM and BPMN software',
       },
       {
         ...experienceFacts.zags,

@@ -70,7 +70,7 @@ export const fr = {
         ...experienceFacts.karibIt,
         title: 'Architecte logiciel',
         description:
-          'Création d’une société de R&D informatique dans le but d’effectuer de la prestation de service auprès d’entreprises locales et internationales. Référent technique chez La Française Asset Management, puis chez Euro Information pour LFAM, sur les domaines de la gestion d’actifs : risques, référentiel de données, contrôle interne, ressources humaines et forces de vente sur des logiciels de CRM et de BPMN',
+          'Création d’une société de R&D informatique dans le but d’effectuer de la prestation de service auprès d’entreprises locales et internationales. Référent technique chez La Française Asset Management, puis chez Euro Information, sur les domaines de la gestion d’actifs : risques, référentiel de données, contrôle interne, ressources humaines et forces de vente sur des logiciels de CRM et de BPMN',
       },
       {
         ...experienceFacts.zags,
