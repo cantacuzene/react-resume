@@ -35,6 +35,7 @@ export const en = {
         'Middleware pipelines',
         'Micro services and server-less architectures',
         'Blockchain and decentralised architectures',
+        'Information systems security',
       ],
     },
     skills: [
