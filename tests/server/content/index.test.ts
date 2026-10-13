@@ -87,10 +87,14 @@ describe('content', () => {
         'spokenLanguages',
       ),
     ]
+    // 'Acting CTO' is the title used in French too, so it is identical on purpose
+    const multidao = en.resume.experiences.findIndex(({ company }) => company === 'Multidao')
+    const sameInBothLanguages = [`experiences.title[${String(multidao)}]`]
     const frenchByPath = new Map(translatable(fr).map(({ path, value }) => [path, value]))
     const untranslated = translatable(en)
       .filter(({ path, value }) => frenchByPath.get(path) === value)
       .map(({ path }) => path)
+      .filter((path) => !sameInBothLanguages.includes(path))
 
     expect(untranslated).toEqual([])
   })

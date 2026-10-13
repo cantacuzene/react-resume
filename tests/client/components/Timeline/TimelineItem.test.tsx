@@ -14,7 +14,7 @@ describe('TimelineItem', () => {
 
     expect(screen.getByText('09/2024')).toBeInTheDocument()
     expect(screen.getByText("Aujourd'hui")).toBeInTheDocument()
-    expect(screen.getByText('Directeur technique par intérim')).toBeInTheDocument()
+    expect(screen.getByText('Acting CTO')).toBeInTheDocument()
     expect(screen.getByText('Multidao')).toBeInTheDocument()
   })
 
