@@ -29,7 +29,7 @@ export const experienceFacts = {
     company: 'Multidao',
     start: month(2024, 9),
     end: null,
-    stack: ['Nix', 'NixOS', 'Nvidia Jetson', 'TypeScript'],
+    stack: ['Nix', 'NixOS', 'Nvidia Jetson', 'TypeScript', 'Hyperledger'],
   },
   karibIt: {
     id: '5',
