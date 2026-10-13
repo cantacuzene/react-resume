@@ -4,9 +4,12 @@ import { resumePageFixture } from './fixtures'
 
 describe('resumePageFixture', () => {
   it('serializes dates like the Date scalar', () => {
-    const [current] = resumePageFixture('EN').resume.experiences
+    const { experiences } = resumePageFixture('EN').resume
+    const [current] = experiences
+    const finished = experiences.find(({ end }) => end !== null)
 
-    expect(current).toMatchObject({ id: '5', start: '2018-01-01', end: null })
+    expect(current).toMatchObject({ id: '6', start: '2024-09-01', end: null })
+    expect(finished).toMatchObject({ start: '2015-04-01', end: '2017-05-01' })
   })
 
   it('returns the requested language', () => {

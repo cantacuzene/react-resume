@@ -61,10 +61,16 @@ export const fr = {
     ],
     experiences: [
       {
-        ...experienceFacts.karibIt,
-        title: 'Architecte logiciel',
+        ...experienceFacts.multidao,
+        title: 'Directeur technique par intérim',
         description:
-          'Création d’une société de R&D informatique dans le but d’effectuer de la prestation de service auprès d’entreprises locales et internationales',
+          'Conception d’une plateforme open source web3 à intelligence artificielle multi-agents',
+      },
+      {
+        ...experienceFacts.karibIt,
+        title: 'Chef de projet technique',
+        description:
+          'Création d’une société de R&D informatique dans le but d’effectuer de la prestation de service auprès d’entreprises locales et internationales. Référent technique chez La Française Asset Management, puis chez Euro Information pour LFAM, sur les domaines de la gestion d’actifs : risques, référentiel de données, contrôle interne, ressources humaines et forces de vente sur des logiciels de CRM et de BPMN',
       },
       {
         ...experienceFacts.zags,

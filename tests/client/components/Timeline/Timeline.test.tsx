@@ -17,20 +17,15 @@ describe('Timeline', () => {
 
     expect(screen.getByRole('heading', { level: 2, name: 'Experience' })).toBeInTheDocument()
     expect(screen.getAllByRole('article')).toHaveLength(resume.experiences.length)
-    expect(screen.getByText('Present')).toBeInTheDocument()
+    expect(screen.getAllByText('Present')).toHaveLength(2)
   })
 
   it('puts positions that overlap in time in the same row', () => {
     const { resume, translations } = resumePageFixture('EN')
-    const [current] = resume.experiences
-
-    if (current === undefined) throw new Error('fixture has no experience')
-
-    const parallel = { ...current, id: 'parallel', company: 'Side Company', start: '2024-09-01' }
 
     render(
       <Timeline
-        experiences={[...resume.experiences, parallel]}
+        experiences={resume.experiences}
         title="Experience"
         t={translations.timeline}
         lang="EN"
@@ -42,9 +37,10 @@ describe('Timeline', () => {
 
     if (firstRow === undefined) throw new Error('the timeline has no row')
 
-    // The two ongoing positions overlap, so they share the newest row
-    expect(rows).toHaveLength(resume.experiences.length)
+    // Karib IT and Multidao run in parallel, so they share the newest row
+    expect(rows).toHaveLength(resume.experiences.length - 1)
     expect(within(firstRow).getAllByRole('article')).toHaveLength(2)
-    expect(within(firstRow).getByText(parallel.company)).toBeInTheDocument()
+    expect(within(firstRow).getByText('Karib IT SAS')).toBeInTheDocument()
+    expect(within(firstRow).getByText('Multidao')).toBeInTheDocument()
   })
 })

@@ -24,24 +24,28 @@ export const educationFacts = {
 } as const
 
 export const experienceFacts = {
+  multidao: {
+    id: '6',
+    company: 'Multidao',
+    start: month(2024, 9),
+    end: null,
+    stack: ['Nix', 'NixOS', 'Nvidia Jetson', 'TypeScript'],
+  },
   karibIt: {
     id: '5',
     company: 'Karib IT SAS',
     start: month(2018, 1),
     end: null,
     stack: [
+      '.NET 4.7.2',
       '.NET Core',
-      'Python',
-      'Django',
-      'VS Code',
-      'heroku',
-      'CI/CD',
-      'git',
-      'DDD',
-      'TDD',
+      '.NET 10',
       'React',
-      'webpack',
-      'babel',
+      'TypeScript',
+      'K2 automation',
+      'Event Store',
+      'SQL',
+      'Azure DevOps',
     ],
   },
   zags: {

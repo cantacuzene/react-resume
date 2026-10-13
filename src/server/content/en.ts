@@ -60,10 +60,16 @@ export const en = {
     ],
     experiences: [
       {
-        ...experienceFacts.karibIt,
-        title: 'Software Architect',
+        ...experienceFacts.multidao,
+        title: 'Acting CTO',
         description:
-          'Created a R&D software company which aims to provide consulting services for Caribbean or north American businesses',
+          'Helping design an open source web3 platform with integrated multi-agent artificial intelligence',
+      },
+      {
+        ...experienceFacts.karibIt,
+        title: 'Technical project manager',
+        description:
+          'Created a R&D software company which aims to provide consulting services for Caribbean or north American businesses. Tech lead at La Française Asset Management, then at Euro Information for LFAM, across asset management domains: risk, reference data management, internal control, human resources and sales on CRM and BPMN software',
       },
       {
         ...experienceFacts.zags,

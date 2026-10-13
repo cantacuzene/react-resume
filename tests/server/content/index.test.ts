@@ -125,8 +125,10 @@ describe('content', () => {
     })
   })
 
-  it('has exactly one current position', () => {
-    expect(en.resume.experiences.filter(({ end }) => end === null)).toHaveLength(1)
+  it('has two current positions, Karib IT and Multidao', () => {
+    expect(
+      en.resume.experiences.filter(({ end }) => end === null).map(({ company }) => company),
+    ).toEqual(['Multidao', 'Karib IT SAS'])
   })
 
   it.each([
