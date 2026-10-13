@@ -12,6 +12,8 @@ export const resumePageFixture = (lang: Lang): ResumePageQuery => {
       ...resume,
       experiences: resume.experiences.map((experience) => ({
         ...experience,
+        // the schema field is nullable; the content leaves it out when there is no mission
+        mission: experience.mission ?? null,
         start: toIsoDate(experience.start),
         end: experience.end ? toIsoDate(experience.end) : null,
       })),

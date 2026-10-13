@@ -10,6 +10,7 @@ const experience = (id: string, start: string, end: string | null): Experience =
   start,
   end,
   description: `Description ${id}`,
+  mission: null,
   stack: ['TypeScript'],
 })
 

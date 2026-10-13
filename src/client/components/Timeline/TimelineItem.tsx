@@ -23,6 +23,12 @@ export const TimelineItem = ({ experience, t, lang, side }: TimelineItemProps) =
     </h3>
     <h4 className={styles.label}>{t.description}</h4>
     <p>{experience.description}</p>
+    {experience.mission !== null && (
+      <>
+        <h4 className={styles.label}>{t.mission}</h4>
+        <p>{experience.mission}</p>
+      </>
+    )}
     <h4 className={styles.label}>{t.stack}</h4>
     <p>{experience.stack.join(', ')}</p>
   </article>
