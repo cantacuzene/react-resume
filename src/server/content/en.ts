@@ -39,7 +39,7 @@ export const en = {
       ],
     },
     skills: [
-      { name: '.NET (2.x - 10.x+)', rating: 90 },
+      { name: 'C# / .NET (2.x - 10.x+)', rating: 90 },
       { name: 'HTML / CSS', rating: 80 },
       { name: 'TS', rating: 80 },
       { name: 'Docker', rating: 60 },
