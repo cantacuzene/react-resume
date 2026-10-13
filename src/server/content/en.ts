@@ -36,6 +36,7 @@ export const en = {
         'Micro services and server-less architectures',
         'Blockchain and decentralised architectures',
         'Information systems security',
+        'Integrating AI and automation platforms',
       ],
     },
     skills: [
