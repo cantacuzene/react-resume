@@ -35,6 +35,7 @@ export const fr = {
         'Le DDD et le TDD',
         'Les Middleware pipelines',
         'Les architectures micro services et server-less',
+        'La blockchain et les architectures décentralisées',
       ],
     },
     skills: [

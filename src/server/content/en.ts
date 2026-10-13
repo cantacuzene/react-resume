@@ -34,6 +34,7 @@ export const en = {
         'DDD and TDD',
         'Middleware pipelines',
         'Micro services and server-less architectures',
+        'Blockchain and decentralised architectures',
       ],
     },
     skills: [
