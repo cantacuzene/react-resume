@@ -50,6 +50,7 @@ export const en = {
       { name: 'Go', rating: 30 },
       { name: 'Scrum Master', rating: 90 },
       { name: 'Web Architecture', rating: 90 },
+      { name: 'Web3 Architecture', rating: 50 },
     ],
     educations: [
       { ...educationFacts.master, title: 'Master: Expert in Information Technologies' },

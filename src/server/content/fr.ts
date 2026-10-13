@@ -51,6 +51,7 @@ export const fr = {
       { name: 'Go', rating: 30 },
       { name: 'Scrum Master', rating: 90 },
       { name: 'Architecture web', rating: 90 },
+      { name: 'Architecture web3', rating: 50 },
     ],
     educations: [
       { ...educationFacts.master, title: "Master Expert en Technologies de l'Information" },

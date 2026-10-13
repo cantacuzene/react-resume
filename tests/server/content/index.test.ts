@@ -114,6 +114,7 @@ describe('content', () => {
 
     expect(frenchNames).toContain('Architecture hexagonale')
     expect(frenchNames).toContain('Architecture web')
+    expect(frenchNames).toContain('Architecture web3')
   })
 
   it('lists the same skills, spoken languages and links in both languages', () => {
