@@ -10,7 +10,7 @@ describe('Skills', () => {
 
     expect(screen.getByRole('heading', { name: 'Skills' })).toBeInTheDocument()
     expect(screen.getByRole('img', { name: 'Skills' })).toBeInTheDocument()
-    expect(screen.getByText('C# 90%')).toBeInTheDocument()
+    expect(screen.getByText('.NET (2.x - 10.x+) 90%')).toBeInTheDocument()
     expect(screen.getByText('Web Architecture')).toBeInTheDocument()
   })
 })
