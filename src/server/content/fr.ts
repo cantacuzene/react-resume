@@ -31,12 +31,14 @@ export const fr = {
       ],
       interests: [
         'La programmation fonctionnelle',
-        'La DataViz',
-        'Les Technologies Front',
-        'Le DDD',
-        'Le TDD',
+        'La DataViz et les technologies front',
+        'Le DDD et le TDD',
         'Les Middleware pipelines',
         'Les architectures micro services et server-less',
+        'La blockchain et les architectures décentralisées',
+        'La sécurisation des SI',
+        'L’intégration des LLM aux SI',
+        'Les plateformes d’automatisation',
       ],
     },
     skills: [

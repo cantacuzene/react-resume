@@ -30,12 +30,14 @@ export const en = {
       ],
       interests: [
         'Functional programing',
-        'DataViz',
-        'Front-end Technologies',
-        'DDD',
-        'TDD',
+        'DataViz and front-end technologies',
+        'DDD and TDD',
         'Middleware pipelines',
         'Micro services and server-less architectures',
+        'Blockchain and decentralised architectures',
+        'Information systems security',
+        'Integrating LLMs into information systems',
+        'Automation platforms',
       ],
     },
     skills: [
