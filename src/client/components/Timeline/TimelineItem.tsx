@@ -12,21 +12,24 @@ export type TimelineItemProps = Readonly<{
 }>
 
 export const TimelineItem = ({ experience, t, lang, side }: TimelineItemProps) => (
-  <article className={styles.item}>
-    <div className={styles.icon} />
-    <div className={classNames(styles.content, styles[side])}>
-      <h3 className={styles.heading}>
-        <span className={styles.title}>{experience.title}</span>
-        <span>{experience.company}</span>
-        <span className={styles.dates}>
-          <span className={styles.start}>{formatMonth(experience.start, lang)}</span>
-          <span>{experience.end ? formatMonth(experience.end, lang) : t.present}</span>
-        </span>
-      </h3>
-      <h4 className={styles.label}>{t.description}</h4>
-      <p>{experience.description}</p>
-      <h4 className={styles.label}>{t.stack}</h4>
-      <p>{experience.stack.join(', ')}</p>
-    </div>
+  <article className={classNames(styles.content, styles[side])}>
+    <h3 className={styles.heading}>
+      <span className={styles.title}>{experience.title}</span>
+      <span>{experience.company}</span>
+      <span className={styles.dates}>
+        <span className={styles.start}>{formatMonth(experience.start, lang)}</span>
+        <span>{experience.end ? formatMonth(experience.end, lang) : t.present}</span>
+      </span>
+    </h3>
+    <h4 className={styles.label}>{t.description}</h4>
+    <p>{experience.description}</p>
+    {experience.mission !== null && (
+      <>
+        <h4 className={styles.label}>{t.mission}</h4>
+        <p>{experience.mission}</p>
+      </>
+    )}
+    <h4 className={styles.label}>{t.stack}</h4>
+    <p>{experience.stack.join(', ')}</p>
   </article>
 )

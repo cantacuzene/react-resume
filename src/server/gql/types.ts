@@ -41,6 +41,8 @@ export type Experience = {
   /** null means the current position */
   readonly end?: Maybe<Scalars['Date']['output']>;
   readonly id: Scalars['ID']['output'];
+  /** The client mission carried out through the company, when there is one */
+  readonly mission?: Maybe<Scalars['String']['output']>;
   readonly stack: ReadonlyArray<Scalars['String']['output']>;
   readonly start: Scalars['Date']['output'];
   readonly title: Scalars['String']['output'];
@@ -143,6 +145,7 @@ export type SpokenLanguage = {
 export type TimelineLabels = {
   readonly __typename?: 'TimelineLabels';
   readonly description: Scalars['String']['output'];
+  readonly mission: Scalars['String']['output'];
   /** Shown when Experience.end is null */
   readonly present: Scalars['String']['output'];
   readonly stack: Scalars['String']['output'];
@@ -307,6 +310,7 @@ export type ExperienceResolvers<ContextType = any, ParentType extends ResolversP
   description?: Resolver<ResolversTypes['String'], ParentType, ContextType>;
   end?: Resolver<Maybe<ResolversTypes['Date']>, ParentType, ContextType>;
   id?: Resolver<ResolversTypes['ID'], ParentType, ContextType>;
+  mission?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>;
   stack?: Resolver<ReadonlyArray<ResolversTypes['String']>, ParentType, ContextType>;
   start?: Resolver<ResolversTypes['Date'], ParentType, ContextType>;
   title?: Resolver<ResolversTypes['String'], ParentType, ContextType>;
@@ -371,6 +375,7 @@ export type SpokenLanguageResolvers<ContextType = any, ParentType extends Resolv
 
 export type TimelineLabelsResolvers<ContextType = any, ParentType extends ResolversParentTypes['TimelineLabels'] = ResolversParentTypes['TimelineLabels']> = {
   description?: Resolver<ResolversTypes['String'], ParentType, ContextType>;
+  mission?: Resolver<ResolversTypes['String'], ParentType, ContextType>;
   present?: Resolver<ResolversTypes['String'], ParentType, ContextType>;
   stack?: Resolver<ResolversTypes['String'], ParentType, ContextType>;
 };

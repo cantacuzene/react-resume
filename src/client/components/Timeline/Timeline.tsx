@@ -1,8 +1,8 @@
 import type { Experience, Lang, TimelineLabels } from '@/client/api/types'
 import { SectionTitle } from '@/client/components/SectionTitle/SectionTitle'
 import styles from './Timeline.module.css'
-import { sideOf } from './Timeline.utils'
-import { TimelineItem } from './TimelineItem'
+import { timelineRows } from './Timeline.utils'
+import { TimelineRow } from './TimelineRow'
 
 export type TimelineProps = Readonly<{
   experiences: ReadonlyArray<Experience>
@@ -15,17 +15,16 @@ export const Timeline = ({ experiences, title, t, lang }: TimelineProps) => (
   <section className={styles.experience}>
     <SectionTitle text={title} />
     <div className={styles.container}>
-      <div className={styles.timeline}>
-        {experiences.map((experience, index) => (
-          <TimelineItem
-            key={experience.id}
-            experience={experience}
+      <ol className={styles.timeline}>
+        {timelineRows(experiences).map((row) => (
+          <TimelineRow
+            key={row.map(({ experience }) => experience.id).join('-')}
+            row={row}
             t={t}
             lang={lang}
-            side={sideOf(index)}
           />
         ))}
-      </div>
+      </ol>
     </div>
   </section>
 )

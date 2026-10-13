@@ -39,11 +39,13 @@ describe('content', () => {
     expect(fr.translations.timeline).toEqual({
       present: "Aujourd'hui",
       description: 'Descriptif',
+      mission: 'Mission',
       stack: 'Technologies',
     })
     expect(en.translations.timeline).toEqual({
       present: 'Present',
       description: 'Description',
+      mission: 'Mission',
       stack: 'Stack',
     })
   })
@@ -83,14 +85,26 @@ describe('content', () => {
         'experiences.description',
       ),
       ...leaves(
+        langContent.resume.experiences.flatMap(({ mission }) => mission ?? []),
+        'experiences.mission',
+      ),
+      ...leaves(
         langContent.resume.spokenLanguages.map(({ name }) => name),
         'spokenLanguages',
       ),
+    ]
+    // Identical in both languages on purpose: 'Acting CTO' is the title used in French too, and
+    // 'Mission' is the same word in English
+    const multidao = en.resume.experiences.findIndex(({ company }) => company === 'Multidao')
+    const sameInBothLanguages = [
+      `experiences.title[${String(multidao)}]`,
+      'translations.timeline.mission',
     ]
     const frenchByPath = new Map(translatable(fr).map(({ path, value }) => [path, value]))
     const untranslated = translatable(en)
       .filter(({ path, value }) => frenchByPath.get(path) === value)
       .map(({ path }) => path)
+      .filter((path) => !sameInBothLanguages.includes(path))
 
     expect(untranslated).toEqual([])
   })
@@ -125,8 +139,10 @@ describe('content', () => {
     })
   })
 
-  it('has exactly one current position', () => {
-    expect(en.resume.experiences.filter(({ end }) => end === null)).toHaveLength(1)
+  it('has two current positions, Karib IT and Multidao', () => {
+    expect(
+      en.resume.experiences.filter(({ end }) => end === null).map(({ company }) => company),
+    ).toEqual(['Multidao', 'Karib IT SAS'])
   })
 
   it.each([

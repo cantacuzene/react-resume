@@ -68,6 +68,8 @@ type Experience {
   "null means the current position"
   end: Date
   description: String!
+  "The client mission carried out through the company, when there is one"
+  mission: String
   stack: [String!]!
 }
 
@@ -101,6 +103,7 @@ type TimelineLabels {
   "Shown when Experience.end is null"
   present: String!
   description: String!
+  mission: String!
   stack: String!
 }
 

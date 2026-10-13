@@ -33,6 +33,7 @@ query ResumePage($lang: Lang!) {
       start
       end
       description
+      mission
       stack
     }
     spokenLanguages {
@@ -55,6 +56,7 @@ query ResumePage($lang: Lang!) {
     timeline {
       present
       description
+      mission
       stack
     }
     aria {

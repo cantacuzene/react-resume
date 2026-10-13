@@ -60,10 +60,18 @@ export const en = {
     ],
     experiences: [
       {
+        ...experienceFacts.multidao,
+        title: 'Acting CTO',
+        description:
+          'Consulting on the design of an open source web3 platform built on a multi-agent architecture with integrated artificial intelligence',
+      },
+      {
         ...experienceFacts.karibIt,
         title: 'Software Architect',
         description:
           'Created a R&D software company which aims to provide consulting services for Caribbean or north American businesses',
+        mission:
+          'Technical project manager at La Française Asset Management, then at Euro Information, across asset management domains: risk, reference data management, internal control, human resources and sales on CRM and BPMN software',
       },
       {
         ...experienceFacts.zags,
@@ -110,7 +118,12 @@ export const en = {
       experiences: 'Experience',
     },
     header: { switchTo: 'Switch to:', emailMe: 'Email me!' },
-    timeline: { present: 'Present', description: 'Description', stack: 'Stack' },
+    timeline: {
+      present: 'Present',
+      description: 'Description',
+      mission: 'Mission',
+      stack: 'Stack',
+    },
     aria: { switchLanguage: 'Switch language', retry: 'Retry', loading: 'Loading' },
   },
   siteLanguages: [

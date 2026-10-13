@@ -204,8 +204,9 @@ Translations flow down as props (`t`). Only `App` calls `useResumePage`; only `H
 | `Education` | `educations`, `title` | Year, title, school, location per entry |
 | `Languages` | `spokenLanguages`, `title` | One `LanguageRing` per language in one SVG row |
 | `LanguageRing` | `name`, `rating`, `height` | Background ring, rounded progress arc, centre circle, name and percentage |
-| `Timeline` | `experiences`, `title`, `t: TimelineLabels`, `lang` | `TimelineItem`s alternating left/right by index |
-| `TimelineItem` | `experience`, `t`, `lang`, `side` | "title, company", date range (`formatMonth`, `present` when `end` is `null`), description and stack (joined with `, `) under their labels |
+| `Timeline` | `experiences`, `title`, `t: TimelineLabels`, `lang` | One `TimelineRow` per row of `timelineRows` |
+| `TimelineRow` | `row`, `t`, `lang` | The spine node, shared by the row's one or two `TimelineItem`s |
+| `TimelineItem` | `experience`, `t`, `lang`, `side` | The card, floated to `side`: "title, company", date range (`formatMonth`, `present` when `end` is `null`), description and stack (joined with `, `) under their labels |
 | `HomePage` | `resume`, `t: SectionTitles`, `timeline`, `lang` | Sections in legacy order: About, Skills, Education, Languages, Experience |
 | `Loading` | `lang` | `aria-busy` spinner, `aria-label` from a local fallback |
 | `LoadError` | `lang`, `retry` | Warning icon and a retry `<button>`, `aria-label` from a local fallback |
@@ -216,6 +217,20 @@ documented `react/jsx-no-literals` exception, scoped to these two files.
 
 `Header.utils.ts` maps `LinkKind` to its `react-icons` component (`FaGithub`, `FaLinkedin`,
 `FaCertificate`); email uses `FaEnvelope`, `LoadError` uses `FaTriangleExclamation`.
+
+### 4.1 Parallel positions (`Timeline.utils.ts`)
+
+Positions that ran at the same time share a row, one card on each side of the spine
+(issue #39):
+
+- `timelineRows(experiences)` sorts by `start`, newest first, then pairs each position with the
+  next one when they overlap. `a` and `b` overlap when `a.start < endOf(b) && b.start < endOf(a)`,
+  where `end: null` means ongoing; positions that only touch do not overlap.
+- Within a pair the earlier start takes the right side and renders first, so reading order
+  follows the spine.
+- Rows with a single position keep alternating by row index, starting on the right, so a resume
+  without overlaps renders exactly as before.
+- Three or more overlapping positions pair the first two; the rest fall to the following rows.
 
 ## 5. Charts
 
@@ -308,7 +323,7 @@ changes:
 | `languages.utils.ts` | `otherLanguages`; `formatMonth` per language; `resolveInitialLang` priority, regions, unknown tags, fallback |
 | `Skills.utils.ts` | Axis angles, ring and polygon points for known inputs, label anchors |
 | `Languages.utils.ts` | Radii; arc paths start/end for ratings 0.5 and 1 |
-| `Header.utils.ts`, `Timeline.utils.ts` | Icon per `LinkKind`; side alternation |
+| `Header.utils.ts`, `Timeline.utils.ts` | Icon per `LinkKind`; side alternation; `timelineRows` pairing, ordering, touching dates, three overlapping |
 | Components | Plain `render` with fixture props (except `Header`: `renderWithProviders`): text, titles from `t`, roles (`img` charts with their titles, `button`s, `list`s), `present` label for the current job |
 | `App` | Loading → header and all five sections; clicking the EN button switches content and `<html lang>`; HTTP 500 → `LoadError` → retry → success |
 | Lint | Client importing `@/server/*` is rejected, except in `tests/support/fixtures.ts` |
