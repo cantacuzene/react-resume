@@ -37,7 +37,8 @@ export const fr = {
         'Les architectures micro services et server-less',
         'La blockchain et les architectures décentralisées',
         'La sécurisation des SI',
-        'L’intégration des LLM et des plateformes d’automatisation',
+        'L’intégration des LLM aux SI',
+        'L’intégration des LLM aux plateformes d’automatisation',
       ],
     },
     skills: [

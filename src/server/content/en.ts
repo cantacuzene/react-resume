@@ -36,7 +36,8 @@ export const en = {
         'Micro services and server-less architectures',
         'Blockchain and decentralised architectures',
         'Information systems security',
-        'Integrating LLMs and automation platforms',
+        'Integrating LLMs into information systems',
+        'Integrating LLMs into automation platforms',
       ],
     },
     skills: [
