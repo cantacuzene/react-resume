@@ -38,7 +38,7 @@ export const fr = {
         'La blockchain et les architectures décentralisées',
         'La sécurisation des SI',
         'L’intégration des LLM aux SI',
-        'L’intégration des LLM aux plateformes d’automatisation',
+        'Les plateformes d’automatisation',
       ],
     },
     skills: [

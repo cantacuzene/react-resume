@@ -37,7 +37,7 @@ export const en = {
         'Blockchain and decentralised architectures',
         'Information systems security',
         'Integrating LLMs into information systems',
-        'Integrating LLMs into automation platforms',
+        'Automation platforms',
       ],
     },
     skills: [
