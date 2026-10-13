@@ -63,7 +63,7 @@ export const en = {
         ...experienceFacts.multidao,
         title: 'Acting CTO',
         description:
-          'Helping design an open source web3 platform with integrated multi-agent artificial intelligence',
+          'Helping design an open source web3 platform built on a multi-agent architecture with integrated artificial intelligence',
       },
       {
         ...experienceFacts.karibIt,
