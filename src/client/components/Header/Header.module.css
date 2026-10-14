@@ -39,9 +39,18 @@
   display: inline-block;
   width: 60px;
   margin: 0 3%;
-  vertical-align: top;
+  padding: 0;
+  font: inherit;
   color: black;
+  text-align: center;
   text-decoration: none;
+  vertical-align: top;
+  cursor: pointer;
+  /* the download control is a <button>: without these it keeps the user-agent box, and as a
+     stretched grid item it centres its content instead of starting at the top like the links */
+  background: none;
+  border: 0;
+  align-self: start;
 
   & span {
     display: block;
