@@ -219,5 +219,15 @@ export default defineConfig(
     rules: { 'testing-library/no-manual-cleanup': 'off' },
   },
 
+  // These tests render a PDF document, not a React tree: the Testing Library rules about
+  // `render()` results and lifecycle hooks do not apply to @react-pdf/renderer.
+  {
+    files: ['tests/client/pdf/**/*.{ts,tsx}'],
+    rules: {
+      'testing-library/render-result-naming-convention': 'off',
+      'testing-library/no-render-in-lifecycle': 'off',
+    },
+  },
+
   prettier,
 )
