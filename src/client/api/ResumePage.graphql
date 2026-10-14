@@ -52,6 +52,8 @@ query ResumePage($lang: Lang!) {
     header {
       switchTo
       emailMe
+      downloadResume
+      downloadFailed
     }
     timeline {
       present

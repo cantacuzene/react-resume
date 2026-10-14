@@ -17,6 +17,7 @@ const renderHeader = () => {
         t={translations.header}
         aria={translations.aria}
         languages={siteLanguages}
+        download={<button type="button">{translations.header.downloadResume}</button>}
       />
       <CurrentLang />
     </>,
@@ -44,7 +45,13 @@ describe('Header', () => {
       'https://github.com/cantacuzene',
     )
     expect(screen.getByRole('link', { name: 'Mon profil LinkedIn' })).toBeInTheDocument()
-    expect(screen.getByRole('link', { name: 'Voir mes badges' })).toBeInTheDocument()
+    expect(screen.queryByRole('link', { name: 'Voir mes badges' })).not.toBeInTheDocument()
+  })
+
+  it('renders the download slot in the navigation', () => {
+    renderHeader()
+
+    expect(screen.getByRole('button', { name: 'Télécharger mon CV' })).toBeInTheDocument()
   })
 
   it('offers only the other languages and switches to them', async () => {

@@ -31,7 +31,6 @@ type Profile {
 enum LinkKind {
   GITHUB
   LINKEDIN
-  BADGES
 }
 
 type ProfileLink {
@@ -97,6 +96,10 @@ type SectionTitles {
 type HeaderLabels {
   switchTo: String!
   emailMe: String!
+  "Label of the button that downloads the resume as a PDF"
+  downloadResume: String!
+  "Shown on that button when the PDF could not be built"
+  downloadFailed: String!
 }
 
 type TimelineLabels {

@@ -13,7 +13,6 @@ export const person = {
 export const linkUrls: Readonly<Record<LinkKind, string>> = {
   GITHUB: 'https://github.com/cantacuzene',
   LINKEDIN: 'https://www.linkedin.com/in/hugo-cantacuzene-903b9394',
-  BADGES: 'https://backpack.openbadges.org/share/cc71ca2cf7aaf763192d151a1591309f/',
 }
 
 export const spokenLanguageRatings = { english: 0.87, french: 1 } as const

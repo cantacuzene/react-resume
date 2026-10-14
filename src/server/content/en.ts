@@ -15,7 +15,6 @@ export const en = {
       links: [
         { kind: 'GITHUB', url: linkUrls.GITHUB, label: 'My GitHub profile' },
         { kind: 'LINKEDIN', url: linkUrls.LINKEDIN, label: 'My LinkedIn profile' },
-        { kind: 'BADGES', url: linkUrls.BADGES, label: 'View my badges' },
       ],
     },
     about: {
@@ -117,7 +116,12 @@ export const en = {
       languages: 'Languages',
       experiences: 'Experience',
     },
-    header: { switchTo: 'Switch to:', emailMe: 'Email me!' },
+    header: {
+      switchTo: 'Switch to:',
+      emailMe: 'Email me!',
+      downloadResume: 'Download my resume',
+      downloadFailed: 'Download failed, try again',
+    },
     timeline: {
       present: 'Present',
       description: 'Description',
