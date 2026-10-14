@@ -1,3 +1,4 @@
+import { DownloadResume } from '@/client/components/Header/DownloadResume'
 import { Header } from '@/client/components/Header/Header'
 import { HomePage } from '@/client/components/HomePage/HomePage'
 import { LoadError } from '@/client/components/LoadError/LoadError'
@@ -24,6 +25,7 @@ export const App = () => {
         t={translations.header}
         aria={translations.aria}
         languages={siteLanguages}
+        download={<DownloadResume data={{ resume, translations }} lang={lang} />}
       />
       <HomePage
         resume={resume}

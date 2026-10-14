@@ -1,3 +1,4 @@
+import type { ReactNode } from 'react'
 import { FaEnvelope } from 'react-icons/fa'
 import type { AriaLabels, HeaderLabels, Profile, SiteLanguage } from '@/client/api/types'
 import { useLanguage } from '@/client/i18n/LanguageContext'
@@ -12,9 +13,11 @@ export type HeaderProps = Readonly<{
   t: HeaderLabels
   aria: AriaLabels
   languages: ReadonlyArray<SiteLanguage>
+  // The download button needs the whole resume, so it comes in as a slot
+  download: ReactNode
 }>
 
-export const Header = ({ profile, t, aria, languages }: HeaderProps) => {
+export const Header = ({ profile, t, aria, languages, download }: HeaderProps) => {
   const { lang, setLang } = useLanguage()
 
   return (
@@ -42,6 +45,7 @@ export const Header = ({ profile, t, aria, languages }: HeaderProps) => {
           <FaEnvelope aria-hidden className={styles.icon} />
           <span>{t.emailMe}</span>
         </a>
+        {download}
         {profile.links.map(({ kind, url, label }) => {
           const Icon = linkIcon(kind)
           return (

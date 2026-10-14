@@ -50,6 +50,10 @@ export type Experience = {
 
 export type HeaderLabels = {
   readonly __typename?: 'HeaderLabels';
+  /** Shown on that button when the PDF could not be built */
+  readonly downloadFailed: Scalars['String']['output'];
+  /** Label of the button that downloads the resume as a PDF */
+  readonly downloadResume: Scalars['String']['output'];
   readonly emailMe: Scalars['String']['output'];
   readonly switchTo: Scalars['String']['output'];
 };
@@ -59,7 +63,6 @@ export type Lang =
   | 'FR';
 
 export type LinkKind =
-  | 'BADGES'
   | 'GITHUB'
   | 'LINKEDIN';
 
@@ -317,6 +320,8 @@ export type ExperienceResolvers<ContextType = any, ParentType extends ResolversP
 };
 
 export type HeaderLabelsResolvers<ContextType = any, ParentType extends ResolversParentTypes['HeaderLabels'] = ResolversParentTypes['HeaderLabels']> = {
+  downloadFailed?: Resolver<ResolversTypes['String'], ParentType, ContextType>;
+  downloadResume?: Resolver<ResolversTypes['String'], ParentType, ContextType>;
   emailMe?: Resolver<ResolversTypes['String'], ParentType, ContextType>;
   switchTo?: Resolver<ResolversTypes['String'], ParentType, ContextType>;
 };

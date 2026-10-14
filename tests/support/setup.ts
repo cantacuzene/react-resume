@@ -4,7 +4,15 @@ import { afterAll, afterEach, beforeAll } from 'vitest'
 import { server } from './server'
 
 beforeAll(() => {
-  server.listen({ onUnhandledRequest: 'error' })
+  server.listen({
+    onUnhandledRequest: (request, print) => {
+      // @react-pdf/renderer loads its layout engine from a data: URL, which is not network
+      // traffic. Every real unhandled request still fails the test.
+      if (new URL(request.url).protocol !== 'data:') {
+        print.error()
+      }
+    },
+  })
 })
 
 afterEach(() => {
