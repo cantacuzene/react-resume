@@ -20,7 +20,8 @@
     "verify": "bun run format:check && bun run lint && bun run typecheck && bun run check:gql && bun run check:tests && bun run test",
     "prepare": "lefthook install",
     "codegen": "graphql-codegen --config codegen.config.ts",
-    "check:gql": "bun run codegen && git diff --exit-code -- src/server/gql src/client/gql"
+    "check:gql": "bun run codegen && git diff --exit-code -- src/server/gql src/client/gql",
+    "screenshot": "bun scripts/screenshot.ts"
   },
   "dependencies": {
     "@fontsource/josefin-sans": "^5.3.0",
@@ -69,6 +70,7 @@
     "lefthook": "^2.1.14",
     "msw": "^2.15.0",
     "pdfjs-dist": "^6.4.299",
+    "playwright": "^1.64.1",
     "prettier": "^3.9.8",
     "typescript": "~6.0",
     "typescript-eslint": "^8.70.1",
